@@ -6,30 +6,26 @@ const projects = [
   {
     id: 1,
     name: "Classfellow",
-    description: "A platform that can record lectures, get instant transcriptions and summaries. ClassFellow captures your classes in real-time so you can focus on learning instead of taking notes",
-    image: '/classfellow.png',
+    description:
+      "A platform that can record lectures, get instant transcriptions and summaries. ClassFellow captures your classes in real-time so you can focus on learning instead of taking notes",
+    image: "/classfellow.png",
     link: "https://classfellow.developertest.cloud",
   },
   {
     id: 2,
     name: "Solidio",
-    description: "A web based platofrm for startups to present their project & connect with investors",
+    description:
+      "A web based platofrm for startups to present their project & connect with investors",
     image: "/solidio.png",
     link: "https://solidio.developertest.cloud",
   },
   {
     id: 3,
     name: "Collinear",
-    description: "An AI-Driven CRM Platform with Intelligent Automation and Conversational Assistants",
+    description:
+      "An AI-Driven CRM Platform with Intelligent Automation and Conversational Assistants",
     image: "/collinear.png",
     link: "https://collinear.developertest.cloud",
-  },
-  {
-    id: 4,
-    name: "Intellema",
-    description: "AI-powered solutions that turn your data into valuable insights, automate tasks, and accelerate business growth by leveraging advanced machine learning and automation technologies.",
-    image: "/intellema.png",
-    link: "https://intellema.com",
   },
 ];
 
@@ -42,7 +38,11 @@ export default function Projects() {
     setSelectedId(id);
     const el = itemRefs.current[index];
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      el.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
     }
   };
 
@@ -68,15 +68,19 @@ export default function Projects() {
               return (
                 <div
                   key={project.id}
-                  ref={(el) => { itemRefs.current[index] = el; }}
+                  ref={(el) => {
+                    itemRefs.current[index] = el;
+                  }}
                   onClick={() => handleSelect(project.id, index)}
                   className={`
                     snap-center shrink-0 rounded-2xl bg-white border-2 border-gray-200 cursor-pointer transition-all duration-300 ease-in-out
                     flex flex-col overflow-hidden
                     w-[70vw] sm:w-[22rem] md:w-[28rem] lg:w-[32rem]
-                    ${isSelected
-                      ? 'shadow-xl opacity-100 '
-                      : 'opacity-60 hover:opacity-80'}
+                    ${
+                      isSelected
+                        ? "shadow-xl opacity-100 "
+                        : "opacity-60 hover:opacity-80"
+                    }
                   `}
                 >
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gray-100">
@@ -94,11 +98,12 @@ export default function Projects() {
                       {project.description}
                     </p>
                     <button
-                     onClick={() => window.open(project.link, '_blank')}
-                     className="
+                      onClick={() => window.open(project.link, "_blank")}
+                      className="
                       w-full bg-transparent border-2 border-black text-black px-6 py-3 rounded-full 
                       transition-all duration-300 font-medium hover:bg-black hover:text-white cursor-pointer
-                    ">
+                    "
+                    >
                       View Project
                     </button>
                   </div>
