@@ -79,7 +79,7 @@ export default function Projects() {
                     ${
                       isSelected
                         ? "shadow-xl opacity-100 "
-                        : "opacity-60 hover:opacity-80"
+                        : ""
                     }
                   `}
                 >

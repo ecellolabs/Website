@@ -39,7 +39,7 @@ export default function Header() {
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-foreground transition-opacity duration-300 hover:opacity-70"
+                  className="text-foreground transition-opacity duration-300 hover:opacity-70 whitespace-nowrap"
                 >
                   {item}
                 </a>

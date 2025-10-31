@@ -104,7 +104,7 @@ export default function Services() {
                     min-h-56 md:min-h-64 lg:min-h-72
                     ${isSelected
                       ? 'bg-black text-white border-black shadow-2xl opacity-100'
-                      : 'bg-gray-100 text-foreground border-gray-200 opacity-40 hover:opacity-70'}
+                      : 'bg-gray-100 text-foreground border-gray-200'}
                   `}
                 >
                   <div className="flex items-center gap-5 md:gap-6 px-6 md:px-10">
