@@ -1,3 +1,5 @@
+import GetInTouch from "./ui/get-in-touch";
+
 export default function Header() {
   const navItems = ['Home', 'About Us', 'Services', 'Products'];
 
@@ -23,12 +25,9 @@ export default function Header() {
               </a>
             </li>
           ))}
-                  </ul>
+          </ul>
         </div>
-
-        <button className="bg-black text-white cursor-pointer px-7 py-2 rounded-full transition-opacity duration-300 hover:opacity-80">
-          Get in touch
-        </button>
+        <GetInTouch />
       </nav>
     </header>
   );

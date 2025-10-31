@@ -1,3 +1,6 @@
+import GetInTouch from "./ui/get-in-touch";
+import ViewProjects from "./ui/view-projects";
+
 export default function Hero() {
   return (
     <section className="min-h-screen relative  flex items-center justify-center">
@@ -9,6 +12,11 @@ export default function Hero() {
       <p className="text-lg text-foreground/80 mb-10">
       We help clients deploy and manage cloud environments with confidence.
       </p>
+      {/**CTA buttons */}
+      <div className="flex gap-2 justify-center">
+        <GetInTouch />
+        <ViewProjects />
+      </div>
     </div>
   </section>
   );
