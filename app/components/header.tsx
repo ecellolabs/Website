@@ -1,14 +1,24 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GetInTouch from "./ui/get-in-touch";
 
 export default function Header() {
-  const navItems = ['Home', 'About Us', 'Services', 'Products'];
+  const navItems = ['Home', 'Services', 'Products', 'Contact Us'];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4">
-      <nav className="max-w-7xl mx-auto">
+    <header className={`fixed top-4 left-4 right-4 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-xs rounded-2xl' : ''}`}>
+      <nav className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         {/* Desktop/Tablet Layout */}
         <div className="hidden md:grid md:grid-cols-3 items-center">
           <div className="justify-self-start">
