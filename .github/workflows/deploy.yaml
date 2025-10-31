@@ -15,24 +15,27 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 21
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Export & Build Static Site
+      - name: Export Static Site
         run: npm run build
 
-      - name: Install gcloud CLI
+      # Authenticate to Google Cloud
+      - name: Authenticate with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # Install gcloud (now authenticated)
+      - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Sync build output to GCS
+      # Sync build output to bucket
+      - name: Upload to GCS
         run: |
           gsutil -m rsync -r ./out gs://www.ecello.net
-
-      - name: Make uploaded files publicly readable
-        run: |
-          gsutil -m acl set -R -a public-read gs://www.ecello.net
