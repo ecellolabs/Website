@@ -1,0 +1,38 @@
+name: Deploy Ecello Website to GCS
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Export & Build Static Site
+        run: npm run build
+
+      - name: Install gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Sync build output to GCS
+        run: |
+          gsutil -m rsync -r ./out gs://www.ecello.net
+
+      - name: Make uploaded files publicly readable
+        run: |
+          gsutil -m acl set -R -a public-read gs://www.ecello.net
