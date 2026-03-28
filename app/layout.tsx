@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -193,7 +196,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", inter.variable)}>
       <head>
         <script
           type="application/ld+json"
