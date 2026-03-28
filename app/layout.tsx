@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Ecello",
   },
   description: "Ecello provides enterprise-grade cloud-based solutions, SaaS product development, AI model integration, and DevOps services. Building innovative software products like Classfellow, Solidio, Collinear, and Intellema.",
+  applicationName: "Ecello",
   keywords: [
     "cloud solutions",
     "SaaS development",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     "Islamabad software company",
     "Pakistan tech company",
   ],
-  authors: [{ name: "Ecello"}],
+  authors: [{ name: "Ecello" }],
   creator: "Ecello",
   publisher: "Ecello",
   robots: {

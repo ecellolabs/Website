@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Header from "./components/header";
-import Hero from "./components/hero";
-import Services from "./components/services";
-import Projects from "./components/projects";
-import Contact from "./components/contact";
-import Footer from "./components/footer";
+import Header from "../components/header";
+import Hero from "../components/hero";
+import Services from "../components/services";
+import Projects from "../components/projects";
+import Contact from "../components/contact";
+import Footer from "../components/footer";
 
 export const metadata: Metadata = {
   robots: {
@@ -20,12 +20,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-    <Header />
-    <Hero />
-    <Services />
-    <Projects />
-    <Contact />
-    <Footer />
+      Hello World
     </>
   );
 }
