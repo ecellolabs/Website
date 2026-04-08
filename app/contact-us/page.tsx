@@ -2,7 +2,13 @@ import Link from "next/link";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -18,17 +24,10 @@ export default function ContactUsPage() {
       <Header />
 
       <main>
-        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_#e9f2ff,_#f8fbff_45%,_#f4f7fb_100%)]">
-          <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl" />
-          <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
+        <section className="bg-[linear-gradient(180deg,_#eff6ff_0%,_#f7f9fc_100%)]">
           <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-24">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">
-                Contact Us
-              </p>
-              <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-                Tell us what you are building. We will help you find the next right move.
-              </h1>
+              <p className="text-3xl font-semibold">Contact Us</p>
               <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
                 Send a quick note about your product, automation, AI, or cloud challenge. We will
                 respond with a focused next step instead of a generic sales loop.
@@ -36,21 +35,25 @@ export default function ContactUsPage() {
 
               <div className="mt-10 grid gap-4">
                 {contactDetails.map((detail) => (
-                  <Link
-                    key={detail.label}
-                    href={detail.href}
-                    className="rounded-xl border border-slate-200 bg-white/80 p-5 transition hover:border-blue-200 hover:bg-white hover:shadow-lg hover:shadow-blue-950/5"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      {detail.label}
-                    </p>
-                    <p className="mt-2 font-semibold text-slate-900">{detail.value}</p>
-                  </Link>
+                  <Card key={detail.label} size="sm">
+                    <CardContent>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        {detail.label}
+                      </p>
+                      <Button
+                        asChild
+                        variant="link"
+                        className="mt-2 h-auto justify-start p-0 text-base font-semibold"
+                      >
+                        <Link href={detail.href}>{detail.value}</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
 
-            <Card className="border-slate-200 bg-white/95 shadow-xl shadow-blue-950/10">
+            <Card>
               <CardHeader>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                   Send a Message
@@ -58,6 +61,9 @@ export default function ContactUsPage() {
                 <CardTitle className="text-2xl font-semibold text-slate-900">
                   Start the conversation
                 </CardTitle>
+                <CardDescription>
+                  A few details help us route your note to the right specialist.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <form className="space-y-4">
@@ -67,7 +73,11 @@ export default function ContactUsPage() {
                   </div>
                   <Input name="company" placeholder="Company or project" />
                   <Input name="subject" placeholder="Subject" />
-                  <Textarea name="message" className="min-h-40" placeholder="Tell us what you need help with..." />
+                  <Textarea
+                    name="message"
+                    className="min-h-40"
+                    placeholder="Tell us what you need help with..."
+                  />
                   <Button type="submit" className="w-full" size="lg">
                     Send Message
                   </Button>
