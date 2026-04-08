@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "About Us", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Case Studies", href: "/#case-studies" },
 ];
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
               ))}
             </nav>
             <Button asChild size="sm">
-              <Link href="#book-meeting">Book Meeting</Link>
+              <Link href="/#book-meeting">Book Meeting</Link>
             </Button>
           </div>
 
@@ -72,7 +72,7 @@ export default function Header() {
                 </Link>
               ))}
               <Button asChild className="mt-1 w-full" size="sm">
-                <Link href="#book-meeting" onClick={closeMobileMenu}>
+                <Link href="/#book-meeting" onClick={closeMobileMenu}>
                   Book Meeting
                 </Link>
               </Button>

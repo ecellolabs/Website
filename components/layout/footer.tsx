@@ -8,6 +8,12 @@ const links = [
   { label: "Website", href: "https://www.ecello.net" },
 ];
 
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Cookie Consent", href: "/cookie-consent" },
+  { label: "Terms & Conditions", href: "/terms-conditions" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-[#0f2345] text-slate-100">
@@ -26,6 +32,17 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-slate-100 underline-offset-4 transition-colors hover:text-white hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-sm">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="font-medium text-slate-300 underline-offset-4 transition-colors hover:text-white hover:underline"
               >
                 {link.label}
               </Link>

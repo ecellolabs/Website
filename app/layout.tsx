@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import CookieConsentBanner from "@/components/layout/cookie-consent-banner";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -109,6 +110,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <CookieConsentBanner />
       </body>
     </html>
   );
