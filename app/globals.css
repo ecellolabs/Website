@@ -76,9 +76,20 @@ body {
 }
 
 .marquee-track {
+  display: flex;
   width: max-content;
   white-space: nowrap;
-  animation: marquee-slide 24s linear infinite;
+  animation: marquee-slide 36s linear infinite;
+  will-change: transform;
+}
+
+.marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: 100vw;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 1rem;
 }
 
 :root {

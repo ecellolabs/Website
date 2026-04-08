@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import ScrollControls from "@/components/layout/scroll";
+import type { CSSProperties } from "react";
 
 const technologies = [
   "Next.js",
@@ -15,6 +17,8 @@ const technologies = [
   "Docker",
   "Kubernetes",
 ];
+
+const marqueeTechnologies = [...technologies, ...technologies];
 
 const services = [
   {
@@ -55,6 +59,108 @@ const reviews = [
   },
 ];
 
+const generateBinary = (length = 500) => {
+  let str = "";
+  for (let i = 0; i < length; i++) {
+    str += Math.random() > 0.5 ? "1" : "0";
+  }
+  return str;
+};
+
+type BinaryLineProps = {
+  speed?: number;
+  direction?: "up" | "down";
+  right?: CSSProperties["right"];
+  opacity?: number;
+};
+
+const binaryStreamLines: BinaryLineProps[] = [
+  { speed: 30, direction: "up", right: "0px" },
+  { speed: 60, direction: "down", right: "10px" },
+  { speed: 50, direction: "up", right: "20px" },
+  { speed: 130, direction: "down", right: "30px" },
+  { speed: 110, direction: "up", right: "40px" },
+  { speed: 70, direction: "down", right: "50px" },
+  { speed: 60, direction: "up", right: "60px" },
+  { speed: 40, direction: "down", right: "70px" },
+  { speed: 80, direction: "up", right: "80px" },
+  { speed: 100, direction: "down", right: "90px" },
+  { speed: 50, direction: "up", right: "100px" },
+];
+
+const BinaryLine = ({ speed = 6, direction = "down", right = 0, opacity = 0.5 }: BinaryLineProps) => {
+  const animationName = direction === "up" ? "binaryScrollUp" : "binaryScrollDown";
+  const content = generateBinary(200);
+
+  const renderBlock = (groupIndex: number) => (
+    <span
+      key={groupIndex}
+      style={{
+        whiteSpace: "pre",
+        fontFamily: "monospace",
+        fontSize: "14px",
+        lineHeight: "14px",
+        writingMode: "vertical-rl",
+        textOrientation: "upright",
+        color: `rgba(11, 70, 163, ${opacity})`,
+      }}
+    >
+      {content}
+    </span>
+  );
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        right,
+        height: "100%",
+        width: "20px",
+        overflow: "hidden",
+        pointerEvents: "none",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          animation: `${animationName} ${speed}s linear infinite`,
+        }}
+      >
+        {renderBlock(0)}
+        {renderBlock(1)}
+      </div>
+    </div>
+  );
+};
+
+function BinaryStreams({ lines = binaryStreamLines }: { lines?: BinaryLineProps[] }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div className="relative h-full overflow-hidden">
+        {lines.map((line, i) => (
+          <BinaryLine key={i} {...line} />
+        ))}
+      </div>
+
+      <style>
+        {`
+@keyframes binaryScrollDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes binaryScrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+        `}
+      </style>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-900">
@@ -82,6 +188,8 @@ export default function Home() {
               </Button>
             </div>
           </div>
+          <BinaryStreams />
+          <ScrollControls scrollDownTarget="#about" />
         </section>
 
         <section id="about" className="border-t border-slate-200 bg-white">
@@ -96,15 +204,19 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="border-y border-slate-200 bg-slate-50">
+          <div className="overflow-hidden border-y border-slate-200 bg-slate-50">
             <div className="marquee-track py-4">
-              {[...technologies, ...technologies].map((tech, index) => (
-                <span
-                  key={`${tech}-${index}`}
-                  className="mx-2 inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700"
-                >
-                  {tech}
-                </span>
+              {[0, 1].map((group) => (
+                <div key={group} className="marquee-group">
+                  {marqueeTechnologies.map((tech, index) => (
+                    <span
+                      key={`${group}-${tech}-${index}`}
+                      className="inline-flex shrink-0 items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
