@@ -4,6 +4,7 @@ export const services = [
     eyebrow: "Workflow Automation",
     title: "Automation",
     tagline: "Turn repetitive work into dependable, measurable systems.",
+    image: "/ai-image.jpg",
     summary:
       "We design automation layers that connect your tools, reduce manual handoffs, and give teams clearer visibility into daily operations.",
     promise:
@@ -42,6 +43,7 @@ export const services = [
     eyebrow: "Product Engineering",
     title: "Web Development",
     tagline: "Launch polished, scalable web products that are easy to evolve.",
+    image: "/web-image.jpg",
     summary:
       "We build modern web applications, marketing experiences, and SaaS interfaces with strong foundations across UX, frontend architecture, and backend integration.",
     promise:
@@ -80,6 +82,7 @@ export const services = [
     eyebrow: "AI Systems",
     title: "Computer Vision",
     tagline: "Build visual intelligence into real-world products and workflows.",
+    image: "/computer-vision-image.jpg",
     summary:
       "We help teams use image and video intelligence for detection, classification, monitoring, and decision support across operational environments.",
     promise:
@@ -118,6 +121,7 @@ export const services = [
     eyebrow: "Cloud & DevOps",
     title: "Cloud Architecture",
     tagline: "Design cloud foundations that stay reliable under real product pressure.",
+    image: "/servers-image.jpg",
     summary:
       "We plan and implement cloud infrastructure, deployment systems, and observability foundations for products that need to scale with confidence.",
     promise:

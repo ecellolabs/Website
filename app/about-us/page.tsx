@@ -65,18 +65,27 @@ export default function AboutUsPage() {
 
         <section className="bg-white">
           <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:py-20">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                How We Work
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold text-slate-900">
-                Small enough to care deeply, sharp enough to own hard problems.
-              </h2>
-              <p className="mt-5 leading-7 text-slate-600">
-                We are most useful when a product needs more than implementation. We help clarify
-                what to build, choose the right technical path, and keep momentum through launch
-                and iteration.
-              </p>
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  How We Work
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold text-slate-900">
+                  Small enough to care deeply, sharp enough to own hard problems.
+                </h2>
+                <p className="mt-5 leading-7 text-slate-600">
+                  We are most useful when a product needs more than implementation. We help clarify
+                  what to build, choose the right technical path, and keep momentum through launch
+                  and iteration.
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                <img
+                  src="/team-image.jpg"
+                  alt="Ecello Labs team"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="grid gap-5">
