@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import ScrollControls from "@/components/layout/scroll-controls";
+import ScrollControls from "@/components/layout/scroll";
 import type { CSSProperties } from "react";
 
 const technologies = [
