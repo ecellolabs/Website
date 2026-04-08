@@ -51,7 +51,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 {caseStudy.services.map((service) => (
                   <span
                     key={service}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600"
+                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 transition duration-200 hover:border-blue-200 hover:text-blue-700"
                   >
                     {service}
                   </span>
@@ -70,7 +70,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </CardHeader>
               <CardContent className="space-y-4">
                 {caseStudy.metrics.map((metric) => (
-                  <div key={metric.label} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <div key={metric.label} className="rounded-lg border border-slate-200 bg-slate-50 p-4 transition duration-200 hover:border-blue-200 hover:bg-blue-50/40">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                       {metric.label}
                     </p>
@@ -84,34 +84,148 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
         <section className="bg-white">
           <div className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:py-20">
-            <Card className="border-slate-200 bg-slate-50/70">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-slate-900">Challenge</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="leading-7 text-slate-600">{caseStudy.challenge}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200 bg-slate-50/70">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-slate-900">Solution</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="leading-7 text-slate-600">{caseStudy.solution}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-slate-200 bg-slate-50/70">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold text-slate-900">Outcome</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="leading-7 text-slate-600">{caseStudy.outcome}</p>
-              </CardContent>
-            </Card>
+            {[
+              { title: "Challenge", body: caseStudy.challenge },
+              { title: "Solution", body: caseStudy.solution },
+              { title: "Outcome", body: caseStudy.outcome },
+            ].map((item) => (
+              <div key={item.title} className="group">
+                <Card className="h-full border-slate-200 bg-slate-50/70 transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-blue-950/10">
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="leading-7 text-slate-600">{item.body}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </section>
+
+        {caseStudy.overview && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Overview
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-slate-900">
+                About this project
+              </h2>
+              <p className="mt-6 max-w-3xl leading-8 text-slate-600">
+                {caseStudy.overview}
+              </p>
+            </div>
+          </section>
+        )}
+
+        {(caseStudy.challengeDetail || caseStudy.solutionDetail) && (
+          <section className="bg-white">
+            <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-20">
+              {caseStudy.challengeDetail && (
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    The Problem
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight text-slate-900">
+                    What we were up against
+                  </h2>
+                  <p className="mt-5 leading-8 text-slate-600">
+                    {caseStudy.challengeDetail}
+                  </p>
+                </div>
+              )}
+              {caseStudy.solutionDetail && (
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    The Approach
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight text-slate-900">
+                    How we solved it
+                  </h2>
+                  <p className="mt-5 leading-8 text-slate-600">
+                    {caseStudy.solutionDetail}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {caseStudy.features && caseStudy.features.length > 0 && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Features
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900">
+                What we built
+              </h2>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {caseStudy.features.map((feature) => (
+                  <div key={feature.title} className="group">
+                    <Card className="h-full border-slate-200 bg-white transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:shadow-xl group-hover:shadow-blue-950/10">
+                      <CardHeader>
+                        <CardTitle className="text-base font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
+                          {feature.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm leading-7 text-slate-600">{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {caseStudy.challenges && caseStudy.challenges.length > 0 && (
+          <section className="bg-white">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Engineering
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900">
+                Technical challenges
+              </h2>
+              <div className="mt-10 grid gap-8 sm:grid-cols-2">
+                {caseStudy.challenges.map((item, index) => (
+                  <div key={item.title} className="group flex gap-5">
+                    <span className="mt-1 shrink-0 text-sm font-semibold text-slate-300 transition duration-200 group-hover:text-blue-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
+                        {item.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {caseStudy.outcomeDetail && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Results
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-slate-900">
+                Business impact
+              </h2>
+              <p className="mt-6 max-w-3xl leading-8 text-slate-600">
+                {caseStudy.outcomeDetail}
+              </p>
+            </div>
+          </section>
+        )}
 
         <section className="border-t border-slate-200 bg-[#f8fbff]">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center">

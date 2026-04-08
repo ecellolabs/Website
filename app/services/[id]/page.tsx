@@ -5,6 +5,7 @@ import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getService, services } from "../data";
+import Image from "next/image";
 
 type ServicePageProps = {
   params: Promise<{ id: string }>;
@@ -35,6 +36,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
       <main>
         <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_#e8f4ff,_#f8fbff_48%,_#f4f7fb_100%)]">
+          {service.image && (
+            <img
+              src={service.image}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.08]"
+              aria-hidden="true"
+            />
+          )}
           <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl" />
           <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
           <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:py-24">
