@@ -21,7 +21,7 @@ export default function Header() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="flex h-20 items-center justify-between gap-6">
           <Link href="/" className="flex items-center" aria-label="Ecello Labs home">
-            <Image src="/logo.svg" alt="Ecello Labs" width={156} height={40} priority />
+            <Image src="/logo.svg" alt="Ecello Labs" width={100} height={30} priority />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
