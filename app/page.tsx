@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import ScrollControls from "@/components/layout/scroll-controls";
 import type { CSSProperties } from "react";
 
 const technologies = [
@@ -188,6 +189,7 @@ export default function Home() {
             </div>
           </div>
           <BinaryStreams />
+          <ScrollControls scrollDownTarget="#about" />
         </section>
 
         <section id="about" className="border-t border-slate-200 bg-white">
