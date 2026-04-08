@@ -113,6 +113,124 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           </div>
         </section>
 
+        {caseStudy.overview && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Overview
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-slate-900">
+                About this project
+              </h2>
+              <p className="mt-6 max-w-3xl leading-8 text-slate-600">
+                {caseStudy.overview}
+              </p>
+            </div>
+          </section>
+        )}
+
+        {(caseStudy.challengeDetail || caseStudy.solutionDetail) && (
+          <section className="bg-white">
+            <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-20">
+              {caseStudy.challengeDetail && (
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    The Problem
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight text-slate-900">
+                    What we were up against
+                  </h2>
+                  <p className="mt-5 leading-8 text-slate-600">
+                    {caseStudy.challengeDetail}
+                  </p>
+                </div>
+              )}
+              {caseStudy.solutionDetail && (
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    The Approach
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold leading-tight text-slate-900">
+                    How we solved it
+                  </h2>
+                  <p className="mt-5 leading-8 text-slate-600">
+                    {caseStudy.solutionDetail}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {caseStudy.features && caseStudy.features.length > 0 && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Features
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900">
+                What we built
+              </h2>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {caseStudy.features.map((feature) => (
+                  <Card key={feature.title} className="border-slate-200 bg-white">
+                    <CardHeader>
+                      <CardTitle className="text-base font-semibold text-slate-900">
+                        {feature.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm leading-7 text-slate-600">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {caseStudy.challenges && caseStudy.challenges.length > 0 && (
+          <section className="bg-white">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Engineering
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900">
+                Technical challenges
+              </h2>
+              <div className="mt-10 grid gap-8 sm:grid-cols-2">
+                {caseStudy.challenges.map((item, index) => (
+                  <div key={item.title} className="flex gap-5">
+                    <span className="mt-1 shrink-0 text-sm font-semibold text-slate-300">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <p className="font-semibold text-slate-900">{item.title}</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {caseStudy.outcomeDetail && (
+          <section className="bg-[#f8fbff]">
+            <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Results
+              </p>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-slate-900">
+                Business impact
+              </h2>
+              <p className="mt-6 max-w-3xl leading-8 text-slate-600">
+                {caseStudy.outcomeDetail}
+              </p>
+            </div>
+          </section>
+        )}
+
         <section className="border-t border-slate-200 bg-[#f8fbff]">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center">
             <div>
