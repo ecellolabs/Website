@@ -5,6 +5,8 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ScrollControls from "@/components/layout/scroll";
 import type { CSSProperties } from "react";
+import { StatsSection } from "@/components/ui/stats-animation";
+import { Textarea } from "@/components/ui/textarea";
 
 const technologies = [
   "Next.js",
@@ -38,26 +40,46 @@ const services = [
   },
 ];
 
-const reviews = [
+const steps = [
   {
-    quote:
-      "Ecello Labs transformed our legacy process into an automated platform in under twelve weeks.",
-    name: "Head of Operations",
-    company: "Fintech Client",
+    step: "Discover",
+    description: "We learn your business, your users, and the problem worth solving before writing a single line of code.",
   },
   {
-    quote:
-      "Strong technical ownership, transparent communication, and a team that treats outcomes like their own.",
-    name: "Product Director",
-    company: "HealthTech Client",
+    step: "Design",
+    description: "We map out the architecture, user flows, and technical approach so everyone is aligned before building begins.",
   },
   {
-    quote:
-      "Their cloud and DevOps work reduced deployment risk and improved our engineering velocity immediately.",
-    name: "CTO",
-    company: "SaaS Client",
+    step: "Build",
+    description: "We develop in focused cycles with regular check-ins, keeping progress visible and feedback loops short.",
+  },
+  {
+    step: "Deliver",
+    description: "We ship to production, hand over clean documentation, and stay available through the transition.",
   },
 ];
+
+const meetingSteps = [
+  {
+    step: "01",
+    title: "Tell us about your project",
+    description:
+      "Fill in the form with a brief overview of what you are building and what kind of support you are looking for.",
+  },
+  {
+    step: "02",
+    title: "We review and reach out",
+    description:
+      "We review your submission within 24 hours and follow up with a short message to confirm next steps.",
+  },
+  {
+    step: "03",
+    title: "We get on a strategy call",
+    description:
+      "We schedule a focused 30 minute call to understand your goals and outline how we can help.",
+  },
+];
+
 
 const generateBinary = (length = 500) => {
   let str = "";
@@ -239,44 +261,78 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="case-studies" className="bg-white">
+        <StatsSection />
+
+        <section className="bg-[#f8fbff]">
           <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Client Reviews</p>
-            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Trusted by teams that ship fast</h2>
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {reviews.map((review) => (
-                <Card key={review.company} className="h-full border-slate-200 bg-slate-50/70">
-                  <CardContent className="space-y-4 pt-6">
-                    <p className="text-slate-700">&quot;{review.quote}&quot;</p>
-                    <div>
-                      <p className="font-semibold text-slate-900">{review.name}</p>
-                      <p className="text-sm text-slate-500">{review.company}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+              How We Work
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
+              A clear path from problem to working product.
+            </h2>
+            <div className="mt-12 grid gap-0 md:grid-cols-4">
+              {steps.map((item, index) => (
+                <div key={item.step} className="group relative flex flex-col md:pr-8">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white transition duration-200 group-hover:bg-blue-700">
+                      {index + 1}
                     </div>
-                  </CardContent>
-                </Card>
+                    {index < steps.length - 1 && (
+                      <div className="hidden h-px flex-1 bg-slate-200 md:block" />
+                    )}
+                  </div>
+                  <div className="mt-5">
+                    <p className="font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
+                      {item.step}
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="book-meeting" className="border-y border-slate-200 bg-[#f8fbff]">
-          <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+        <section id="book-meeting" className="border-y border-slate-200 bg-white">
+          <div className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
+            <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
               <div className="max-w-xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Book a Meeting</p>
-                <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Let&apos;s plan your next product move</h2>
-                <p className="mt-5 text-slate-600">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  Book a Meeting
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
+                  Let&apos;s plan your next product move
+                </h2>
+                <p className="mt-5 leading-7 text-slate-600">
                   Tell us what you are building and where you need support. We will follow up with
                   a focused strategy call.
                 </p>
+                <div className="mt-10 flex flex-col gap-8">
+                  {meetingSteps.map((item) => (
+                    <div key={item.step} className="flex gap-5">
+                      <span className="mt-0.5 shrink-0 text-sm font-semibold text-slate-300">
+                        {item.step}
+                      </span>
+                      <div>
+                        <p className="font-semibold text-slate-900">{item.title}</p>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <Card className="border-slate-200 bg-white">
-                <CardContent className="space-y-4 pt-6">
+              <Card className="border-slate-200 bg-white shadow-sm">
+                <CardContent className="flex flex-col gap-4 p-8">
                   <Input placeholder="Your Name" />
                   <Input type="email" placeholder="Work Email" />
                   <Input placeholder="Company" />
-                  <Button className="w-full">Book Meeting</Button>
+                  <Textarea
+                    placeholder="Tell us about your project. What are you building, what stage are you at, and where do you need help?"
+                    className="min-h-[160px] resize-none"
+                  />
+                  <Button className="mt-6 w-full" size="lg">Book Meeting</Button>
                 </CardContent>
               </Card>
             </div>
