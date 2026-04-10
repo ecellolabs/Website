@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 type CalendarProps = {
   selected?: Date;
   onSelect?: (date: Date) => void;
+  disabledDates?: string[];
   className?: string;
 };
 
@@ -19,6 +20,12 @@ function isSameDay(first?: Date, second?: Date) {
     first?.getMonth() === second?.getMonth() &&
     first?.getDate() === second?.getDate()
   );
+}
+
+function toDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+    date.getDate()
+  ).padStart(2, "0")}`;
 }
 
 function getMonthDays(month: Date) {
@@ -34,7 +41,7 @@ function getMonthDays(month: Date) {
   ];
 }
 
-function Calendar({ selected, onSelect, className }: CalendarProps) {
+function Calendar({ selected, onSelect, disabledDates = [], className }: CalendarProps) {
   const today = new Date();
   const [visibleMonth, setVisibleMonth] = React.useState(
     () => new Date(today.getFullYear(), today.getMonth(), 1)
@@ -77,18 +84,25 @@ function Calendar({ selected, onSelect, className }: CalendarProps) {
 
           const isSelected = isSameDay(day, selected);
           const isToday = isSameDay(day, today);
+          const isDisabled = disabledDates.includes(toDateKey(day));
 
           return (
             <button
               key={day.toISOString()}
               type="button"
-              onClick={() => onSelect?.(day)}
+              onClick={() => {
+                if (!isDisabled) {
+                  onSelect?.(day);
+                }
+              }}
+              disabled={isDisabled}
               className={cn(
-                "flex h-10 items-center justify-center rounded-lg text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+                "flex h-10 items-center justify-center rounded-lg text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-300 disabled:hover:bg-slate-100 disabled:hover:text-slate-300",
                 isToday && "border border-blue-200 text-blue-700",
                 isSelected && "bg-blue-600 text-white hover:bg-blue-600 hover:text-white"
               )}
               aria-pressed={isSelected}
+              aria-disabled={isDisabled}
             >
               {day.getDate()}
             </button>

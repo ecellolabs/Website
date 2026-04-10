@@ -16,9 +16,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+import { API_BASE_URL, cn } from "@/lib/utils";
 
 const timeSlots = ["10:00 AM", "11:30 AM", "2:00 PM", "4:00 PM"];
+const BOOKING_API_URL = `${API_BASE_URL}/v1/website/booking`;
 const steps = [
   {
     eyebrow: "Step 1",
@@ -54,11 +55,48 @@ const initialMeetingDetails = {
   context: "",
 };
 
+function getSlotDateTime(date: Date, timeLabel: string) {
+  const [timePart, period] = timeLabel.split(" ");
+  const [hoursString, minutesString] = timePart.split(":");
+  let hours = Number(hoursString);
+  const minutes = Number(minutesString);
+
+  if (period === "PM" && hours !== 12) {
+    hours += 12;
+  }
+
+  if (period === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    hours,
+    minutes,
+    0,
+    0
+  );
+}
+
+function toDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+    date.getDate()
+  ).padStart(2, "0")}`;
+}
+
 export default function BookMeetingPage() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [meetingDetails, setMeetingDetails] = React.useState(initialMeetingDetails);
   const [selectedDate, setSelectedDate] = React.useState<Date>();
   const [selectedTime, setSelectedTime] = React.useState("");
+  const [bookedTimes, setBookedTimes] = React.useState<number[]>([]);
+  const [isLoadingBookedTimes, setIsLoadingBookedTimes] = React.useState(false);
+  const [submissionStatus, setSubmissionStatus] = React.useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
   const step = steps[activeStep];
   const hasValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(meetingDetails.email.trim());
   const hasBasicDetails =
@@ -66,12 +104,64 @@ export default function BookMeetingPage() {
     hasValidEmail &&
     meetingDetails.meetingReason.trim().length > 0;
   const hasSelectedSlot = Boolean(selectedDate && selectedTime);
+  const selectedSlotTimestamp =
+    selectedDate && selectedTime ? getSlotDateTime(selectedDate, selectedTime).getTime() : null;
+  const isSelectedSlotBooked =
+    selectedSlotTimestamp !== null && bookedTimes.includes(selectedSlotTimestamp);
+  const bookedDateKeys = React.useMemo(() => {
+    const bookingCounts = new Map<string, number>();
+
+    for (const timestamp of bookedTimes) {
+      const date = new Date(timestamp);
+      const key = toDateKey(date);
+      bookingCounts.set(key, (bookingCounts.get(key) || 0) + 1);
+    }
+
+    return Array.from(bookingCounts.entries())
+      .filter(([, count]) => count >= timeSlots.length)
+      .map(([key]) => key);
+  }, [bookedTimes]);
   const stepRequirements = [hasBasicDetails, hasSelectedSlot, true];
-  const canContinue = stepRequirements[activeStep];
+  const canContinue = stepRequirements[activeStep] && !isSelectedSlotBooked;
   const continueRequirement =
     activeStep === 0
       ? "Name, work email, and meeting reason are required."
       : "Choose a date and time to continue.";
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    async function loadBookedTimes() {
+      setIsLoadingBookedTimes(true);
+
+      try {
+        const response = await fetch(BOOKING_API_URL);
+        const result = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          throw new Error(result?.message || "Unable to load booked meeting times.");
+        }
+
+        if (isMounted && Array.isArray(result?.data)) {
+          setBookedTimes(result.data);
+        }
+      } catch {
+        if (isMounted) {
+          setBookedTimes([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingBookedTimes(false);
+        }
+      }
+    }
+
+    loadBookedTimes();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const canOpenStep = (stepIndex: number) => {
     return stepIndex <= activeStep || stepRequirements.slice(0, stepIndex).every(Boolean);
@@ -98,6 +188,73 @@ export default function BookMeetingPage() {
 
   const goToPreviousStep = () => {
     setActiveStep((currentStep) => Math.max(currentStep - 1, 0));
+  };
+
+  const handleDateSelect = (date: Date) => {
+    if (bookedDateKeys.includes(toDateKey(date))) {
+      return;
+    }
+
+    setSelectedDate(date);
+    setSelectedTime((currentTime) =>
+      bookedTimes.includes(getSlotDateTime(date, currentTime).getTime()) ? "" : currentTime
+    );
+  };
+
+  const isTimeSlotBooked = (slot: string) => {
+    if (!selectedDate) {
+      return false;
+    }
+
+    return bookedTimes.includes(getSlotDateTime(selectedDate, slot).getTime());
+  };
+
+  const handleConfirmMeeting = async () => {
+    if (!selectedDate || !selectedTime || isSelectedSlotBooked) {
+      return;
+    }
+
+    setSubmissionStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch(BOOKING_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: meetingDetails.name.trim(),
+          email: meetingDetails.email.trim(),
+          company: meetingDetails.company.trim(),
+          role: meetingDetails.role.trim(),
+          reason: meetingDetails.meetingReason.trim(),
+          context: meetingDetails.context.trim(),
+          time: selectedSlotTimestamp,
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.message || "Unable to book the meeting right now.");
+      }
+
+      setSubmissionStatus({
+        type: "success",
+        message: result?.message || "Meeting booked successfully.",
+      });
+      setBookedTimes((currentTimes) =>
+        selectedSlotTimestamp ? [...currentTimes, selectedSlotTimestamp] : currentTimes
+      );
+      setSelectedTime("");
+      setSelectedDate(undefined);
+      setActiveStep(0);
+      setMeetingDetails(initialMeetingDetails);
+    } catch (error) {
+      setSubmissionStatus({
+        type: "error",
+        message:
+          error instanceof Error ? error.message : "Something went wrong. Please try again.",
+      });
+    }
   };
 
   return (
@@ -161,6 +318,22 @@ export default function BookMeetingPage() {
               </CardHeader>
               <CardContent>
                 <form className="grid gap-5">
+                  {isLoadingBookedTimes && (
+                    <p className="text-sm font-medium text-slate-500">
+                      Loading booked calendar times...
+                    </p>
+                  )}
+                  {submissionStatus.type && (
+                    <p
+                      className={`rounded-xl border px-4 py-3 text-sm ${
+                        submissionStatus.type === "success"
+                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                          : "border-rose-200 bg-rose-50 text-rose-700"
+                      }`}
+                    >
+                      {submissionStatus.message}
+                    </p>
+                  )}
                   {activeStep === 0 && (
                     <>
                       <div className="rounded-lg border border-blue-100 bg-blue-50 p-4 text-sm font-medium text-blue-800">
@@ -217,7 +390,11 @@ export default function BookMeetingPage() {
 
                   {activeStep === 1 && (
                     <div className="grid gap-6 lg:grid-cols-[1fr_0.75fr]">
-                      <Calendar selected={selectedDate} onSelect={setSelectedDate} />
+                      <Calendar
+                        selected={selectedDate}
+                        onSelect={handleDateSelect}
+                        disabledDates={bookedDateKeys}
+                      />
                       <div className="space-y-3">
                         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">
                           Available times
@@ -228,13 +405,25 @@ export default function BookMeetingPage() {
                               key={slot}
                               type="button"
                               variant={selectedTime === slot ? "default" : "outline"}
-                              onClick={() => setSelectedTime(slot)}
+                              onClick={() => {
+                                if (!isTimeSlotBooked(slot)) {
+                                  setSelectedTime(slot);
+                                }
+                              }}
+                              disabled={isTimeSlotBooked(slot)}
                               className={cn(
                                 "h-auto justify-start px-4 py-3 text-left text-sm",
                                 selectedTime !== slot && "bg-white text-slate-700 hover:text-blue-700"
                               )}
                             >
-                              {slot}
+                              <span className="flex w-full items-center justify-between gap-3">
+                                <span>{slot}</span>
+                                {isTimeSlotBooked(slot) && (
+                                  <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                                    Booked
+                                  </span>
+                                )}
+                              </span>
                             </Button>
                           ))}
                         </div>
@@ -293,7 +482,13 @@ export default function BookMeetingPage() {
                     Continue
                   </Button>
                 ) : (
-                  <Button type="button" size="lg" className="w-full sm:w-auto">
+                  <Button
+                    type="button"
+                    size="lg"
+                    className="w-full sm:w-auto"
+                    onClick={handleConfirmMeeting}
+                    disabled={!canContinue || isSelectedSlotBooked}
+                  >
                     Confirm Free Meeting
                   </Button>
                 )}
