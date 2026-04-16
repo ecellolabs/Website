@@ -1,10 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { caseStudies } from "./data";
+import { useLanguage } from "@/contexts/language";
 
 export default function CaseStudyListPage() {
+  const { t } = useLanguage();
+  const p = t.caseStudiesPage;
+
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-900">
       <Header />
@@ -15,14 +21,13 @@ export default function CaseStudyListPage() {
           <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
           <div className="relative mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:py-24">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">
-              Case Studies
+              {p.eyebrow}
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
-              Practical software outcomes for ambitious product teams.
+              {p.heading}
             </h1>
             <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
-              Explore how Ecello Labs shapes cloud products, automation systems, and AI-backed
-              workflows from product direction through delivery.
+              {p.subheading}
             </p>
           </div>
         </section>
@@ -43,7 +48,7 @@ export default function CaseStudyListPage() {
                           {caseStudy.eyebrow}
                         </span>
                         <span className="text-sm font-semibold text-slate-400 transition-colors group-hover:text-blue-600">
-                          View
+                          {p.viewLabel}
                         </span>
                       </div>
                       <div>
@@ -54,7 +59,7 @@ export default function CaseStudyListPage() {
                       </div>
                     </CardHeader>
                     <CardContent className="flex flex-1 flex-col justify-between gap-8">
-                      <p className="text-sm leading-6 text-slate-600">{caseStudy.summary}</p>
+                      <p className="text-sm leading-6 text-slate-600">{t.caseStudySummaries[caseStudy.id] ?? caseStudy.summary}</p>
                       <div className="flex flex-wrap gap-2">
                         {caseStudy.services.map((service) => (
                           <span

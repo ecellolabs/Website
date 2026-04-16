@@ -30,7 +30,7 @@ export const services = [
         step: "Build",
         description: "We implement the automation with clean product flows, integrations, and operational guardrails.",
       },
-      {
+      { 
         step: "Measure",
         description: "We track adoption, failure points, and business impact so the system keeps improving after launch.",
       },
@@ -162,3 +162,204 @@ export type Service = (typeof services)[number];
 export function getService(id: string) {
   return services.find((service) => service.id === id);
 }
+
+type ServiceTranslation = {
+  eyebrow?: string;
+  tagline?: string;
+  summary?: string;
+  outcomes?: string[];
+  capabilities?: string[];
+  process?: { step: string; description: string }[];
+  bestFor?: string[];
+};
+
+export const serviceTranslations: Record<string, Record<string, ServiceTranslation>> = {
+  de: {
+    "automation": {
+      eyebrow: "Workflow-Automatisierung",
+      tagline: "Verwandeln Sie repetitive Arbeit in zuverlässige, messbare Systeme.",
+      summary: "Wir entwickeln Automatisierungsschichten, die Ihre Tools verbinden, manuelle Übergaben reduzieren und Teams eine klarere Sicht auf den täglichen Betrieb geben.",
+      outcomes: [
+        "Weniger manuelle Nachfassaktionen und wiederholte Dateneingaben",
+        "Klarere Verantwortlichkeiten in mehrstufigen Betriebsabläufen",
+        "Wiederverwendbare Automatisierungsgrundlagen für zukünftige Produktfunktionen",
+      ],
+      capabilities: [
+        "Workflow-Mapping und Prozessoptimierung",
+        "Interne Dashboards und Genehmigungsabläufe",
+        "API-Integrationen über Geschäftstools hinweg",
+        "Benachrichtigung, Berichterstattung und Audit-Trails",
+        "Zuverlässigkeitsprüfungen und Überwachung der Automatisierung",
+      ],
+      process: [
+        { step: "Kartieren", description: "Wir identifizieren, wo Arbeit verlangsamt wird, wo Kontext verloren geht und welche Schritte sich zuerst zu automatisieren lohnen." },
+        { step: "Bauen", description: "Wir implementieren die Automatisierung mit sauberen Produktabläufen, Integrationen und betrieblichen Leitplanken." },
+        { step: "Messen", description: "Wir verfolgen Akzeptanz, Fehlerpunkte und Geschäftswirkung, damit das System nach dem Launch weiter verbessert wird." },
+      ],
+      bestFor: ["Betriebsteams", "SaaS-Plattformen", "Back-Office-Workflows", "Interne Tools"],
+    },
+    "web-development": {
+      eyebrow: "Produktentwicklung",
+      tagline: "Starten Sie ausgereifte, skalierbare Webprodukte, die sich leicht weiterentwickeln lassen.",
+      summary: "Wir entwickeln moderne Webanwendungen, Marketing-Erfahrungen und SaaS-Oberflächen mit starken Grundlagen in UX, Frontend-Architektur und Backend-Integration.",
+      outcomes: [
+        "Responsive Oberflächen, die auf Desktop und Mobilgeräten schnell wirken",
+        "Wartbare Anwendungsarchitektur für zukünftige Feature-Arbeit",
+        "Produktionsreife Integrationen mit APIs, Authentifizierung, Zahlungen und Analytics",
+      ],
+      capabilities: [
+        "Next.js und React Anwendungsentwicklung",
+        "Design-System-Implementierung und UI-Engineering",
+        "Backend-API-Integration und Full-Stack-Features",
+        "Performance, Barrierefreiheit und SEO-Grundlagen",
+        "CMS, Analytics und Drittanbieter-Service-Einrichtung",
+      ],
+      process: [
+        { step: "Gestalten", description: "Wir klären Produktziele, Kernnutzer-Journeys und den technischen Umfang, bevor die Implementierung beginnt." },
+        { step: "Liefern", description: "Wir bauen die Oberfläche und Produktlogik in fokussierten Schritten, damit jede Version sichtbaren Fortschritt zeigt." },
+        { step: "Stärken", description: "Wir verfeinern Performance, Barrierefreiheit, QA und Deployment-Workflows vor der Übergabe oder dem Launch." },
+      ],
+      bestFor: ["SaaS-Produkte", "Unternehmenswebsites", "Kundenportale", "MVP-Launches"],
+    },
+    "computer-vision": {
+      eyebrow: "KI-Systeme",
+      tagline: "Visuelle Intelligenz in reale Produkte und Workflows einbauen.",
+      summary: "Wir helfen Teams, Bild- und Videointelligenz für Erkennung, Klassifizierung, Überwachung und Entscheidungsunterstützung in Betriebsumgebungen einzusetzen.",
+      outcomes: [
+        "Visuelle Erkennungs-Workflows verbunden mit Produktaktionen",
+        "Sauberere Modellbewertungspfade für Genauigkeit und Grenzfälle",
+        "Deployment-bereite Pipelines für Bild-, Video- oder kamerabasierte Eingaben",
+      ],
+      capabilities: [
+        "Objekterkennung und visuelle Klassifizierungs-Workflows",
+        "Bildvorverarbeitung und Datenpipeline-Design",
+        "Modellintegration in Web- und Cloud-Anwendungen",
+        "Menschliche Überprüfungsschnittstellen für unsichere Vorhersagen",
+        "Überwachungs- und Iterationsschleifen für modellgestützte Features",
+      ],
+      process: [
+        { step: "Umfang definieren", description: "Wir definieren die visuelle Aufgabe, Erfolgskriterien, verfügbare Daten und Grenzfälle, bevor wir einen Implementierungspfad wählen." },
+        { step: "Prototyp", description: "Wir validieren das Modellverhalten mit realistischen Proben und verbinden Ausgaben mit einem nutzbaren Produkt-Workflow." },
+        { step: "Einsetzen", description: "Wir bereiten die Service-Schicht, den Überwachungsansatz und die Feedback-Schleife vor, die für den Produktionseinsatz benötigt werden." },
+      ],
+      bestFor: ["Inspektions-Workflows", "Medienprodukte", "Sicherheitsüberwachung", "KI-fähige SaaS"],
+    },
+    "cloud-architecture": {
+      eyebrow: "Cloud & DevOps",
+      tagline: "Cloud-Grundlagen entwerfen, die unter echtem Produktdruck zuverlässig bleiben.",
+      summary: "Wir planen und implementieren Cloud-Infrastruktur, Deployment-Systeme und Observability-Grundlagen für Produkte, die mit Zuversicht skalieren müssen.",
+      outcomes: [
+        "Infrastruktur, die einfacher zu deployen, zu überwachen und zu verstehen ist",
+        "Verbesserte Zuverlässigkeit durch CI/CD, Observability und Recovery-Planung",
+        "Cloud-Entscheidungen ausgerichtet auf Produktphase, Traffic-Muster und Team-Kapazität",
+      ],
+      capabilities: [
+        "AWS-Architektur und Infrastrukturplanung",
+        "CI/CD-Pipelines und Release-Automatisierung",
+        "Containerisierung mit Docker und Kubernetes-fähigen Mustern",
+        "Überwachung, Logging und Vorfallsichtbarkeit",
+        "Sicherheits-, Umgebungs- und Kostenoptimierungsgrundlagen",
+      ],
+      process: [
+        { step: "Bewerten", description: "Wir überprüfen die aktuelle Architektur, den Lieferworkflow, Risiken und Wachstumserwartungen." },
+        { step: "Architektur entwerfen", description: "Wir entwerfen die Infrastruktur, den Deployment-Pfad und das Betriebsmodell um die echten Einschränkungen des Produkts." },
+        { step: "Operationalisieren", description: "Wir implementieren die Pipelines, Überwachung, Dokumentation und Übergabemuster, die das System nutzbar halten." },
+      ],
+      bestFor: ["SaaS-Infrastruktur", "DevOps-Modernisierung", "Cloud-Migrationen", "Skalierende Produkte"],
+    },
+  },
+  fr: {
+    "automation": {
+      eyebrow: "Automatisation des Workflows",
+      tagline: "Transformez le travail répétitif en systèmes fiables et mesurables.",
+      summary: "Nous concevons des couches d'automatisation qui connectent vos outils, réduisent les transferts manuels et donnent aux équipes une meilleure visibilité sur les opérations quotidiennes.",
+      outcomes: [
+        "Moins de relances manuelles et de saisies de données répétées",
+        "Propriété plus claire dans les workflows opérationnels multi-étapes",
+        "Fondations d'automatisation réutilisables pour les futures fonctionnalités produit",
+      ],
+      capabilities: [
+        "Cartographie des workflows et refonte des processus",
+        "Tableaux de bord internes et flux d'approbation",
+        "Intégrations API entre outils métiers",
+        "Notifications, rapports et pistes d'audit",
+        "Vérifications de fiabilité et surveillance de l'automatisation",
+      ],
+      process: [
+        { step: "Cartographier", description: "Nous identifions où le travail ralentit, où le contexte se perd et quelles étapes valent la peine d'être automatisées en premier." },
+        { step: "Construire", description: "Nous implémentons l'automatisation avec des flux produit propres, des intégrations et des garde-fous opérationnels." },
+        { step: "Mesurer", description: "Nous suivons l'adoption, les points de défaillance et l'impact business pour que le système continue de s'améliorer après le lancement." },
+      ],
+      bestFor: ["Équipes opérationnelles", "Plateformes SaaS", "Workflows back-office", "Outils internes"],
+    },
+    "web-development": {
+      eyebrow: "Ingénierie Produit",
+      tagline: "Lancez des produits web soignés et évolutifs, faciles à faire évoluer.",
+      summary: "Nous développons des applications web modernes, des expériences marketing et des interfaces SaaS avec de solides fondations en UX, architecture frontend et intégration backend.",
+      outcomes: [
+        "Interfaces responsives rapides sur desktop et mobile",
+        "Architecture applicative maintenable pour les futures fonctionnalités",
+        "Intégrations prêtes pour la production avec APIs, auth, paiements et analytics",
+      ],
+      capabilities: [
+        "Développement d'applications Next.js et React",
+        "Implémentation de systèmes de design et ingénierie UI",
+        "Intégration d'API backend et fonctionnalités full-stack",
+        "Fondations de performance, accessibilité et SEO",
+        "Configuration CMS, analytics et services tiers",
+      ],
+      process: [
+        { step: "Définir", description: "Nous clarifions les objectifs produit, les parcours utilisateurs clés et le périmètre technique avant le début de l'implémentation." },
+        { step: "Livrer", description: "Nous construisons l'interface et la logique produit en tranches ciblées pour que chaque version montre des progrès visibles." },
+        { step: "Consolider", description: "Nous affinons les performances, l'accessibilité, les tests et les workflows de déploiement avant la remise ou le lancement." },
+      ],
+      bestFor: ["Produits SaaS", "Sites d'entreprise", "Portails clients", "Lancements MVP"],
+    },
+    "computer-vision": {
+      eyebrow: "Systèmes IA",
+      tagline: "Intégrer l'intelligence visuelle dans des produits et workflows réels.",
+      summary: "Nous aidons les équipes à utiliser l'intelligence image et vidéo pour la détection, la classification, la surveillance et l'aide à la décision dans des environnements opérationnels.",
+      outcomes: [
+        "Workflows de détection visuelle connectés aux actions produit",
+        "Chemins d'évaluation de modèles plus clairs pour la précision et les cas limites",
+        "Pipelines prêts au déploiement pour les entrées image, vidéo ou caméra",
+      ],
+      capabilities: [
+        "Workflows de détection d'objets et de classification visuelle",
+        "Prétraitement d'images et conception de pipelines de données",
+        "Intégration de modèles dans des applications web et cloud",
+        "Interfaces de révision humaine pour les prédictions incertaines",
+        "Boucles de surveillance et d'itération pour les fonctionnalités basées sur les modèles",
+      ],
+      process: [
+        { step: "Cadrer", description: "Nous définissons la tâche visuelle, les critères de succès, les données disponibles et les cas limites avant de choisir une approche d'implémentation." },
+        { step: "Prototyper", description: "Nous validons le comportement du modèle avec des échantillons réalistes et connectons les sorties à un workflow produit utilisable." },
+        { step: "Déployer", description: "Nous préparons la couche de service, l'approche de surveillance et la boucle de feedback nécessaires pour une utilisation en production." },
+      ],
+      bestFor: ["Workflows d'inspection", "Produits médias", "Surveillance de sécurité", "SaaS IA"],
+    },
+    "cloud-architecture": {
+      eyebrow: "Cloud & DevOps",
+      tagline: "Concevoir des fondations cloud qui restent fiables sous la pression réelle du produit.",
+      summary: "Nous planifions et implémentons des infrastructures cloud, des systèmes de déploiement et des fondations d'observabilité pour les produits qui doivent monter en charge avec confiance.",
+      outcomes: [
+        "Infrastructure plus facile à déployer, surveiller et comprendre",
+        "Fiabilité améliorée grâce au CI/CD, à l'observabilité et à la planification de récupération",
+        "Décisions cloud alignées sur la phase produit, les patterns de trafic et la capacité de l'équipe",
+      ],
+      capabilities: [
+        "Architecture AWS et planification d'infrastructure",
+        "Pipelines CI/CD et automatisation des releases",
+        "Conteneurisation avec Docker et patterns Kubernetes-ready",
+        "Surveillance, logging et visibilité des incidents",
+        "Fondations de sécurité, d'environnement et d'optimisation des coûts",
+      ],
+      process: [
+        { step: "Évaluer", description: "Nous examinons l'architecture actuelle, le workflow de livraison, les risques et les attentes de croissance." },
+        { step: "Architecturer", description: "Nous concevons l'infrastructure, le chemin de déploiement et le modèle opérationnel autour des vraies contraintes du produit." },
+        { step: "Opérationnaliser", description: "Nous implémentons les pipelines, la surveillance, la documentation et les patterns de transfert qui maintiennent le système utilisable." },
+      ],
+      bestFor: ["Infrastructure SaaS", "Modernisation DevOps", "Migrations cloud", "Produits en croissance"],
+    },
+  },
+};

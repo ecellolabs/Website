@@ -4,28 +4,35 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useLanguage, languageNames, type Language } from "@/contexts/language";
 
-const navigation = [
-  { label: "About Us", href: "/about-us" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Contact Us", href: "/contact-us" },
+const serviceHrefs = [
+  "/services/automation",
+  "/services/web-development",
+  "/services/computer-vision",
+  "/services/cloud-architecture",
 ];
 
-const serviceLinks = [
-  { label: "Automation", href: "/services/automation" },
-  { label: "Web Development", href: "/services/web-development" },
-  { label: "Computer Vision", href: "/services/computer-vision" },
-  { label: "Cloud Architecture", href: "/services/cloud-architecture" },
+const navHrefs = [
+  "/about-us",
+  "/case-studies",
+  "/contact-us",
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const closeMenus = () => {
     setMobileMenuOpen(false);
     setServicesMenuOpen(false);
+    setLangMenuOpen(false);
   };
+
+  const navigation = navHrefs.map((href, i) => ({ label: t.nav.navLabels[i], href }));
+  const serviceLinks = serviceHrefs.map((href, i) => ({ label: t.nav.serviceLabels[i], href }));
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur">
@@ -40,12 +47,12 @@ export default function Header() {
               <div className="relative">
                 <button
                   type="button"
-                  onClick={() => setServicesMenuOpen((open) => !open)}
+                  onClick={() => { setServicesMenuOpen((open) => !open); setLangMenuOpen(false); }}
                   className="inline-flex cursor-pointer items-center gap-2 text-slate-700 transition-colors hover:text-slate-900"
                   aria-expanded={servicesMenuOpen}
                   aria-controls="services-menu"
                 >
-                  Services
+                  {t.nav.services}
                 </button>
 
                 {servicesMenuOpen ? (
@@ -69,18 +76,49 @@ export default function Header() {
 
               {navigation.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.href}
                   href={item.href}
-                  onClick={() => setServicesMenuOpen(false)}
+                  onClick={() => { setServicesMenuOpen(false); setLangMenuOpen(false); }}
                   className="text-slate-700 transition-colors hover:text-slate-900"
                 >
                   {item.label}
                 </Link>
               ))}
             </nav>
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => { setLangMenuOpen((open) => !open); setServicesMenuOpen(false); }}
+                className="inline-flex cursor-pointer items-center gap-1 rounded-md border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-900"
+                aria-expanded={langMenuOpen}
+                aria-controls="lang-menu"
+              >
+                {language.toUpperCase()}
+              </button>
+
+              {langMenuOpen ? (
+                <div
+                  id="lang-menu"
+                  className="absolute right-0 top-full mt-4 w-36 rounded-xl border border-slate-200 bg-white p-2 shadow-xl shadow-blue-950/10"
+                >
+                  {(Object.keys(languageNames) as Language[]).map((lang) => (
+                    <button
+                      key={lang}
+                      type="button"
+                      onClick={() => { setLanguage(lang); setLangMenuOpen(false); }}
+                      className={`block w-full cursor-pointer rounded-lg px-3 py-2 text-left text-sm font-medium transition hover:bg-blue-50 hover:text-blue-700 ${language === lang ? "text-blue-700" : "text-slate-700"}`}
+                    >
+                      {languageNames[lang]}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
             <Button asChild>
-              <Link href="/book-meeting" onClick={() => setServicesMenuOpen(false)}>
-                Book Meeting
+              <Link href="/book-meeting" onClick={() => { setServicesMenuOpen(false); setLangMenuOpen(false); }}>
+                {t.nav.bookMeeting}
               </Link>
             </Button>
           </div>
@@ -90,6 +128,7 @@ export default function Header() {
             onClick={() => {
               setMobileMenuOpen((open) => !open);
               setServicesMenuOpen(false);
+              setLangMenuOpen(false);
             }}
             className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-slate-200 text-slate-700 md:hidden"
             aria-label="Toggle menu"
@@ -110,7 +149,7 @@ export default function Header() {
             <nav className="flex flex-col gap-3">
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                 <p className="px-2 pb-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Services
+                  {t.nav.services}
                 </p>
                 <div className="grid gap-1">
                   {serviceLinks.map((service) => (
@@ -127,7 +166,7 @@ export default function Header() {
               </div>
               {navigation.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.href}
                   href={item.href}
                   onClick={closeMenus}
                   className="cursor-pointer rounded-md px-2 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900"
@@ -135,9 +174,21 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <div className="flex gap-2">
+                {(Object.keys(languageNames) as Language[]).map((lang) => (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => setLanguage(lang)}
+                    className={`rounded-md border px-3 py-1.5 text-xs font-semibold transition-colors ${language === lang ? "border-blue-600 bg-blue-50 text-blue-700" : "border-slate-200 text-slate-600 hover:border-slate-300 hover:text-slate-900"}`}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                ))}
+              </div>
               <Button asChild className="mt-1 w-full" size="sm">
                 <Link href="/book-meeting" onClick={closeMenus}>
-                  Book Meeting
+                  {t.nav.bookMeeting}
                 </Link>
               </Button>
             </nav>
