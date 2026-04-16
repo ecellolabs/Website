@@ -3,6 +3,7 @@ import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import CookieConsentBanner from "@/components/layout/banner";
+import { LanguageProvider } from "@/contexts/language";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -109,7 +110,9 @@ export default function RootLayout({
         className={`${poppins.className} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
         <CookieConsentBanner />
       </body>
     </html>

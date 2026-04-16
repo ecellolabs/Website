@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { services } from "@/app/services/data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/contexts/language";
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -39,40 +42,31 @@ const socialLinks = [
   { label: "Website", href: "https://www.ecello.net", icon: WebsiteIcon },
 ];
 
-const pageLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Contact Us", href: "/contact-us" },
-  { label: "Book Meeting", href: "/book-meeting" },
-  { label: "Components", href: "/components" },
-];
-
-const legalLinks = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Cookie Consent", href: "/cookie-consent" },
-  { label: "Terms & Conditions", href: "/terms-conditions" },
-];
-
-const footerColumns = [
-  {
-    title: "Pages",
-    links: pageLinks,
-  },
-  {
-    title: "Services",
-    links: services.map((service) => ({
-      label: service.title,
-      href: `/services/${service.id}`,
-    })),
-  },
-  {
-    title: "Legal",
-    links: legalLinks,
-  },
-];
+const pageHrefs = ["/", "/about-us", "/case-studies", "/contact-us", "/book-meeting", "/components"];
+const legalHrefs = ["/privacy-policy", "/cookie-consent", "/terms-conditions"];
 
 export default function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
+  const footerColumns = [
+    {
+      title: f.columnTitles[0],
+      links: pageHrefs.map((href, i) => ({ label: f.pageLabels[i], href })),
+    },
+    {
+      title: f.columnTitles[1],
+      links: services.map((service, i) => ({
+        label: t.nav.serviceLabels[i],
+        href: `/services/${service.id}`,
+      })),
+    },
+    {
+      title: f.columnTitles[2],
+      links: legalHrefs.map((href, i) => ({ label: f.legalLabels[i], href })),
+    },
+  ];
+
   return (
     <footer className="bg-[#0f2345] text-slate-100">
       <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
@@ -81,15 +75,13 @@ export default function Footer() {
             <div className="space-y-4">
               <p className="text-xl font-semibold">Ecello Labs</p>
               <p className="max-w-md text-sm leading-6 text-slate-300">
-                Building cloud-native products, automation systems, and AI-powered software that
-                move businesses forward.
+                {f.description}
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               {socialLinks.map((link) => {
                 const Icon = link.icon;
-
                 return (
                   <Link
                     key={link.label}
@@ -131,28 +123,28 @@ export default function Footer() {
           <div className="space-y-4 lg:justify-self-end">
             <div className="space-y-2">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-400">
-                Newsletter
+                {f.newsletter}
               </p>
               <p className="text-sm leading-6 text-slate-300">
-                Get product insights, engineering notes, and company updates.
+                {f.newsletterDesc}
               </p>
             </div>
             <form className="flex flex-col gap-3">
               <Input
                 type="email"
-                placeholder="you@company.com"
+                placeholder={f.emailPlaceholder}
                 className="border-slate-500/50 bg-white text-slate-900 placeholder:text-slate-500"
               />
               <Button type="submit" className="bg-sky-500 text-white hover:bg-sky-600">
-                Subscribe
+                {f.subscribe}
               </Button>
             </form>
           </div>
         </div>
 
         <div className="flex flex-col gap-3 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Ecello Labs. All rights reserved.</p>
-          <p>Cloud, automation, and AI software for ambitious teams.</p>
+          <p>{f.copyright}</p>
+          <p>{f.tagline}</p>
         </div>
       </div>
     </footer>
