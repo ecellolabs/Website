@@ -1,5 +1,9 @@
 "use client";
 
+<<<<<<< Alpha-1.1
+=======
+import { useState, type FormEvent } from "react";
+>>>>>>> master
 import Link from "next/link";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -13,7 +17,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+<<<<<<< Alpha-1.1
 import { useLanguage } from "@/contexts/language";
+=======
+import { API_BASE_URL } from "@/lib/utils";
+>>>>>>> master
 
 const contactValues = [
   { value: "contact@ecello.net", href: "mailto:contact@ecello.net" },
@@ -21,9 +29,58 @@ const contactValues = [
   { value: "Islamabad, Pakistan", href: "https://www.ecello.net" },
 ];
 
+const CONTACT_API_URL = `${API_BASE_URL}/v1/website/contact`;
+
 export default function ContactUsPage() {
+<<<<<<< Alpha-1.1
   const { t } = useLanguage();
   const p = t.contactPage;
+=======
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    const formData = new FormData(form);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const company = String(formData.get("company") || "").trim();
+    const subject = String(formData.get("subject") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    setStatus({ type: null, message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, subject, message }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.message || "Unable to send your message right now.");
+      }
+
+      setStatus({ type: "success", message: result?.message || "Message sent successfully." });
+      form.reset();
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+>>>>>>> master
 
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-900">
@@ -71,8 +128,9 @@ export default function ContactUsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
+<<<<<<< Alpha-1.1
                     <Input name="name" placeholder={p.form.name} />
                     <Input name="email" type="email" placeholder={p.form.email} />
                   </div>
@@ -85,6 +143,32 @@ export default function ContactUsPage() {
                   />
                   <Button type="submit" className="w-full" size="lg">
                     {p.form.submit}
+=======
+                    <Input name="name" placeholder="Your name" required />
+                    <Input name="email" type="email" placeholder="Work email" required />
+                  </div>
+                  <Input name="company" placeholder="Company or project" />
+                  <Input name="subject" placeholder="Subject" required />
+                  <Textarea
+                    name="message"
+                    className="min-h-40"
+                    placeholder="Tell us what you need help with..."
+                    required
+                  />
+                  {status.type && (
+                    <p
+                      className={`rounded-xl border px-4 py-3 text-sm ${
+                        status.type === "success"
+                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                          : "border-rose-200 bg-rose-50 text-rose-700"
+                      }`}
+                    >
+                      {status.message}
+                    </p>
+                  )}
+                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
+>>>>>>> master
                   </Button>
                 </form>
               </CardContent>
