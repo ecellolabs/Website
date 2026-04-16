@@ -1,9 +1,6 @@
 "use client";
 
-<<<<<<< Alpha-1.1
-=======
 import { useState, type FormEvent } from "react";
->>>>>>> master
 import Link from "next/link";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -17,11 +14,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-<<<<<<< Alpha-1.1
 import { useLanguage } from "@/contexts/language";
-=======
 import { API_BASE_URL } from "@/lib/utils";
->>>>>>> master
 
 const contactValues = [
   { value: "contact@ecello.net", href: "mailto:contact@ecello.net" },
@@ -32,10 +26,8 @@ const contactValues = [
 const CONTACT_API_URL = `${API_BASE_URL}/v1/website/contact`;
 
 export default function ContactUsPage() {
-<<<<<<< Alpha-1.1
   const { t } = useLanguage();
   const p = t.contactPage;
-=======
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
@@ -80,7 +72,6 @@ export default function ContactUsPage() {
       setIsSubmitting(false);
     }
   }
->>>>>>> master
 
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-900">
@@ -130,9 +121,8 @@ export default function ContactUsPage() {
               <CardContent>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
-<<<<<<< Alpha-1.1
-                    <Input name="name" placeholder={p.form.name} />
-                    <Input name="email" type="email" placeholder={p.form.email} />
+                    <Input name="name" placeholder={p.form.name} required />
+                    <Input name="email" type="email" placeholder={p.form.email} required />
                   </div>
                   <Input name="company" placeholder={p.form.company} />
                   <Input name="subject" placeholder={p.form.subject} />
@@ -140,19 +130,6 @@ export default function ContactUsPage() {
                     name="message"
                     className="min-h-40"
                     placeholder={p.form.message}
-                  />
-                  <Button type="submit" className="w-full" size="lg">
-                    {p.form.submit}
-=======
-                    <Input name="name" placeholder="Your name" required />
-                    <Input name="email" type="email" placeholder="Work email" required />
-                  </div>
-                  <Input name="company" placeholder="Company or project" />
-                  <Input name="subject" placeholder="Subject" required />
-                  <Textarea
-                    name="message"
-                    className="min-h-40"
-                    placeholder="Tell us what you need help with..."
                     required
                   />
                   {status.type && (
@@ -166,10 +143,9 @@ export default function ContactUsPage() {
                       {status.message}
                     </p>
                   )}
-                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : "Send Message"}
->>>>>>> master
-                  </Button>
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : p.form.submit}
+                </Button>
                 </form>
               </CardContent>
             </Card>
