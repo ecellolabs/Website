@@ -17,29 +17,18 @@ export default function AboutUsPage() {
         <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_#e9f2ff,_#f8fbff_45%,_#f4f7fb_100%)]">
           <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl" />
           <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
-          <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:py-24">
+          <div className="relative mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:py-24">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">
                 {p.eyebrow}
               </p>
-              <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
                 {p.heading}
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
                 {p.subheading}
               </p>
             </div>
-
-            <Card className="border-slate-200 bg-white/90 shadow-xl shadow-blue-950/10">
-              <CardContent className="grid gap-4 pt-6">
-                {p.stats.map((stat) => (
-                  <div key={stat.label} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                    <p className="text-3xl font-semibold text-blue-600">{stat.value}</p>
-                    <p className="mt-2 text-sm font-medium text-slate-600">{stat.label}</p>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
           </div>
         </section>
 
