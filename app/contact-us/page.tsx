@@ -20,7 +20,7 @@ import { API_BASE_URL } from "@/lib/utils";
 const contactValues = [
   { value: "contact@ecello.net", href: "mailto:contact@ecello.net" },
   { value: "+92 300 5397347", href: "tel:+923005397347" },
-  { value: "Islamabad, Pakistan", href: "https://www.ecello.net" },
+  { value: "Bremerhaven, Germany", href: "https://www.ecello.net" },
 ];
 
 const CONTACT_API_URL = `${API_BASE_URL}/v1/website/contact`;

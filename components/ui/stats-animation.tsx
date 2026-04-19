@@ -20,7 +20,7 @@ const stats = [
         value: "3+",
         label: "Countries Served",
         description:
-            "We have delivered software for clients and end users across Pakistan, Germany, and beyond, adapting to different markets and operational contexts.",
+            "We have delivered software for clients and end users across USA, Germany, and beyond, adapting to different markets and operational contexts.",
     },
 ];
 
