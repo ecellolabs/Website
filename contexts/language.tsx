@@ -220,7 +220,7 @@ const translations: Record<Language, Translations> = {
     contactPage: {
       heading: "Contact Us",
       subheading: "Send a quick note about your product, automation, AI, or cloud challenge. We will respond with a focused next step instead of a generic sales loop.",
-      detailLabels: ["Email", "Phone", "Location"],
+      detailLabels: ["Email", "Location"],
       form: {
         eyebrow: "Send a Message",
         heading: "Start the conversation",
@@ -378,7 +378,7 @@ const translations: Record<Language, Translations> = {
     contactPage: {
       heading: "Kontakt",
       subheading: "Schreiben Sie uns kurz über Ihre Produkt-, Automatisierungs-, KI- oder Cloud-Herausforderung. Wir antworten mit einem konkreten nächsten Schritt statt einer generischen Vertriebsschleife.",
-      detailLabels: ["E-Mail", "Telefon", "Standort"],
+      detailLabels: ["E-Mail", "Standort"],
       form: {
         eyebrow: "Nachricht senden",
         heading: "Gespräch beginnen",
@@ -606,7 +606,7 @@ const translations: Record<Language, Translations> = {
     contactPage: {
       heading: "Contactez-nous",
       subheading: "Envoyez-nous un message sur votre défi produit, automatisation, IA ou cloud. Nous répondrons avec une prochaine étape concrète plutôt qu'une boucle de vente générique.",
-      detailLabels: ["Email", "Téléphone", "Localisation"],
+      detailLabels: ["Email", "Localisation"],
       form: {
         eyebrow: "Envoyer un Message",
         heading: "Commencer la conversation",
