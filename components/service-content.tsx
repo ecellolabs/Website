@@ -38,8 +38,8 @@ export default function ServiceContent({ service }: { service: Service }) {
         )}
         <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl" />
         <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
-        <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:py-24">
-          <div>
+        <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:py-24">
+          <div className="self-center">
             <h1 className="max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
               {service.title}
             </h1>
@@ -53,7 +53,7 @@ export default function ServiceContent({ service }: { service: Service }) {
               <Button asChild size="lg">
                 <Link href="/#book-meeting">{s.bookCall}</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild size="lg">
                 <Link href="/case-studies">{s.viewCaseStudies}</Link>
               </Button>
             </div>
