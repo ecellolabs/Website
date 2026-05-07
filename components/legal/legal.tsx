@@ -69,10 +69,10 @@ export default function LegalPage({
                   <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
                     Questions about this page can be sent to{" "}
                     <Link
-                      href="mailto:contact@ecello.net"
+                      href="mailto:alex@ecello.net"
                       className="font-medium text-blue-600 underline-offset-4 hover:underline"
                     >
-                      contact@ecello.net
+                      alex@ecello.net
                     </Link>
                     .
                   </p>

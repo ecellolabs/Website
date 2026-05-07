@@ -82,8 +82,7 @@ export const metadata: Metadata = {
   category: "Technology",
   classification: "Software Development, Cloud Solutions, AI Technology",
   other: {
-    "contact:email": "contact@ecello.net",
-    "contact:phone": "+92 300 5397347",
+    "contact:email": "alex@ecello.net",
     "geo.region": "DE-HB",
     "geo.placename": "Bremerhaven",
   },

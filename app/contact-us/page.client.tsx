@@ -18,7 +18,7 @@ import { useLanguage } from "@/contexts/language";
 import { API_BASE_URL } from "@/lib/utils";
 
 const contactValues = [
-  { value: "contact@ecello.net", href: "mailto:contact@ecello.net" },
+  { value: "alex@ecello.net", href: "mailto:alex@ecello.net" },
   { value: "Bremerhaven, Germany", href: "https://maps.google.com/?q=Bremerhaven,+Germany" },
 ];
 
