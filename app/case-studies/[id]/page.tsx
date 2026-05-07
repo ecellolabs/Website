@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -11,6 +12,43 @@ export async function generateStaticParams() {
 type CaseStudyPageProps = {
   params: Promise<{ id: string }>;
 };
+
+export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const caseStudy = getCaseStudy(id);
+
+  if (!caseStudy) {
+    return {};
+  }
+
+  const title = `${caseStudy.title} Case Study`;
+  const description = caseStudy.summary;
+  const url = `https://ecello.net/case-studies/${caseStudy.id}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${title} | Ecello`,
+      description,
+      url,
+      images: [
+        {
+          url: "https://ecello.net/logo-square.svg",
+          alt: `${caseStudy.title} case study by Ecello`,
+        },
+      ],
+    },
+    twitter: {
+      title: `${title} | Ecello`,
+      description,
+      images: ["https://ecello.net/logo-square.svg"],
+    },
+  };
+}
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { id } = await params;

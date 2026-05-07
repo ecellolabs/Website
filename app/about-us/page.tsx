@@ -4,6 +4,7 @@ import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/language";
+import Image from "next/image";
 
 export default function AboutUsPage() {
   const { t } = useLanguage();
@@ -47,9 +48,11 @@ export default function AboutUsPage() {
                 </p>
               </div>
               <div className="overflow-hidden rounded-2xl border border-slate-200">
-                <img
+                <Image
                   src="/team-image.jpg"
                   alt="Ecello Labs team"
+                  width={6720}
+                  height={4480}
                   className="h-full w-full object-cover"
                 />
               </div>

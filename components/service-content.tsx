@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/language";
 import { serviceTranslations } from "@/app/services/data";
+import Image from "next/image";
 
 type Service = {
   id: string;
@@ -29,9 +30,11 @@ export default function ServiceContent({ service }: { service: Service }) {
     <main>
       <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_#e8f4ff,_#f8fbff_48%,_#f4f7fb_100%)]">
         {service.image && (
-          <img
+          <Image
             src={service.image}
             alt=""
+            fill
+            sizes="100vw"
             className="absolute inset-0 h-full w-full object-cover opacity-[0.08]"
             aria-hidden="true"
           />

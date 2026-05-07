@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
@@ -10,6 +11,42 @@ type ServicePageProps = {
 
 export async function generateStaticParams() {
   return services.map((service) => ({ id: service.id }));
+}
+
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+  const { id } = await params;
+  const service = getService(id);
+
+  if (!service) {
+    return {};
+  }
+
+  const title = `${service.title} Services`;
+  const url = `https://ecello.net/services/${service.id}`;
+
+  return {
+    title,
+    description: service.summary,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${title} | Ecello`,
+      description: service.summary,
+      url,
+      images: [
+        {
+          url: `https://ecello.net${service.image}`,
+          alt: `${service.title} services by Ecello`,
+        },
+      ],
+    },
+    twitter: {
+      title: `${title} | Ecello`,
+      description: service.summary,
+      images: [`https://ecello.net${service.image}`],
+    },
+  };
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {

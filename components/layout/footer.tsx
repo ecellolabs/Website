@@ -4,7 +4,6 @@ import Link from "next/link";
 import type { SVGProps } from "react";
 import { services } from "@/app/services/data";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/language";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -42,7 +41,7 @@ const socialLinks = [
   { label: "Website", href: "https://www.ecello.net", icon: WebsiteIcon },
 ];
 
-const pageHrefs = ["/", "/about-us", "/case-studies", "/contact-us", "/book-meeting", "/components"];
+const pageHrefs = ["/", "/about-us", "/case-studies", "/contact-us", "/book-meeting"];
 const legalHrefs = ["/privacy-policy", "/cookie-consent", "/terms-conditions"];
 
 export default function Footer() {
@@ -129,16 +128,14 @@ export default function Footer() {
                 {f.newsletterDesc}
               </p>
             </div>
-            <form className="flex flex-col gap-3">
-              <Input
-                type="email"
-                placeholder={f.emailPlaceholder}
-                className="border-slate-500/50 bg-white text-slate-900 placeholder:text-slate-500"
-              />
-              <Button type="submit" className="bg-sky-500 text-white hover:bg-sky-600">
-                {f.subscribe}
+            <div className="flex flex-col gap-3">
+              <Button asChild className="bg-sky-500 text-white hover:bg-sky-600">
+                <Link href="/contact-us">{f.subscribe}</Link>
               </Button>
-            </form>
+              <Button asChild variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10">
+                <Link href="/book-meeting">{t.nav.bookMeeting}</Link>
+              </Button>
+            </div>
           </div>
         </div>
 

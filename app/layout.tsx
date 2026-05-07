@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     description: "Enterprise-grade cloud solutions, SaaS development, AI integration, and DevOps services. Building innovative software products for businesses worldwide.",
     images: [
       {
-        url: `${siteUrl}/ecello-square.svg`,
+        url: `${siteUrl}/logo-square.svg`,
         width: 1200,
         height: 630,
         alt: "Ecello - Cloud-based Solutions & AI-Powered Software Products",
@@ -75,23 +75,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ecello | Cloud-based Solutions & AI-Powered Software Products",
     description: "Enterprise-grade cloud solutions, SaaS development, AI integration, and DevOps services.",
-    images: [`${siteUrl}/ecello-square.svg`],
+    images: [`${siteUrl}/logo-square.svg`],
     creator: "@ecello",
     site: "@ecello",
-  },
-  alternates: {
-    canonical: siteUrl,
-    types: {
-      "application/rss+xml": `${siteUrl}/rss.xml`,
-    },
   },
   category: "Technology",
   classification: "Software Development, Cloud Solutions, AI Technology",
   other: {
     "contact:email": "contact@ecello.net",
     "contact:phone": "+92 300 5397347",
-    "geo.region": "PK-IS",
-    "geo.placename": "Islamabad",
+    "geo.region": "DE-HB",
+    "geo.placename": "Bremerhaven",
   },
   icons: {
     icon: "/logo-square.svg",
