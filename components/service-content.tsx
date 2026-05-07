@@ -8,7 +8,6 @@ import { serviceTranslations } from "@/app/services/data";
 
 type Service = {
   id: string;
-  eyebrow: string;
   title: string;
   tagline: string;
   image: string;
@@ -20,13 +19,6 @@ type Service = {
   bestFor: readonly string[];
   accent: "blue" | "sky" | "cyan" | "indigo";
 };
-
-const accentClasses = {
-  blue: "bg-blue-50 text-blue-700 ring-blue-100",
-  sky: "bg-sky-50 text-sky-700 ring-sky-100",
-  cyan: "bg-cyan-50 text-cyan-700 ring-cyan-100",
-  indigo: "bg-indigo-50 text-indigo-700 ring-indigo-100",
-} as const;
 
 export default function ServiceContent({ service }: { service: Service }) {
   const { language, t } = useLanguage();
@@ -48,10 +40,7 @@ export default function ServiceContent({ service }: { service: Service }) {
         <div className="absolute right-0 top-0 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl" />
         <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:py-24">
           <div>
-            <p className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ${accentClasses[service.accent]}`}>
-              {tc.eyebrow ?? service.eyebrow}
-            </p>
-            <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
+            <h1 className="max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
               {service.title}
             </h1>
             <p className="mt-5 max-w-2xl text-xl font-medium leading-8 text-slate-700">
@@ -70,7 +59,7 @@ export default function ServiceContent({ service }: { service: Service }) {
             </div>
           </div>
 
-          <Card className="border-slate-200 bg-white/90 shadow-xl shadow-blue-950/10">
+          <Card className="border-slate-200 bg-white/90">
             <CardHeader>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {s.whatYouGet}

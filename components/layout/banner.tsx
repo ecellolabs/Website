@@ -45,7 +45,7 @@ export default function CookieConsentBanner() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[80] px-4 pb-4 sm:px-6 sm:pb-6">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-md border border-slate-200 bg-white p-4 text-slate-900 shadow-2xl shadow-slate-900/20 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-md border border-slate-200 bg-white p-4 text-slate-900 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold">Cookie preferences</p>
           <p className="mt-1 text-sm leading-6 text-slate-600">

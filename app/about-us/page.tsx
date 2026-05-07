@@ -46,7 +46,7 @@ export default function AboutUsPage() {
                   {p.howWeWork.description}
                 </p>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+              <div className="overflow-hidden rounded-2xl border border-slate-200">
                 <img
                   src="/team-image.jpg"
                   alt="Ecello Labs team"
@@ -79,7 +79,7 @@ export default function AboutUsPage() {
             </p>
             <div className="mt-8 grid gap-5 md:grid-cols-4">
               {p.serviceItems.map((item) => (
-                <div key={item} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <div key={item} className="rounded-xl border border-slate-200 bg-white p-5">
                   <p className="text-lg font-semibold text-slate-900">{item}</p>
                 </div>
               ))}

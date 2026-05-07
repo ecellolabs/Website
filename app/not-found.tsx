@@ -41,7 +41,7 @@ export default function NotFound() {
               </div>
             </section>
 
-            <Card className="border-slate-200 bg-white/90 shadow-xl shadow-blue-950/10">
+            <Card className="border-slate-200 bg-white/90">
               <CardContent className="space-y-6 pt-6">
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
                   <p className="text-7xl font-semibold tracking-tight text-blue-600">404</p>

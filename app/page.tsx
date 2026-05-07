@@ -105,7 +105,7 @@ const BinaryLine = ({ speed = 6, direction = "down", right = 0, opacity = 0.5 }:
 
 function BinaryStreams({ lines = binaryStreamLines }: { lines?: BinaryLineProps[] }) {
   return (
-    <div className="pointer-events-none absolute inset-0 mx-auto w-full max-w-6xl px-4 sm:px-6">
+    <div className="pointer-events-none absolute inset-0 hidden mx-auto w-full max-w-6xl px-4 sm:block sm:px-6">
       <div className="relative h-full overflow-hidden">
         {lines.map((line, i) => (
           <BinaryLine key={i} {...line} />
@@ -265,7 +265,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <Card className="border-slate-200 bg-white shadow-sm">
+              <Card className="border-slate-200 bg-white">
                 <CardContent className="flex flex-col gap-4 p-8">
                   <Input placeholder={t.bookMeeting.form.name} />
                   <Input type="email" placeholder={t.bookMeeting.form.email} />

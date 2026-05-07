@@ -67,7 +67,7 @@ function StatCard({ stat }: { stat: (typeof stats)[number] }) {
 
     return (
         <div ref={ref} className="group">
-            <Card className="h-full border-slate-200 bg-slate-50/70 transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-blue-950/10">
+            <Card className="h-full border-slate-200 bg-slate-50/70 transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:bg-white">
                 <CardContent className="space-y-4 pb-8 pt-8">
                     <p className="text-5xl font-semibold text-blue-600 transition duration-200 group-hover:text-blue-700">
                         {display}{suffix}

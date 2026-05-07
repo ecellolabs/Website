@@ -63,7 +63,7 @@ export default function CaseStudyContent({ caseStudy }: { caseStudy: CaseStudy }
             </div>
           </div>
 
-          <Card className="border-slate-200 bg-white/85 shadow-xl shadow-blue-950/10">
+          <Card className="border-slate-200 bg-white/85">
             <CardHeader>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {d.projectSnapshot}
@@ -94,7 +94,7 @@ export default function CaseStudyContent({ caseStudy }: { caseStudy: CaseStudy }
             { title: d.outcome, body: tc.outcome ?? caseStudy.outcome },
           ].map((item) => (
             <div key={item.title} className="group">
-              <Card className="h-full border-slate-200 bg-slate-50/70 transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-blue-950/10">
+              <Card className="h-full border-slate-200 bg-slate-50/70 transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:bg-white">
                 <CardHeader>
                   <CardTitle className="text-xl font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
                     {item.title}
@@ -170,7 +170,7 @@ export default function CaseStudyContent({ caseStudy }: { caseStudy: CaseStudy }
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {(tc.features ?? caseStudy.features).map((feature) => (
                 <div key={feature.title} className="group">
-                  <Card className="h-full border-slate-200 bg-white transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:shadow-xl group-hover:shadow-blue-950/10">
+                  <Card className="h-full border-slate-200 bg-white transition duration-200 group-hover:-translate-y-1 group-hover:border-blue-200">
                     <CardHeader>
                       <CardTitle className="text-base font-semibold text-slate-900 transition duration-200 group-hover:text-blue-700">
                         {feature.title}

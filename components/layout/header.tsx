@@ -42,7 +42,7 @@ export default function Header() {
             <Image src="/logo.svg" alt="Ecello Labs" width={100} height={30} priority />
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <nav className="flex items-center gap-8 text-sm font-medium">
               <div className="relative">
                 <button
@@ -58,7 +58,7 @@ export default function Header() {
                 {servicesMenuOpen ? (
                   <div
                     id="services-menu"
-                    className="absolute left-0 top-full mt-4 w-56 rounded-xl border border-slate-200 bg-white p-2 shadow-xl shadow-blue-950/10"
+                    className="absolute left-0 top-full mt-4 w-56 rounded-xl border border-slate-200 bg-white p-2"
                   >
                     {serviceLinks.map((service) => (
                       <Link
@@ -87,20 +87,22 @@ export default function Header() {
             </nav>
 
             <div className="relative">
-              <button
+              <Button
                 type="button"
                 onClick={() => { setLangMenuOpen((open) => !open); setServicesMenuOpen(false); }}
-                className="inline-flex cursor-pointer items-center gap-1 rounded-md border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-900"
+                variant="outline"
+                size="icon"
+                className="text-xs font-semibold"
                 aria-expanded={langMenuOpen}
                 aria-controls="lang-menu"
               >
                 {language.toUpperCase()}
-              </button>
+              </Button>
 
               {langMenuOpen ? (
                 <div
                   id="lang-menu"
-                  className="absolute right-0 top-full mt-4 w-36 rounded-xl border border-slate-200 bg-white p-2 shadow-xl shadow-blue-950/10"
+                  className="absolute right-0 top-full mt-4 w-36 rounded-xl border border-slate-200 bg-white p-2"
                 >
                   {(Object.keys(languageNames) as Language[]).map((lang) => (
                     <button

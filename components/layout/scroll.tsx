@@ -31,7 +31,7 @@ export default function ScrollControls({ scrollDownTarget }: ScrollControlsProps
         asChild
         variant="outline"
         size="icon-lg"
-        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border-slate-300 bg-white/80 text-slate-700 shadow-lg shadow-blue-950/10 backdrop-blur transition hover:bg-white hover:text-blue-700"
+        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border-slate-300 bg-white/80 text-slate-700 backdrop-blur transition hover:bg-white hover:text-blue-700"
       >
         <a href={scrollDownTarget} aria-label="Scroll down">
           <ArrowDown aria-hidden="true" />
@@ -44,7 +44,7 @@ export default function ScrollControls({ scrollDownTarget }: ScrollControlsProps
         aria-label="Scroll to top"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={cn(
-          "fixed bottom-6 right-6 z-50 rounded-full shadow-xl shadow-blue-950/20 transition-all duration-200",
+          "fixed bottom-6 right-6 z-50 rounded-full transition-all duration-200",
           showScrollTop
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"

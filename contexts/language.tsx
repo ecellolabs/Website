@@ -280,7 +280,7 @@ const translations: Record<Language, Translations> = {
       legalLabels: ["Privacy Policy", "Cookie Consent", "Terms & Conditions"],
       newsletter: "Newsletter",
       newsletterDesc: "Get product insights, engineering notes, and company updates.",
-      emailPlaceholder: "you@company.com",
+      emailPlaceholder: "you@example.com",
       subscribe: "Subscribe",
       copyright: "© 2026 Ecello Labs. All rights reserved.",
       tagline: "Cloud, automation, and AI software for ambitious teams.",
