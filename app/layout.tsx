@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import CookieConsentBanner from "@/components/layout/banner";
 import { LanguageProvider } from "@/contexts/language";
+import { siteUrl } from "@/lib/seo";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -11,8 +12,6 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
 });
-
-const siteUrl = "https://ecello.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

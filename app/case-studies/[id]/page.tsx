@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import CaseStudyContent from "@/components/case-study-content";
+import { getSiteUrl } from "@/lib/seo";
 import { caseStudies, getCaseStudy } from "../data";
 
 export async function generateStaticParams() {
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 
   const title = `${caseStudy.title} Case Study`;
   const description = caseStudy.summary;
-  const url = `https://ecello.net/case-studies/${caseStudy.id}`;
+  const url = getSiteUrl(`/case-studies/${caseStudy.id}`);
 
   return {
     title,
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
       url,
       images: [
         {
-          url: "https://ecello.net/logo-square.svg",
+          url: getSiteUrl("/logo-square.svg"),
           alt: `${caseStudy.title} case study by Ecello`,
         },
       ],
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     twitter: {
       title: `${title} | Ecello`,
       description,
-      images: ["https://ecello.net/logo-square.svg"],
+      images: [getSiteUrl("/logo-square.svg")],
     },
   };
 }

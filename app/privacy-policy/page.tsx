@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/legal/legal";
+import { getSiteUrl } from "@/lib/seo";
+
+const url = getSiteUrl("/privacy-policy");
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Ecello Labs collects, uses, and protects personal information.",
+  alternates: {
+    canonical: url,
+  },
+  openGraph: {
+    title: "Privacy Policy | Ecello",
+    description: "How Ecello Labs collects, uses, and protects personal information.",
+    url,
+  },
+  twitter: {
+    title: "Privacy Policy | Ecello",
+    description: "How Ecello Labs collects, uses, and protects personal information.",
+    images: [getSiteUrl("/logo-square.svg")],
+  },
 };
 
 const sections = [

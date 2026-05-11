@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import ServiceContent from "@/components/service-content";
+import { getSiteUrl } from "@/lib/seo";
 import { getService, services } from "../data";
 
 type ServicePageProps = {
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   }
 
   const title = `${service.title} Services`;
-  const url = `https://ecello.net/services/${service.id}`;
+  const url = getSiteUrl(`/services/${service.id}`);
 
   return {
     title,
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       url,
       images: [
         {
-          url: `https://ecello.net${service.image}`,
+          url: getSiteUrl(service.image),
           alt: `${service.title} services by Ecello`,
         },
       ],
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     twitter: {
       title: `${title} | Ecello`,
       description: service.summary,
-      images: [`https://ecello.net${service.image}`],
+      images: [getSiteUrl(service.image)],
     },
   };
 }

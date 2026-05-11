@@ -38,7 +38,7 @@ function WebsiteIcon(props: IconProps) {
 const socialLinks = [
   { label: "Github", href: "https://github.com/ecellolabs/", icon: GithubIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/ecello", icon: LinkedinIcon },
-  { label: "Website", href: "https://www.ecello.net", icon: WebsiteIcon },
+  { label: "Website", href: "https://ecello.net", icon: WebsiteIcon },
 ];
 
 const pageHrefs = ["/", "/about-us", "/case-studies", "/contact-us", "/book-meeting"];

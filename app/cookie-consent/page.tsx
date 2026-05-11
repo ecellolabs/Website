@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/legal/legal";
+import { getSiteUrl } from "@/lib/seo";
+
+const url = getSiteUrl("/cookie-consent");
 
 export const metadata: Metadata = {
   title: "Cookie Consent",
   description: "How Ecello Labs uses cookies and how visitors can manage cookie preferences.",
+  alternates: {
+    canonical: url,
+  },
+  openGraph: {
+    title: "Cookie Consent | Ecello",
+    description: "How Ecello Labs uses cookies and how visitors can manage cookie preferences.",
+    url,
+  },
+  twitter: {
+    title: "Cookie Consent | Ecello",
+    description: "How Ecello Labs uses cookies and how visitors can manage cookie preferences.",
+    images: [getSiteUrl("/logo-square.svg")],
+  },
 };
 
 const sections = [

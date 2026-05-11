@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/legal/legal";
+import { getSiteUrl } from "@/lib/seo";
+
+const url = getSiteUrl("/terms-conditions");
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description: "The terms that apply when using the Ecello Labs website and services.",
+  alternates: {
+    canonical: url,
+  },
+  openGraph: {
+    title: "Terms & Conditions | Ecello",
+    description: "The terms that apply when using the Ecello Labs website and services.",
+    url,
+  },
+  twitter: {
+    title: "Terms & Conditions | Ecello",
+    description: "The terms that apply when using the Ecello Labs website and services.",
+    images: [getSiteUrl("/logo-square.svg")],
+  },
 };
 
 const sections = [

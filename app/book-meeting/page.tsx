@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import BookMeetingPageClient from "./page.client";
+import { getSiteUrl } from "@/lib/seo";
 
-const url = "https://ecello.net/book-meeting";
+const url = getSiteUrl("/book-meeting");
 
 export const metadata: Metadata = {
   title: "Book Meeting",
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     title: "Book Meeting | Ecello",
     description:
       "Book a strategy call with Ecello to discuss your product, cloud, automation, or AI project and map out the next step.",
+    images: ["https://ecello.net/logo-square.svg"],
   },
 };
 

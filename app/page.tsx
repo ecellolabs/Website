@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import HomePageClient from "./page.client";
-
-const siteUrl = "https://ecello.net";
+import { siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Ecello Labs | Product Engineering for Ambitious Teams",
@@ -20,6 +19,7 @@ export const metadata: Metadata = {
     title: "Ecello Labs | Product Engineering for Ambitious Teams",
     description:
       "Ecello builds cloud-ready software products, automation systems, and AI-powered workflows for startups and enterprise teams.",
+    images: [`${siteUrl}/logo-square.svg`],
   },
 };
 
