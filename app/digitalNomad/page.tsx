@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
+import Image from "next/image";
 import {
   ArrowRight,
   BadgePercent,
@@ -45,17 +46,17 @@ const destinations = ["Bangkok", "Chiang Mai", "Phuket", "Koh Phangan", "Koh Sam
 
 const gallery = [
   {
-    src: thailandImg.src,
+    img: thailandImg,
     alt: "Longtail boats on a turquoise beach in Thailand",
     caption: "Based in Thailand",
   },
   {
-    src: teamImg.src,
+    img: teamImg,
     alt: "Remote team collaborating around laptops",
     caption: "Your remote team",
   },
   {
-    src: workspaceImg.src,
+    img: workspaceImg,
     alt: "Laptop workspace overlooking the sea",
     caption: "Work from anywhere",
   },
@@ -290,10 +291,13 @@ export default function DigitalNomadPage() {
       <main>
         {/* Hero */}
         <section className="relative overflow-hidden">
-          <img
-            src={heroImg.src}
+          <Image
+            src={heroImg}
             alt="Friends celebrating together on a sunny vacation"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/85 via-slate-900/65 to-blue-950/75" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
@@ -447,14 +451,15 @@ export default function DigitalNomadPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {gallery.map((item) => (
                 <div
-                  key={item.src}
-                  className="group relative overflow-hidden rounded-2xl border border-slate-200"
+                  key={item.caption}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200"
                 >
-                  <img
-                    src={item.src}
+                  <Image
+                    src={item.img}
                     alt={item.alt}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/0 to-transparent" />
                   <span className="absolute bottom-4 left-4 text-sm font-semibold text-white">
@@ -483,8 +488,8 @@ export default function DigitalNomadPage() {
                     20% off your first project — and the consultation is on us.
                   </h2>
                   <p className="mt-5 max-w-xl text-blue-100">
-                    Tell us what you're building. We'll map out a plan, give you a fixed price with your
-                    nomad discount already applied, and you decide. Zero risk, zero obligation.
+                    Tell us what you&apos;re building. We&apos;ll map out a plan, give you a fixed price with
+                    your nomad discount already applied, and you decide. Zero risk, zero obligation.
                   </p>
 
                   <ul className="mt-8 space-y-3">
