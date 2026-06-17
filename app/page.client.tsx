@@ -1,13 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ScrollControls from "@/components/layout/scroll";
-import type { CSSProperties } from "react";
 import { StatsSection } from "@/components/ui/stats-animation";
 import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/contexts/language";
@@ -26,109 +24,6 @@ const technologies = [
 
 const marqueeTechnologies = [...technologies, ...technologies];
 
-const generateBinary = (length = 500) => {
-  let str = "";
-  for (let i = 0; i < length; i++) {
-    str += Math.random() > 0.5 ? "1" : "0";
-  }
-  return str;
-};
-
-type BinaryLineProps = {
-  speed?: number;
-  direction?: "up" | "down";
-  right?: CSSProperties["right"];
-  opacity?: number;
-};
-
-const binaryStreamLines: BinaryLineProps[] = [
-  { speed: 30, direction: "up", right: "0px" },
-  { speed: 60, direction: "down", right: "10px" },
-  { speed: 50, direction: "up", right: "20px" },
-  { speed: 130, direction: "down", right: "30px" },
-  { speed: 110, direction: "up", right: "40px" },
-  { speed: 70, direction: "down", right: "50px" },
-  { speed: 60, direction: "up", right: "60px" },
-  { speed: 40, direction: "down", right: "70px" },
-  { speed: 80, direction: "up", right: "80px" },
-  { speed: 100, direction: "down", right: "90px" },
-  { speed: 50, direction: "up", right: "100px" },
-];
-
-const BinaryLine = ({ speed = 6, direction = "down", right = 0, opacity = 0.5 }: BinaryLineProps) => {
-  const animationName = direction === "up" ? "binaryScrollUp" : "binaryScrollDown";
-  const content = useMemo(() => generateBinary(200), []);
-
-  const renderBlock = (groupIndex: number) => (
-    <span
-      key={groupIndex}
-      suppressHydrationWarning
-      style={{
-        whiteSpace: "pre",
-        fontFamily: "monospace",
-        fontSize: "14px",
-        lineHeight: "14px",
-        writingMode: "vertical-rl",
-        textOrientation: "upright",
-        color: `rgba(11, 70, 163, ${opacity})`,
-      }}
-    >
-      {content}
-    </span>
-  );
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        right,
-        height: "100%",
-        width: "20px",
-        overflow: "hidden",
-        pointerEvents: "none",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          animation: `${animationName} ${speed}s linear infinite`,
-        }}
-      >
-        {renderBlock(0)}
-        {renderBlock(1)}
-      </div>
-    </div>
-  );
-};
-
-function BinaryStreams({ lines = binaryStreamLines }: { lines?: BinaryLineProps[] }) {
-  return (
-    <div className="pointer-events-none absolute inset-0 hidden mx-auto w-full max-w-6xl px-4 sm:block sm:px-6">
-      <div className="relative h-full overflow-hidden">
-        {lines.map((line, i) => (
-          <BinaryLine key={i} {...line} />
-        ))}
-      </div>
-
-      <style>
-        {`
-@keyframes binaryScrollDown {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes binaryScrollUp {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-        `}
-      </style>
-    </div>
-  );
-}
-
 export default function HomePageClient() {
   const { t } = useLanguage();
 
@@ -137,27 +32,37 @@ export default function HomePageClient() {
       <Header />
 
       <main>
-        <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_#e9f2ff,_#f8fbff_45%,_#f4f7fb_100%)]">
-          <div className="absolute -left-20 top-10 h-60 w-60 rounded-full bg-sky-200/30 blur-3xl" />
-          <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl" />
-          <div className="mx-auto flex min-h-[85vh] w-full max-w-6xl flex-col justify-center px-4 py-20 sm:px-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-600">{t.hero.eyebrow}</p>
-            <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+        <section className="relative overflow-hidden bg-[#0a1730]">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+            style={{ backgroundImage: "url('/background.webp')" }}
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,118,217,0.22),_transparent_55%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1730]/25 via-[#0a1730]/55 to-[#0a1730]/90" />
+          <div className="absolute -left-20 top-10 h-60 w-60 rounded-full bg-sky-400/10 blur-3xl" />
+          <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl" />
+
+          <div className="relative mx-auto flex min-h-[calc(100svh-80px)] w-full max-w-6xl flex-col justify-center px-4 py-20 sm:px-6">
+            <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
               {t.hero.heading}
             </h1>
-            <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-lg">
               {t.hero.subheading}
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button asChild size="lg">
                 <a href="#book-meeting">{t.hero.bookMeeting}</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              >
                 <a href="#services">{t.hero.exploreServices}</a>
               </Button>
             </div>
           </div>
-          <BinaryStreams />
           <ScrollControls scrollDownTarget="#about" />
         </section>
 
@@ -187,14 +92,21 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        <section id="services" className="bg-[#f8fbff]">
-          <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
+        <section id="services" className="relative overflow-hidden bg-[#f8fbff]">
+          <div className="absolute -right-32 top-1/3 h-80 w-80 rounded-full bg-blue-100/60 blur-3xl" />
+          <div className="relative mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{t.services.eyebrow}</p>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">{t.services.heading}</h2>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {t.services.items.map((service) => (
-                <Card key={service.title} className="h-full border-slate-200 bg-white">
+              {t.services.items.map((service, index) => (
+                <Card
+                  key={service.title}
+                  className="group h-full border-slate-200/80 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                >
                   <CardHeader>
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-sm font-semibold text-blue-700 transition duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
                     <CardTitle className="text-base font-semibold text-slate-900">{service.title}</CardTitle>
                     <CardDescription className="text-sm text-slate-600">{service.description}</CardDescription>
                   </CardHeader>
@@ -206,17 +118,21 @@ export default function HomePageClient() {
 
         <StatsSection />
 
-        <section className="bg-[#f8fbff]">
-          <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
+        <section className="relative overflow-hidden bg-[#f8fbff]">
+          <div className="absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-sky-100/60 blur-3xl" />
+          <div className="relative mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
               {t.howWeWork.eyebrow}
             </p>
             <h2 className="mt-3 text-3xl font-semibold sm:text-4xl">
               {t.howWeWork.heading}
             </h2>
-            <div className="mt-12 grid gap-0 md:grid-cols-4">
+            <div className="mt-12 grid gap-6 md:grid-cols-4">
               {t.howWeWork.steps.map((item, index) => (
-                <div key={item.step} className="group relative flex flex-col md:pr-8">
+                <div
+                  key={item.step}
+                  className="group relative flex flex-col rounded-xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg md:p-5"
+                >
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white transition duration-200 group-hover:bg-blue-700">
                       {index + 1}
@@ -237,8 +153,9 @@ export default function HomePageClient() {
           </div>
         </section>
 
-        <section id="book-meeting" className="border-y border-slate-200 bg-white">
-          <div className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
+        <section id="book-meeting" className="relative overflow-hidden border-y border-slate-200 bg-white">
+          <div className="absolute right-0 top-0 h-96 w-96 -translate-y-1/3 translate-x-1/3 rounded-full bg-blue-50 blur-3xl" />
+          <div className="relative mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
             <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
               <div className="max-w-xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -253,7 +170,7 @@ export default function HomePageClient() {
                 <div className="mt-10 flex flex-col gap-8">
                   {t.bookMeeting.steps.map((item) => (
                     <div key={item.step} className="flex gap-5">
-                      <span className="mt-0.5 shrink-0 text-sm font-semibold text-slate-300">
+                      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-sm font-semibold text-slate-500">
                         {item.step}
                       </span>
                       <div>
@@ -265,7 +182,7 @@ export default function HomePageClient() {
                 </div>
               </div>
 
-              <Card className="border-slate-200">
+              <Card className="border-slate-200 shadow-lg shadow-blue-950/5">
                 <CardHeader>
                   <CardTitle className="text-2xl font-semibold text-slate-900">
                     {t.bookMeeting.heading}

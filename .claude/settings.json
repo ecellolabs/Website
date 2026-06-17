@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls)",
+      "Bash(npx tsc *)",
+      "Bash(lsof -i :3000 -sTCP:LISTEN -t)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000)",
+      "Read(//private/tmp/**)"
+    ]
+  }
+}
