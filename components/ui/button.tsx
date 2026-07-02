@@ -1,65 +1,53 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
+import { AnchorHTMLAttributes, ReactNode, forwardRef } from "react";
 
-import { cn } from "@/lib/utils"
+type ButtonVariant = "primary" | "ghost" | "white" | "scrollDown" | "scrollUp";
 
-const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap outline-none select-none cursor-pointer focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500/30 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-blue-400/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-  {
-    variants: {
-      variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700",
-        outline:
-          "border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-900/50",
-        secondary:
-          "bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/40 dark:text-blue-300 dark:hover:bg-blue-900/60",
-        ghost:
-          "hover:bg-slate-50 hover:text-slate-700 dark:hover:bg-slate-900/40 dark:hover:text-slate-300",
-        destructive:
-          "bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-950 dark:hover:bg-red-900",
-        link: "text-blue-600 underline-offset-4 hover:underline dark:text-blue-400",
-      },
-      size: {
-        default:
-          "h-10 gap-2 px-4 py-2 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-4",
-        xs: "h-7 gap-1 rounded-md px-2.5 text-xs has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 gap-1.5 px-3 text-xs has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-12 gap-2 px-6 text-base has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4 [&_svg:not([class*='size-'])]:size-5",
-        icon: "size-10 [&_svg:not([class*='size-'])]:size-4",
-        "icon-xs": "size-7 rounded-md [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-8 [&_svg:not([class*='size-'])]:size-3.5",
-        "icon-lg": "size-12 [&_svg:not([class*='size-'])]:size-5",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot.Root : "button"
-
-  return (
-    <Comp
-      data-slot="button"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
+interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  variant?: ButtonVariant;
+  arrow?: boolean;
+  children: ReactNode;
 }
 
-export { Button, buttonVariants }
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: "relative bg-navy text-white border-2 border-navy",
+  ghost:
+    "relative bg-transparent text-navy border-2 border-navy hover:border-blue hover:text-blue",
+  white: "relative bg-white text-navy border-2 border-white",
+  scrollDown:
+    "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/82 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
+  scrollUp:
+    "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/88 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
+};
+
+// One scalloped crest, 28×16px. Tiled with background-repeat at a fixed size so
+// the hump stays the same width on every button (no stretching), and scrolled
+// horizontally one tile per loop for a seamless moving wave.
+const waveTile = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='16' viewBox='0 0 28 16'><path d='M0 10 A14 6 0 0 1 28 10 L28 16 L0 16 Z' fill='#2e9bee'/></svg>`;
+const waveBg = `url("data:image/svg+xml,${encodeURIComponent(waveTile)}")`;
+
+export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(function Button(
+  { variant = "primary", arrow = false, children, className = "", ...props },
+  ref
+) {
+  return (
+    <a
+      ref={ref}
+      className={`group overflow-hidden font-sans font-semibold text-[15px] rounded-full px-[22px] py-3 inline-flex items-center justify-center whitespace-nowrap transition-[background,border-color,color] duration-200 ease-out cursor-pointer ${variantClasses[variant]} ${className}`}
+      {...props}
+    >
+      <span
+        aria-hidden
+        style={{ backgroundImage: waveBg }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-4 bg-repeat-x [background-size:28px_16px] translate-y-full animate-[wave-scroll_1s_linear_infinite] transition-transform duration-300 ease-out group-hover:translate-y-0"
+      />
+      <span className="relative z-10 inline-flex items-center gap-2.5">
+        {children}
+        {arrow && (
+          <span className="transition-transform duration-200 ease-out group-hover:translate-x-1">
+            →
+          </span>
+        )}
+      </span>
+    </a>
+  );
+});
