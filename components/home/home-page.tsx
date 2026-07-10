@@ -11,25 +11,6 @@ const ABOUT_PHOTOS = [
   "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80",
 ];
 
-const BUBBLES: Array<{
-  side: "ltr" | "rtl";
-  top: string;
-  size: number;
-  dur: string;
-  delay: string;
-}> = [
-  { side: "ltr", top: "22%", size: 10, dur: "15s", delay: "0s" },
-  { side: "ltr", top: "68%", size: 16, dur: "19s", delay: "-3s" },
-  { side: "ltr", top: "40%", size: 7, dur: "13s", delay: "-7s" },
-  { side: "ltr", top: "82%", size: 22, dur: "23s", delay: "-11s" },
-  { side: "ltr", top: "14%", size: 12, dur: "17s", delay: "-14s" },
-  { side: "rtl", top: "34%", size: 14, dur: "18s", delay: "-2s" },
-  { side: "rtl", top: "58%", size: 9, dur: "14s", delay: "-6s" },
-  { side: "rtl", top: "76%", size: 18, dur: "21s", delay: "-9s" },
-  { side: "rtl", top: "28%", size: 6, dur: "12s", delay: "-13s" },
-  { side: "rtl", top: "50%", size: 20, dur: "25s", delay: "-16s" },
-];
-
 function Stat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [n, setN] = useState(0);
@@ -59,11 +40,11 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-[family-name:var(--font-bricolage)] font-extrabold tracking-[-0.02em] text-[clamp(44px,6vw,68px)] leading-none bg-[linear-gradient(120deg,#8fd0ff,#bfeaff_55%,#e6f6ff)] bg-clip-text text-transparent">
+      <div className="font-[family-name:var(--font-bricolage)] font-extrabold tracking-[-0.02em] text-[clamp(44px,6vw,68px)] leading-none bg-[linear-gradient(120deg,#0a1f5e,#1560d4_55%,#2e9bee)] bg-clip-text text-transparent">
         {n}
         {suffix}
       </div>
-      <p className="mt-3 text-[#c7dcf3] text-[15px] max-w-[220px] mx-auto leading-snug">{label}</p>
+      <p className="mt-3 text-[var(--color-muted)] text-[15px] max-w-[220px] mx-auto leading-snug">{label}</p>
     </div>
   );
 }
@@ -229,37 +210,54 @@ export default function HomePage({ content }: HomePageProps) {
       </Button>
 
       {/* STATS STRIP */}
-      <div className="relative overflow-hidden py-16 border-y border-white/6 bg-[#08315a]">
-        <div className="absolute inset-0 z-0 pointer-events-none [background:radial-gradient(120%_150%_at_50%_50%,#1d6ba8_0%,#135286_34%,#0b3d68_62%,#062a4c_100%)]" />
-        <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true">
-          {BUBBLES.map((b, i) => (
-            <span
-              key={i}
-              className={`absolute top-1/2 rounded-full border border-[rgba(190,230,255,.4)] bg-[rgba(190,230,255,.12)] ${
-                b.side === "ltr" ? "bubble-ltr" : "bubble-rtl"
-              }`}
-              style={
-                {
-                  top: b.top,
-                  width: b.size,
-                  height: b.size,
-                  "--dur": b.dur,
-                  "--delay": b.delay,
-                } as React.CSSProperties
-              }
+      <div className="relative overflow-hidden py-20">
+        <svg
+          className="absolute inset-0 w-full h-full z-0"
+          viewBox="0 0 1200 400"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <g fill="none" strokeWidth="1.5">
+            <path
+              stroke="var(--color-muted)"
+              opacity=".35"
+              d="M-100,60 C50,20 150,100 300,60 C450,20 550,100 700,60 C850,20 950,100 1100,60 C1250,20 1350,100 1500,60"
             />
-          ))}
-        </div>
-        <div className="relative z-[2] max-w-[1180px] mx-auto px-6.5">
-          <div className="stats-grid grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
-            {content.stats.map((s) => (
-              <div key={s.label} className="reveal">
-                <Stat value={s.value} suffix={s.suffix} label={s.label} />
-              </div>
-            ))}
+            <path
+              stroke="var(--color-muted)"
+              opacity=".22"
+              d="M-100,150 C50,110 150,190 300,150 C450,110 550,190 700,150 C850,110 950,190 1100,150 C1250,110 1350,190 1500,150"
+            />
+            <path
+              stroke="var(--color-muted)"
+              opacity=".28"
+              d="M-100,240 C50,200 150,280 300,240 C450,200 550,280 700,240 C850,200 950,280 1100,240 C1250,200 1350,280 1500,240"
+            />
+            <path
+              stroke="var(--color-muted)"
+              opacity=".18"
+              d="M-100,330 C50,290 150,370 300,330 C450,290 550,370 700,330 C850,290 950,370 1100,330 C1250,290 1350,370 1500,330"
+            />
+            <animateTransform
+              attributeName="transform"
+              type="translate"
+              from="0 0"
+              to="-300 0"
+              dur="22s"
+              repeatCount="indefinite"
+            />
+            </g>
+          </svg>
+          <div className="relative z-[2] max-w-[1180px] mx-auto px-6.5">
+            <div className="stats-grid grid grid-cols-1 sm:grid-cols-3">
+              {content.stats.map((s) => (
+                 <div key={s.label} className="reveal py-8 sm:py-0">
+                    <Stat value={s.value} suffix={s.suffix} label={s.label} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
       {/* WHO WE ARE */}
       <section id="about" className="py-24">
