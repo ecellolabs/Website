@@ -191,9 +191,13 @@ export default function HomePage({ content }: HomePageProps) {
           href="#about"
           aria-label={content.hero.scrollLabel}
           className="absolute left-1/2 bottom-6 z-20 -translate-x-1/2 hover:-translate-x-1/2"
-        >
-          ↓
-        </Button>
+          icon={
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+              <path d="M12 5v14" />
+              <path d="M7 14l5 5 5-5" />
+            </svg>
+          }
+        />
       </section>
 
       <Button
@@ -205,9 +209,13 @@ export default function HomePage({ content }: HomePageProps) {
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none translate-y-3"
         }`}
-      >
-        ↑
-      </Button>
+        icon={
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <path d="M12 19V5" />
+            <path d="M7 10l5-5 5 5" />
+          </svg>
+        }
+      />
 
       {/* STATS STRIP */}
       <div className="relative overflow-hidden py-20">
@@ -385,15 +393,17 @@ export default function HomePage({ content }: HomePageProps) {
 
           <div className="reveal mt-14 flex items-center gap-4 sm:gap-6">
             {/* Prev arrow */}
-            <button
+            <Button
+              variant="scrollUp"
               onClick={prev}
               aria-label={content.trust.previous}
-              className="hidden sm:grid flex-none place-items-center w-12 h-12 rounded-full bg-white text-[--color-navy] border-2 border-[--color-navy] transition-colors duration-200 hover:border-[--color-azure] hover:text-[--color-azure] cursor-pointer"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
+              className="hidden sm:!inline-flex flex-none !w-12 !h-12"
+              icon={
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              }
+            />
 
             {/* Draggable track */}
             <div
@@ -441,15 +451,17 @@ export default function HomePage({ content }: HomePageProps) {
             </div>
 
             {/* Next arrow */}
-            <button
+            <Button
+              variant="scrollUp"
               onClick={next}
               aria-label={content.trust.next}
-              className="hidden sm:grid flex-none place-items-center w-12 h-12 rounded-full bg-white text-[--color-navy] border-2 border-[--color-navy] transition-colors duration-200 hover:border-[--color-azure] hover:text-[--color-azure] cursor-pointer"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+              className="hidden sm:!inline-flex flex-none !w-12 !h-12"
+              icon={
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              }
+            />
           </div>
 
           {/* Dots */}

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import HomePage from "@/components/home/home-page";
+import HomePage from "@/components/home/home";
 import { getMessages, isLocale } from "@/lib/i18n";
 
 type PageProps = {

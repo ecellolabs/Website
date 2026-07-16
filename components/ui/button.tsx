@@ -5,7 +5,8 @@ type ButtonVariant = "primary" | "ghost" | "white" | "scrollDown" | "scrollUp";
 interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
   arrow?: boolean;
-  children: ReactNode;
+  icon?: ReactNode;
+  children?: ReactNode;
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -26,13 +27,13 @@ const waveTile = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='16'
 const waveBg = `url("data:image/svg+xml,${encodeURIComponent(waveTile)}")`;
 
 export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(function Button(
-  { variant = "primary", arrow = false, children, className = "", ...props },
+  { variant = "primary", arrow = false, icon, children, className = "", ...props },
   ref
 ) {
   return (
     <a
       ref={ref}
-      className={`group overflow-hidden font-sans font-semibold text-[15px] rounded-full px-[22px] py-3 inline-flex items-center justify-center whitespace-nowrap transition-[background,border-color,color] duration-200 ease-out cursor-pointer ${variantClasses[variant]} ${className}`}
+      className={`group relative overflow-hidden font-sans font-semibold text-[15px] rounded-full px-[22px] py-3 inline-flex items-center justify-center whitespace-nowrap transition-[background,border-color,color] duration-200 ease-out cursor-pointer ${variantClasses[variant]} ${className}`}
       {...props}
     >
       <span
@@ -41,6 +42,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(function Button
         className="pointer-events-none absolute inset-x-0 bottom-0 h-4 bg-repeat-x [background-size:28px_16px] translate-y-full animate-[wave-scroll_1s_linear_infinite] transition-transform duration-300 ease-out group-hover:translate-y-0"
       />
       <span className="relative z-10 inline-flex items-center gap-2.5">
+        {icon && <span className="inline-flex shrink-0 items-center justify-center">{icon}</span>}
         {children}
         {arrow && (
           <span className="transition-transform duration-200 ease-out group-hover:translate-x-1">
