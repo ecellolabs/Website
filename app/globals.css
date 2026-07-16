@@ -264,6 +264,56 @@ h3 {
   flex-direction: column;
 }
 
+@keyframes boat-sail {
+  0% {
+    left: -48px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes boat-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(3deg);
+  }
+}
+
+.boat {
+  animation: boat-sail 16s linear infinite;
+  will-change: left;
+}
+
+.boat .boat-svg {
+  display: block;
+  transform-origin: 50% 90%;
+  animation: boat-bob 2.6s ease-in-out infinite;
+}
+
+@keyframes dialog-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

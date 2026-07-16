@@ -38,6 +38,15 @@ export const messages = {
       reach: "Reach us",
       rights: "© 2026 Ecello Labs. All rights reserved.",
       note: "Made where the work flows out to sea.",
+      newsletter: {
+        title: "Get occasional notes",
+        description:
+          "A quiet newsletter — one or two emails a year about what we've shipped, learned, or broken. No marketing.",
+        placeholder: "you@company.com",
+        cta: "Subscribe",
+        unsubscribe: "Unsubscribe anytime.",
+        success: "Thanks — you're on the list.",
+      },
       studioLinks: [
         { href: "#about", label: "Who we are" },
         { href: "#process", label: "Our process" },
@@ -160,6 +169,15 @@ export const messages = {
       reach: "Nous joindre",
       rights: "© 2026 Ecello Labs. Tous droits réservés.",
       note: "Créé là où le travail prend le large.",
+      newsletter: {
+        title: "Quelques nouvelles",
+        description:
+          "Une newsletter discrète — un ou deux e-mails par an sur ce que nous avons livré, appris ou cassé. Pas de marketing.",
+        placeholder: "vous@entreprise.com",
+        cta: "S'abonner",
+        unsubscribe: "Désabonnement à tout moment.",
+        success: "Merci — vous êtes inscrit.",
+      },
       studioLinks: [
         { href: "#about", label: "Qui nous sommes" },
         { href: "#process", label: "Notre processus" },
@@ -282,6 +300,15 @@ export const messages = {
       reach: "Kontakt",
       rights: "© 2026 Ecello Labs. Alle Rechte vorbehalten.",
       note: "Gemacht dort, wo Arbeit Richtung Meer fließt.",
+      newsletter: {
+        title: "Gelegentliche Notizen",
+        description:
+          "Ein ruhiger Newsletter — ein bis zwei E-Mails im Jahr darüber, was wir gebaut, gelernt oder kaputt gemacht haben. Kein Marketing.",
+        placeholder: "sie@firma.de",
+        cta: "Abonnieren",
+        unsubscribe: "Jederzeit abbestellbar.",
+        success: "Danke — Sie sind dabei.",
+      },
       studioLinks: [
         { href: "#about", label: "Wer wir sind" },
         { href: "#process", label: "Unser Prozess" },

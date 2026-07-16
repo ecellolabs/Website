@@ -37,7 +37,7 @@ export default function Header({ content }: HeaderProps) {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[15px] font-medium text-[#33405a] relative transition-colors hover:text-[--color-navy] after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-[image:--brand-soft] after:rounded-full after:transition-[width] after:duration-300 hover:after:w-full"
+                className="group text-[15px] font-medium text-[#33405a] relative transition-colors duration-300 hover:text-[#0b1f3a] after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#0b1f3a] after:rounded-full after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
               >
                 {link.label}
               </a>
