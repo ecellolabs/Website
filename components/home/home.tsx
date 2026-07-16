@@ -62,7 +62,6 @@ type HomePageProps = {
 };
 
 export default function HomePage({ content }: HomePageProps) {
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [slide, setSlide] = useState(0);
   const [perView, setPerView] = useState(1);
   const [dragX, setDragX] = useState(0);
@@ -97,15 +96,6 @@ export default function HomePage({ content }: HomePageProps) {
     if (dx <= -threshold) next();
     else if (dx >= threshold) prev();
   };
-
-  useEffect(() => {
-    const onScroll = () => {
-      setShowBackToTop(window.scrollY > window.innerHeight * 0.55);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 640px)");
@@ -186,36 +176,7 @@ export default function HomePage({ content }: HomePageProps) {
           <Ship />
         </div>
 
-        <Button
-          variant="scrollDown"
-          href="#about"
-          aria-label={content.hero.scrollLabel}
-          className="absolute left-1/2 bottom-6 z-20 -translate-x-1/2 hover:-translate-x-1/2"
-          icon={
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-              <path d="M12 5v14" />
-              <path d="M7 14l5 5 5-5" />
-            </svg>
-          }
-        />
       </section>
-
-      <Button
-        variant="scrollUp"
-        href="#top"
-        aria-label={content.hero.backToTopLabel}
-        className={`fixed right-6.5 bottom-6.5 z-70 transition-[opacity,transform,background,border-color,color] duration-300 ${
-          showBackToTop
-            ? "opacity-100 pointer-events-auto translate-y-0"
-            : "opacity-0 pointer-events-none translate-y-3"
-        }`}
-        icon={
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-            <path d="M12 19V5" />
-            <path d="M7 10l5-5 5 5" />
-          </svg>
-        }
-      />
 
       {/* STATS STRIP */}
       <div className="relative overflow-hidden py-20">
