@@ -39,9 +39,9 @@ export const messages = {
       rights: "© 2026 Ecello Labs. All rights reserved.",
       note: "Made where the work flows out to sea.",
       newsletter: {
-        title: "Get occasional notes",
+        title: "Newsletter",
         description:
-          "A quiet newsletter — one or two emails a year about what we've shipped, learned, or broken. No marketing.",
+          "Follow our newsletter for updates on what we've shipped, learned, and built. No spam, just the good stuff.",
         placeholder: "you@company.com",
         cta: "Subscribe",
         unsubscribe: "Unsubscribe anytime.",
