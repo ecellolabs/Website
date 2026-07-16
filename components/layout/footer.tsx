@@ -1,5 +1,5 @@
 import type { Messages } from "@/lib/i18n";
-import NewsletterForm from "./newsletter-form";
+import NewsletterForm from "./newsletter";
 
 type FooterProps = {
   content: Messages["footer"];
