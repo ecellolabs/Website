@@ -45,9 +45,8 @@ export default function Header({ content }: HeaderProps) {
           </nav>
           <Button
             variant="primary"
-            arrow
             href="mailto:alex@ecello.net?subject=Let's%20talk"
-            className="hidden md:inline-flex !bg-[--color-navy] !text-white"
+            className="hidden md:inline-flex"
           >
             {content.cta}
           </Button>
@@ -80,9 +79,8 @@ export default function Header({ content }: HeaderProps) {
         ))}
         <Button
           variant="primary"
-          arrow
           href="mailto:alex@ecello.net?subject=Let's%20talk"
-          className="mt-6 justify-center !bg-[--color-navy] !text-white"
+          className="mt-6 justify-center"
           onClick={() => setMenuOpen(false)}
         >
           {content.cta}

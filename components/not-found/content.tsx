@@ -19,7 +19,7 @@ export default function NotFoundContent({ homeHref = "/en" }: NotFoundContentPro
         </p>
 
         <div className="flex gap-3.5 mt-9 flex-wrap justify-center">
-          <Button variant="primary" arrow href={homeHref} className="!px-6.5 !py-4 !text-base">
+          <Button variant="primary" href={homeHref} className="!px-6.5 !py-4 !text-base">
             Back to home
           </Button>
           <Button

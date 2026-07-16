@@ -161,7 +161,6 @@ export default function HomePage({ content }: HomePageProps) {
             <div className="flex gap-3.5 mt-8.5 flex-wrap">
               <Button
                 variant="primary"
-                arrow
                 href="mailto:alex@ecello.net?subject=Let's%20talk"
                 className="!px-6.5 !py-4 !text-base"
               >
@@ -355,7 +354,7 @@ export default function HomePage({ content }: HomePageProps) {
           <div className="reveal mt-14 flex items-center gap-4 sm:gap-6">
             {/* Prev arrow */}
             <Button
-              variant="scrollUp"
+              variant="icon"
               onClick={prev}
               aria-label={content.trust.previous}
               className="hidden sm:!inline-flex flex-none !w-12 !h-12"
@@ -413,7 +412,7 @@ export default function HomePage({ content }: HomePageProps) {
 
             {/* Next arrow */}
             <Button
-              variant="scrollUp"
+              variant="icon"
               onClick={next}
               aria-label={content.trust.next}
               className="hidden sm:!inline-flex flex-none !w-12 !h-12"
@@ -489,7 +488,6 @@ export default function HomePage({ content }: HomePageProps) {
               </p>
               <Button
                 variant="white"
-                arrow
                 href="mailto:alex@ecello.net?subject=Let's%20talk%20about%20a%20project"
                 className="!mt-8.5 !px-7.5 !py-4 !text-[17px]"
               >

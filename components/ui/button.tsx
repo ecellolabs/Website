@@ -1,23 +1,22 @@
 import { AnchorHTMLAttributes, ReactNode, forwardRef } from "react";
 
-type ButtonVariant = "primary" | "ghost" | "white" | "scrollDown" | "scrollUp";
+type ButtonVariant = "primary" | "ghost" | "white" | "icon";
 
 interface ButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: ButtonVariant;
-  arrow?: boolean;
   icon?: ReactNode;
   children?: ReactNode;
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "relative bg-navy text-white border-2 border-navy",
+  primary:
+    "relative bg-navy text-white border-2 border-navy hover:bg-transparent hover:text-azure hover:border-azure",
   ghost:
-    "relative bg-transparent text-navy border-2 border-navy hover:border-blue hover:text-blue",
-  white: "relative bg-white text-navy border-2 border-white",
-  scrollDown:
-    "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/82 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
-  scrollUp:
-    "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/88 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
+    "relative bg-transparent text-navy border-2 border-navy hover:bg-transparent hover:text-azure hover:border-azure",
+  white:
+    "relative bg-white text-navy border-0 py-[14px] hover:text-azure",
+  icon:
+    "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/85 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
 };
 
 // One scalloped crest, 28×16px. Tiled with background-repeat at a fixed size so
@@ -27,7 +26,7 @@ const waveTile = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='16'
 const waveBg = `url("data:image/svg+xml,${encodeURIComponent(waveTile)}")`;
 
 export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(function Button(
-  { variant = "primary", arrow = false, icon, children, className = "", ...props },
+  { variant = "primary", icon, children, className = "", ...props },
   ref
 ) {
   return (
@@ -44,11 +43,6 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(function Button
       <span className="relative z-10 inline-flex items-center gap-2.5">
         {icon && <span className="inline-flex shrink-0 items-center justify-center">{icon}</span>}
         {children}
-        {arrow && (
-          <span className="transition-transform duration-200 ease-out group-hover:translate-x-1">
-            →
-          </span>
-        )}
       </span>
     </a>
   );

@@ -70,7 +70,7 @@ export default function NewsletterForm({ content }: NewsletterFormProps) {
             e.preventDefault();
             subscribe();
           }}
-          className="shrink-0 !w-[40px] !h-[40px] !p-0 !rounded-full justify-center !bg-[--color-blue] !border-[--color-blue] !text-white"
+          className="shrink-0 !w-[40px] !h-[40px] !p-0 !rounded-full justify-center !bg-[--color-blue] !border-[--color-blue] !text-white hover:!bg-white hover:!border-[--color-navy] hover:!text-[--color-navy]"
         />
       </form>
 
