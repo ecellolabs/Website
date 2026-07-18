@@ -49,6 +49,39 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
   );
 }
 
+const PROCESS_BOX_THEMES = [
+  {
+    front: "#0a1f5e",
+    top: "#17337a",
+    side: "#061340",
+    edge: "#040f2e",
+    badgeBg: "#7cc0f5",
+    badgeText: "#0a1f5e",
+    title: "text-white",
+    body: "text-[#c3d6f5]",
+  },
+  {
+    front: "#1560d4",
+    top: "#2d78e6",
+    side: "#0d49ab",
+    edge: "#0b3d92",
+    badgeBg: "#ffffff",
+    badgeText: "#1560d4",
+    title: "text-white",
+    body: "text-[#dbe8fb]",
+  },
+  {
+    front: "#dcebfb",
+    top: "#f2f9ff",
+    side: "#b6d7f6",
+    edge: "#9dc4ec",
+    badgeBg: "#0a1f5e",
+    badgeText: "#ffffff",
+    title: "text-[--color-navy]",
+    body: "text-[--color-muted]",
+  },
+] as const;
+
 function initials(name: string) {
   return name
     .split(" ")
@@ -303,35 +336,40 @@ export default function HomePage({ content, locale }: HomePageProps) {
         </div>
 
         <div className="max-w-[1180px] mx-auto px-6.5 mt-20 grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-x-8 lg:gap-x-12">
-          {content.process.steps.map((step, i) => (
-            <div key={step.no} className="reveal flex justify-center">
-              <div className="float-box w-full max-w-[344px]" style={{ animationDelay: `${i * -1.6}s` }}>
-                <div className="box-wrap">
-                  <svg className="box-wire" viewBox="0 0 344 316" aria-hidden="true">
-                    <path
-                      className="edge"
-                      vectorEffect="non-scaling-stroke"
-                      d="M0 44 H296 V316 H0 Z M0 44 L48 0 L344 0 L296 44 M344 0 L344 272 L296 316"
-                    />
-                    <path
-                      className="tape"
-                      vectorEffect="non-scaling-stroke"
-                      d="M28.4 18 L324.4 18 L324.4 138 L315.6 146 L315.6 26 L19.6 26 Z"
-                    />
-                  </svg>
-                  <div className="box-cover p-7">
-                    <span className="grid place-items-center w-12 h-12 rounded-full border-2 border-black text-black font-[family-name:var(--font-bricolage)] font-extrabold text-lg">
-                      {step.no}
-                    </span>
-                    <h3 className="text-2xl font-extrabold mt-5 text-[--color-ink]">{step.title}</h3>
-                    <p className="text-[--color-muted] text-[14.5px] leading-relaxed mt-3">
-                      {step.desc}
-                    </p>
+          {content.process.steps.map((step, i) => {
+            const theme = PROCESS_BOX_THEMES[i % PROCESS_BOX_THEMES.length];
+            return (
+              <div key={step.no} className="reveal flex justify-center">
+                <div className="float-box w-full max-w-[344px]" style={{ animationDelay: `${i * -1.6}s` }}>
+                  <div className="box-wrap">
+                    <svg className="box-wire" viewBox="0 0 344 316" aria-hidden="true">
+                      <path fill={theme.side} d="M344 0 L344 272 L296 316 L296 44 Z" />
+                      <path fill={theme.top} d="M0 44 L48 0 L344 0 L296 44 Z" />
+                      <path fill={theme.front} d="M0 44 L296 44 L296 316 L0 316 Z" />
+                      <path
+                        className="edge"
+                        vectorEffect="non-scaling-stroke"
+                        stroke={theme.edge}
+                        d="M0 44 H296 V316 H0 Z M0 44 L48 0 L344 0 L296 44 M344 0 L344 272 L296 316"
+                      />
+                    </svg>
+                    <div className="box-cover p-7">
+                      <span
+                        className="grid place-items-center w-12 h-12 rounded-full font-[family-name:var(--font-bricolage)] font-extrabold text-lg"
+                        style={{ background: theme.badgeBg, color: theme.badgeText }}
+                      >
+                        {step.no}
+                      </span>
+                      <h3 className={`text-2xl font-extrabold mt-5 ${theme.title}`}>{step.title}</h3>
+                      <p className={`${theme.body} text-[14.5px] leading-relaxed mt-3`}>
+                        {step.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

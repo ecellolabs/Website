@@ -28,7 +28,7 @@ export function Dialog({ open, onClose, children }: DialogProps) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[400px] rounded-2xl bg-white p-8 shadow-[0_24px_60px_rgba(10,31,94,0.22)] animate-[dialog-pop_0.24s_cubic-bezier(0.2,0.7,0.2,1)]"
+        className="relative w-full max-w-[400px] rounded-2xl bg-white p-8 animate-[dialog-pop_0.24s_cubic-bezier(0.2,0.7,0.2,1)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button

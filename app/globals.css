@@ -232,21 +232,16 @@ h3 {
   overflow: visible;
 }
 
+.box-wire {
+  transition: filter 0.4s ease;
+}
+
 .box-wire .edge {
   fill: none;
-  stroke: #000;
-  stroke-opacity: 1;
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: stroke-width 0.4s ease;
-}
-
-.box-wire .tape {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: 1.4;
-  stroke-linejoin: round;
 }
 
 .box-wrap:hover .box-wire .edge {

@@ -107,7 +107,7 @@ export default function Header({ content, locale }: HeaderProps) {
         role="dialog"
         aria-modal="true"
         aria-label={content.openMenu}
-        className={`fixed top-[73px] bottom-0 left-0 z-58 w-[86%] max-w-[340px] bg-[var(--color-paper)] shadow-[0_0_40px_rgba(11,31,58,0.25)] flex flex-col transition-transform duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] md:hidden ${
+        className={`fixed top-[73px] bottom-0 left-0 z-58 w-[86%] max-w-[340px] bg-[var(--color-paper)] flex flex-col transition-transform duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] md:hidden ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
