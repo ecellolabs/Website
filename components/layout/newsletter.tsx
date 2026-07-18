@@ -36,7 +36,6 @@ export default function NewsletterForm({ content }: NewsletterFormProps) {
 
   const subscribe = () => {
     if (!email) return;
-    // TODO: wire up to the real newsletter provider.
     setEmail("");
     setOpen(true);
   };

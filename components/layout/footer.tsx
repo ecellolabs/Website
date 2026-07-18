@@ -13,7 +13,6 @@ const linkClass =
 const headingClass =
   "text-xs tracking-[0.14em] uppercase text-black font-bold mb-4";
 
-// Same scalloped crest used by the buttons, tiled into a moving wavy divider.
 const waveTile = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='16' viewBox='0 0 28 16'><path d='M0 10 A14 6 0 0 1 28 10 L28 16 L0 16 Z' fill='%23dcebfb'/></svg>`;
 const waveBg = `url("data:image/svg+xml,${waveTile}")`;
 

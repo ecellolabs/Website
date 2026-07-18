@@ -179,8 +179,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
         </div>
 
       </section>
-
-      {/* STATS STRIP */}
       <div className="relative overflow-hidden py-20">
         <svg
           className="absolute inset-0 w-full h-full z-0"
@@ -268,7 +266,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
             </div>
           </div>
 
-          {/* Fading photos in a bordered white frame with an offset blue accent */}
           <div className="reveal relative min-w-0">
             <span
               aria-hidden
@@ -277,7 +274,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
             <div className="relative border-2 border-[--color-navy] bg-white p-3">
               <div className="relative aspect-[4/3] overflow-hidden bg-white">
                 {ABOUT_PHOTOS.map((src, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     key={src}
                     src={src}
@@ -311,21 +307,18 @@ export default function HomePage({ content, locale }: HomePageProps) {
             <div key={step.no} className="reveal flex justify-center">
               <div className="float-box w-full max-w-[344px]" style={{ animationDelay: `${i * -1.6}s` }}>
                 <div className="box-wrap">
-                  {/* box outline — front face + receding top/right edges */}
                   <svg className="box-wire" viewBox="0 0 344 316" aria-hidden="true">
                     <path
                       className="edge"
                       vectorEffect="non-scaling-stroke"
                       d="M0 44 H296 V316 H0 Z M0 44 L48 0 L344 0 L296 44 M344 0 L344 272 L296 316"
                     />
-                    {/* tape strip across the lid, wrapping down and closing off on the right face */}
                     <path
                       className="tape"
                       vectorEffect="non-scaling-stroke"
                       d="M28.4 18 L324.4 18 L324.4 138 L315.6 146 L315.6 26 L19.6 26 Z"
                     />
                   </svg>
-                  {/* front cover — the text lives here */}
                   <div className="box-cover p-7">
                     <span className="grid place-items-center w-12 h-12 rounded-full border-2 border-black text-black font-[family-name:var(--font-bricolage)] font-extrabold text-lg">
                       {step.no}
@@ -342,7 +335,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
         </div>
       </section>
 
-      {/* WHY TRUST US */}
       <section id="trust" className="py-24 bg-[--color-paper] border-y border-[rgba(189,209,232,0.24)]">
         <div className="max-w-[1040px] mx-auto px-6.5">
           <div className="text-center">
@@ -355,7 +347,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
           </div>
 
           <div className="reveal mt-14 flex items-center gap-4 sm:gap-6">
-            {/* Prev arrow */}
             <Button
               variant="icon"
               onClick={prev}
@@ -367,8 +358,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
                 </svg>
               }
             />
-
-            {/* Draggable track */}
             <div
               className={`min-w-0 flex-1 overflow-hidden select-none touch-pan-y ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
               onPointerDown={onPointerDown}
@@ -387,7 +376,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
                     style={{ width: `${100 / perView}%` }}
                   >
                     <figure className="h-full flex flex-col rounded-[26px] border-2 border-[--color-line] bg-white px-7 py-8 md:px-9 md:py-9 text-left">
-                      {/* rating */}
                       <div className="flex gap-1 text-[--color-azure]" aria-hidden>
                         {Array.from({ length: 5 }).map((_, s) => (
                           <svg key={s} viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
@@ -412,8 +400,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
                 ))}
               </div>
             </div>
-
-            {/* Next arrow */}
             <Button
               variant="icon"
               onClick={next}
@@ -426,8 +412,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
               }
             />
           </div>
-
-          {/* Dots */}
           <div className="flex items-center justify-center gap-2.5 mt-9">
             {Array.from({ length: pages }).map((_, i) => (
               <button
@@ -444,8 +428,6 @@ export default function HomePage({ content, locale }: HomePageProps) {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
       <section id="contact" className="py-24 pb-24">
         <div className="max-w-[1232px] mx-auto px-6.5">
           <div className="reveal relative overflow-hidden text-white rounded-[32px] px-10 py-18 text-center [background:radial-gradient(760px_430px_at_20%_12%,rgba(46,155,238,.32),transparent_68%),linear-gradient(135deg,#0b2264_0%,#0d286b_52%,#24538f_100%)] before:content-[''] before:absolute before:-inset-x-[18%] before:-top-[32%] before:-bottom-[24%] before:z-0 before:[background:radial-gradient(700px_380px_at_18%_8%,rgba(46,155,238,.4),transparent_64%),radial-gradient(760px_440px_at_88%_82%,rgba(21,96,212,.12),transparent_72%)] before:animate-drift">

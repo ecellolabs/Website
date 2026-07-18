@@ -19,9 +19,6 @@ const variantClasses: Record<ButtonVariant, string> = {
     "w-[54px] h-[54px] !px-0 !py-0 justify-center bg-white/85 text-navy border-2 border-navy text-[2.25rem] leading-none hover:border-azure hover:text-azure",
 };
 
-// One scalloped crest, 28×16px. Tiled with background-repeat at a fixed size so
-// the hump stays the same width on every button (no stretching), and scrolled
-// horizontally one tile per loop for a seamless moving wave.
 const waveTile = `<svg xmlns='http://www.w3.org/2000/svg' width='28' height='16' viewBox='0 0 28 16'><path d='M0 10 A14 6 0 0 1 28 10 L28 16 L0 16 Z' fill='#2e9bee'/></svg>`;
 const waveBg = `url("data:image/svg+xml,${encodeURIComponent(waveTile)}")`;
 

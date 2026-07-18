@@ -451,9 +451,6 @@ export function getMessages(locale: Locale): Messages {
   return messages[locale];
 }
 
-// Prefixes root-relative internal links ("/booking") and in-page anchors ("#about",
-// which becomes "/en#about" so it resolves from any page) with the current locale.
-// External links and mailto/tel links are left untouched.
 export function localizeHref(locale: Locale, href: string): string {
   return href.startsWith("/") || href.startsWith("#") ? `/${locale}${href}` : href;
 }
