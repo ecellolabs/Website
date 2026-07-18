@@ -82,14 +82,6 @@ const PROCESS_BOX_THEMES = [
   },
 ] as const;
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join("");
-}
-
 type HomePageProps = {
   content: HomeContent;
   locale: Locale;
@@ -106,6 +98,8 @@ export default function HomePage({ content, locale }: HomePageProps) {
   const len = content.trust.testimonials.length;
   const pages = Math.ceil(len / perView);
   const current = Math.min(slide, pages - 1);
+  const maxItemStart = Math.max(0, len - perView);
+  const itemStart = Math.min(current * perView, maxItemStart);
   const prev = () => setSlide((s) => (Math.min(s, pages - 1) - 1 + pages) % pages);
   const next = () => setSlide((s) => (Math.min(s, pages - 1) + 1) % pages);
 
@@ -132,11 +126,16 @@ export default function HomePage({ content, locale }: HomePageProps) {
   };
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    const update = () => setPerView(mq.matches ? 2 : 1);
+    const mqSm = window.matchMedia("(min-width: 640px)");
+    const mqLg = window.matchMedia("(min-width: 1024px)");
+    const update = () => setPerView(mqLg.matches ? 3 : mqSm.matches ? 2 : 1);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    mqSm.addEventListener("change", update);
+    mqLg.addEventListener("change", update);
+    return () => {
+      mqSm.removeEventListener("change", update);
+      mqLg.removeEventListener("change", update);
+    };
   }, []);
 
   useEffect(() => {
@@ -374,7 +373,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
       </section>
 
       <section id="trust" className="py-24 bg-[--color-paper] border-y border-[rgba(189,209,232,0.24)]">
-        <div className="max-w-[1040px] mx-auto px-6.5">
+        <div className="max-w-[1180px] mx-auto px-6.5">
           <div className="text-center">
             <span className="reveal block text-xs font-bold tracking-[0.16em] uppercase text-[--color-azure]">
               {content.trust.eyebrow}
@@ -405,7 +404,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
             >
               <div
                 className={isDragging ? "flex" : "flex transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)]"}
-                style={{ transform: `translateX(calc(-${current * 100}% + ${dragX}px))` }}
+                style={{ transform: `translateX(calc(-${itemStart * (100 / perView)}% + ${dragX}px))` }}
               >
                 {content.trust.testimonials.map((t) => (
                   <div
@@ -421,17 +420,12 @@ export default function HomePage({ content, locale }: HomePageProps) {
                           </svg>
                         ))}
                       </div>
-                      <blockquote className="flex-1 font-[family-name:var(--font-bricolage)] text-[clamp(18px,1.9vw,22px)] font-medium leading-snug tracking-[-0.01em] text-[--color-ink] mt-5">
+                      <blockquote className="flex-1 font-[family-name:var(--font-bricolage)] text-[clamp(16px,1.6vw,19px)] font-medium leading-snug tracking-[-0.01em] text-[--color-ink] mt-5">
                         {t.quote}
                       </blockquote>
-                      <figcaption className="flex items-center gap-4 mt-7 pt-6 border-t border-[--color-line]">
-                        <span className="grid place-items-center w-12 h-12 rounded-full bg-[--color-navy] text-white font-bold text-[15px] flex-none">
-                          {initials(t.name)}
-                        </span>
-                        <span>
-                          <span className="block font-bold text-[--color-navy] leading-tight">{t.name}</span>
-                          <span className="block text-[--color-muted] text-sm mt-0.5">{t.role}</span>
-                        </span>
+                      <figcaption className="flex flex-col items-start text-left mt-7 pt-6 border-t border-[--color-line]">
+                        <span className="block font-bold text-[--color-navy] leading-tight">{t.name}</span>
+                        <span className="block text-[--color-muted] text-sm mt-0.5">{t.role}</span>
                       </figcaption>
                     </figure>
                   </div>

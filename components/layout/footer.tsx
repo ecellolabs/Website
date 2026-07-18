@@ -29,11 +29,11 @@ function Boat() {
       {/* mast */}
       <line x1="24" y1="2" x2="24" y2="21" stroke="var(--blue)" strokeWidth="1.8" strokeLinecap="round" />
       {/* sail */}
-      <path d="M24 3 L39 20 L24 20 Z" fill="var(--blue)" />
+      <path d="M24 3 C32 9, 34 15, 33 20 L24 20 Z" fill="var(--blue)" />
       {/* jib */}
-      <path d="M23 5 L11 20 L23 20 Z" fill="var(--azure)" />
+      <path d="M23 5 C16 9, 14 15, 15 20 L23 20 Z" fill="var(--azure)" />
       {/* hull */}
-      <path d="M7 21 H41 L35 29 H13 Z" fill="var(--navy)" />
+      <path d="M9 21 C11 29, 35 29, 37 21 L34 21 L12 21 Z" fill="var(--navy)" />
     </svg>
   );
 }
@@ -97,7 +97,7 @@ export default function Footer({ content, locale }: FooterProps) {
           {/* sailing boat — sits behind the wave crest */}
           <div
             aria-hidden
-            className="pointer-events-none absolute left-0 right-0 bottom-[4px] z-0 h-[42px] overflow-hidden"
+            className="pointer-events-none absolute left-0 right-0 bottom-[2px] z-0 h-[42px] overflow-hidden"
           >
             <span className="boat absolute bottom-0 block">
               <Boat />
@@ -107,7 +107,7 @@ export default function Footer({ content, locale }: FooterProps) {
           <span
             aria-hidden
             style={{ backgroundImage: waveBg }}
-            className="absolute inset-x-0 bottom-0 z-10 h-4 bg-repeat-x [background-size:28px_16px] animate-[wave-scroll_1.4s_linear_infinite]"
+            className="absolute inset-x-0 bottom-0 z-10 h-4 bg-repeat-x opacity-60 [background-size:28px_16px] animate-[wave-scroll_1.4s_linear_infinite]"
           />
         </div>
 

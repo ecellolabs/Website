@@ -131,13 +131,7 @@ export const messages = {
               "The assistant they built answers 80% of our customer questions on its own. Our team finally focuses on the conversations that actually need a human.",
             name: "Priya Nair",
             role: "Head of Support, Bright Retail",
-          },
-          {
-            quote:
-              "We own everything they made, it's clean, documented, and still running without a hitch a year later. Rare to find people who work like that.",
-            name: "Tomas Berg",
-            role: "CTO, Havenmark Group",
-          },
+          }
         ],
       },
       cta: {
