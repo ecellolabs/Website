@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
 
   return (
     <>
-      <Header content={messages.header} locale={locale} />
+      <Header content={messages.header} footerContent={messages.footer} locale={locale} />
       {children}
       <Footer content={messages.footer} locale={locale} />
     </>

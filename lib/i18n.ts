@@ -24,6 +24,7 @@ export const messages = {
     header: {
       homeLabel: "Ecello Labs home",
       openMenu: "Open menu",
+      closeMenu: "Close menu",
       cta: "Book a call",
       nav: [
         { href: "#about", label: "Who we are" },
@@ -165,6 +166,7 @@ export const messages = {
     header: {
       homeLabel: "Accueil Ecello Labs",
       openMenu: "Ouvrir le menu",
+      closeMenu: "Fermer le menu",
       cta: "Réserver un appel",
       nav: [
         { href: "#about", label: "Qui nous sommes" },
@@ -306,6 +308,7 @@ export const messages = {
     header: {
       homeLabel: "Ecello Labs Startseite",
       openMenu: "Menü öffnen",
+      closeMenu: "Menü schließen",
       cta: "Gespräch buchen",
       nav: [
         { href: "#about", label: "Wer wir sind" },

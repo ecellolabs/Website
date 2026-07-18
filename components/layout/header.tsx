@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { localizeHref, type Locale, type Messages } from "@/lib/i18n";
+import { SOCIALS } from "./socials";
 
 type HeaderProps = {
   content: Messages["header"];
+  footerContent: Messages["footer"];
   locale: Locale;
 };
 
-export default function Header({ content, locale }: HeaderProps) {
+export default function Header({ content, footerContent, locale }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const bookingHref = localizeHref(locale, "/booking");
@@ -21,11 +23,26 @@ export default function Header({ content, locale }: HeaderProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-60 border-b transition-[background,border-color,backdrop-filter] duration-300 ${
-          scrolled
+          scrolled || menuOpen
             ? "bg-white/84 backdrop-blur-md border-[rgba(189,209,232,0.24)]"
             : "bg-transparent backdrop-blur-none border-transparent"
         }`}
@@ -45,48 +62,132 @@ export default function Header({ content, locale }: HeaderProps) {
               </a>
             ))}
           </nav>
-          <Button
-            variant="primary"
-            href={bookingHref}
-            className="hidden md:inline-flex"
-          >
-            {content.cta}
-          </Button>
+          <div className="hidden md:block">
+            <Button variant="primary" href={bookingHref}>
+              {content.cta}
+            </Button>
+          </div>
           <button
-            className="flex md:hidden flex-col gap-1.5 p-2 bg-transparent border-none cursor-pointer"
-            aria-label={content.openMenu}
+            className="relative z-70 flex md:hidden flex-col justify-center items-center gap-1.5 w-10 h-10 -mr-2 bg-transparent border-none cursor-pointer"
+            aria-label={menuOpen ? content.closeMenu : content.openMenu}
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
           >
-            <span className="w-6 h-0.5 bg-[--color-navy] rounded-sm" />
-            <span className="w-6 h-0.5 bg-[--color-navy] rounded-sm" />
-            <span className="w-6 h-0.5 bg-[--color-navy] rounded-sm" />
+            <span
+              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
+                menuOpen ? "translate-y-2 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-opacity duration-200 ease-out ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
+                menuOpen ? "-translate-y-2 -rotate-45" : ""
+              }`}
+            />
           </button>
         </div>
       </header>
 
+      {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-55 bg-[--color-paper]/97 backdrop-blur-md flex flex-col justify-center gap-2 px-10 transition-transform duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] md:hidden ${
-          menuOpen ? "translate-y-0" : "-translate-y-full"
+        onClick={() => setMenuOpen(false)}
+        aria-hidden
+        className={`fixed inset-0 z-55 bg-[var(--color-navy)]/40 backdrop-blur-sm transition-opacity duration-300 ease-out md:hidden ${
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Left-side drawer */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={content.openMenu}
+        className={`fixed top-[73px] bottom-0 left-0 z-58 w-[86%] max-w-[340px] bg-[var(--color-paper)] shadow-[0_0_40px_rgba(11,31,58,0.25)] flex flex-col transition-transform duration-400 ease-[cubic-bezier(0.2,0.7,0.2,1)] md:hidden ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {content.nav.map((link) => (
-          <a
-            key={link.href}
-            href={localizeHref(locale, link.href)}
+        <div className="flex-1 overflow-y-auto px-6 py-5">
+          <nav className="flex flex-col">
+            {content.nav.map((link) => (
+              <a
+                key={link.href}
+                href={localizeHref(locale, link.href)}
+                onClick={() => setMenuOpen(false)}
+                className="font-[family-name:var(--font-bricolage)] text-2xl font-bold text-[var(--color-navy)] py-3 border-b border-[var(--color-line)]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="mt-6">
+            <h4 className="text-xs tracking-[0.14em] uppercase text-[#8b98af] font-bold mb-3">
+              {footerContent.studio}
+            </h4>
+            <nav className="flex flex-col gap-2.5">
+              {footerContent.studioLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={localizeHref(locale, link.href)}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[15px] font-medium text-[#3a4761]"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="mt-6">
+            <h4 className="text-xs tracking-[0.14em] uppercase text-[#8b98af] font-bold mb-3">
+              {footerContent.reach}
+            </h4>
+            <nav className="flex flex-col gap-2.5">
+              {footerContent.reachLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={localizeHref(locale, link.href)}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[15px] font-medium text-[#3a4761]"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex items-center gap-3 mt-6">
+            {SOCIALS.map(({ label, href, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="grid place-items-center w-10 h-10 rounded-full border-2 border-[var(--color-navy)] text-[var(--color-navy)]"
+              >
+                <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" aria-hidden>
+                  {icon}
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="px-6 py-5 border-t border-[var(--color-line)]">
+          <Button
+            variant="primary"
+            href={bookingHref}
+            className="w-full justify-center"
             onClick={() => setMenuOpen(false)}
-            className="font-[family-name:var(--font-bricolage)] text-3xl font-bold text-[--color-navy] py-3 border-b border-[--color-line]"
           >
-            {link.label}
-          </a>
-        ))}
-        <Button
-          variant="primary"
-          href={bookingHref}
-          className="mt-6 justify-center"
-          onClick={() => setMenuOpen(false)}
-        >
-          {content.cta}
-        </Button>
+            {content.cta}
+          </Button>
+        </div>
       </div>
     </>
   );
