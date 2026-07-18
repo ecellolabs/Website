@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { Inter, Bricolage_Grotesque, Baloo_2 } from "next/font/google";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://ecello.net"),
+};
 
 const inter = Inter({
   variable: "--font-inter",
