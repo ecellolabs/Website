@@ -335,7 +335,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
           </p>
         </div>
 
-        <div className="max-w-[1180px] mx-auto px-6.5 mt-20 grid grid-cols-1 md:grid-cols-3 gap-y-16 md:gap-x-8 lg:gap-x-12">
+        <div className="max-w-[1180px] mx-auto px-6.5 mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-8 lg:gap-x-12">
           {content.process.steps.map((step, i) => {
             const theme = PROCESS_BOX_THEMES[i % PROCESS_BOX_THEMES.length];
             return (
