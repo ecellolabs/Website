@@ -16,14 +16,25 @@ export default function Ship() {
       >
         <defs>
           <clipPath id="waterClip">
-            <rect x="0" y="252" width="560" height="228" />
+            <rect x="0" y="340" width="560" height="140" />
           </clipPath>
           <path id="scallopFill" d={SCALLOP_FILL_D} />
+          <linearGradient id="waterFade" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="#fff" stopOpacity={0} />
+            <stop offset="18%" stopColor="#fff" stopOpacity={0.9} />
+            <stop offset="30%" stopColor="#fff" stopOpacity={1} />
+            <stop offset="70%" stopColor="#fff" stopOpacity={1} />
+            <stop offset="82%" stopColor="#fff" stopOpacity={0.9} />
+            <stop offset="100%" stopColor="#fff" stopOpacity={0} />
+          </linearGradient>
+          <mask id="waterFadeMask">
+            <rect x="0" y="340" width="560" height="140" fill="url(#waterFade)" />
+          </mask>
         </defs>
 
         {/* Ship */}
         <g
-          className="[transform-box:fill-box] [transform:translate(280px,194px)_scale(1.22)] [animation:ship-bob_6s_ease-in-out_infinite]"
+          className="[transform-box:fill-box] [transform:translate(240px,214px)_scale(1.55)] [animation:ship-bob_6s_ease-in-out_infinite]"
           strokeLinejoin="round"
           strokeLinecap="round"
         >
@@ -78,35 +89,28 @@ export default function Ship() {
         </g>
 
         {/* Water */}
-        <g clipPath="url(#waterClip)">
+        <g clipPath="url(#waterClip)" mask="url(#waterFadeMask)">
           <g>
-            <use href="#scallopFill" x={-320} y={270} fill="var(--sky)" opacity={0.55} />
-            <use href="#scallopFill" x={0} y={270} fill="var(--sky)" opacity={0.55} />
-            <use href="#scallopFill" x={320} y={270} fill="var(--sky)" opacity={0.55} />
-            <use href="#scallopFill" x={640} y={270} fill="var(--sky)" opacity={0.55} />
+            <use href="#scallopFill" x={-320} y={352} fill="var(--sky)" opacity={0.55} />
+            <use href="#scallopFill" x={0} y={352} fill="var(--sky)" opacity={0.55} />
+            <use href="#scallopFill" x={320} y={352} fill="var(--sky)" opacity={0.55} />
+            <use href="#scallopFill" x={640} y={352} fill="var(--sky)" opacity={0.55} />
             <animateTransform attributeName="transform" type="translate" from="0 0" to="-320 0" dur="10s" repeatCount="indefinite" />
           </g>
           <g>
-            <use href="#scallopFill" x={-320} y={342} fill="var(--azure)" opacity={0.75} />
-            <use href="#scallopFill" x={0} y={342} fill="var(--azure)" opacity={0.75} />
-            <use href="#scallopFill" x={320} y={342} fill="var(--azure)" opacity={0.75} />
-            <use href="#scallopFill" x={640} y={342} fill="var(--azure)" opacity={0.75} />
+            <use href="#scallopFill" x={-320} y={400} fill="var(--azure)" opacity={0.75} />
+            <use href="#scallopFill" x={0} y={400} fill="var(--azure)" opacity={0.75} />
+            <use href="#scallopFill" x={320} y={400} fill="var(--azure)" opacity={0.75} />
+            <use href="#scallopFill" x={640} y={400} fill="var(--azure)" opacity={0.75} />
             <animateTransform attributeName="transform" type="translate" from="-320 0" to="0 0" dur="13s" repeatCount="indefinite" />
-          </g>
-          <g>
-            <use href="#scallopFill" x={-320} y={414} fill="var(--blue)" />
-            <use href="#scallopFill" x={0} y={414} fill="var(--blue)" />
-            <use href="#scallopFill" x={320} y={414} fill="var(--blue)" />
-            <use href="#scallopFill" x={640} y={414} fill="var(--blue)" />
-            <animateTransform attributeName="transform" type="translate" from="0 0" to="-320 0" dur="16s" repeatCount="indefinite" />
           </g>
         </g>
       </svg>
 
       <style>{`
         @keyframes ship-bob {
-          0%, 100% { transform: translate(280px,194px) scale(1.22) }
-          50% { transform: translate(280px,186px) scale(1.22) }
+          0%, 100% { transform: translate(240px,214px) scale(1.55) }
+          50% { transform: translate(240px,206px) scale(1.55) }
         }
         @keyframes ship-rock {
           0%, 100% { transform: rotate(-4deg) }

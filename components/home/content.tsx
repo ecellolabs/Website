@@ -51,24 +51,24 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
 const PROCESS_BOX_THEMES = [
   {
-    front: "#0a1f5e",
-    top: "#17337a",
-    side: "#061340",
-    edge: "#040f2e",
-    badgeBg: "#7cc0f5",
-    badgeText: "#0a1f5e",
-    title: "text-white",
-    body: "text-[#c3d6f5]",
+    front: "#dcebfb",
+    top: "#f2f9ff",
+    side: "#b6d7f6",
+    edge: "#9dc4ec",
+    badgeBg: "#0a1f5e",
+    badgeText: "#ffffff",
+    title: "text-[--color-navy]",
+    body: "text-[--color-muted]",
   },
   {
-    front: "#1560d4",
-    top: "#2d78e6",
-    side: "#0d49ab",
-    edge: "#0b3d92",
-    badgeBg: "#ffffff",
-    badgeText: "#1560d4",
-    title: "text-white",
-    body: "text-[#dbe8fb]",
+    front: "#dcebfb",
+    top: "#f2f9ff",
+    side: "#b6d7f6",
+    edge: "#9dc4ec",
+    badgeBg: "#0a1f5e",
+    badgeText: "#ffffff",
+    title: "text-[--color-navy]",
+    body: "text-[--color-muted]",
   },
   {
     front: "#dcebfb",
@@ -355,8 +355,8 @@ export default function HomePage({ content, locale }: HomePageProps) {
                     </svg>
                     <div className="box-cover p-7">
                       <span
-                        className="grid place-items-center w-12 h-12 rounded-full font-[family-name:var(--font-bricolage)] font-extrabold text-lg"
-                        style={{ background: theme.badgeBg, color: theme.badgeText }}
+                        className="grid place-items-center w-12 h-12 rounded-full border-2 font-[family-name:var(--font-bricolage)] font-extrabold text-lg"
+                        style={{ borderColor: theme.badgeBg, color: theme.badgeBg }}
                       >
                         {step.no}
                       </span>
