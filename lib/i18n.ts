@@ -51,7 +51,7 @@ export const messages = {
         { href: "#about", label: "Who we are" },
         { href: "#process", label: "Our process" },
         { href: "#trust", label: "Reviews" },
-        { href: "mailto:alex@ecello.net?subject=Let's%20talk", label: "Book a call" },
+        { href: "/booking", label: "Book a call" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
@@ -145,6 +145,16 @@ export const messages = {
         button: "Email alex@ecello.net",
       },
     },
+    booking: {
+      metadata: {
+        title: "Book a call - Ecello Labs",
+        description:
+          "Grab 30 minutes on our calendar to talk through what's slowing your team down and whether AI can help.",
+      },
+      eyebrow: "Book a call",
+      title: "Let's find 30 minutes.",
+      body: "Pick a time that works for you. No pitch deck, just a straight conversation about what's slowing your team down and whether we can help.",
+    },
   },
   fr: {
     metadata: {
@@ -182,7 +192,7 @@ export const messages = {
         { href: "#about", label: "Qui nous sommes" },
         { href: "#process", label: "Notre processus" },
         { href: "#trust", label: "Avis" },
-        { href: "mailto:alex@ecello.net?subject=Parlons", label: "Réserver un appel" },
+        { href: "/booking", label: "Réserver un appel" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
@@ -276,6 +286,16 @@ export const messages = {
         button: "Écrire à alex@ecello.net",
       },
     },
+    booking: {
+      metadata: {
+        title: "Réserver un appel - Ecello Labs",
+        description:
+          "Réservez 30 minutes pour discuter de ce qui ralentit votre équipe et si l'IA peut vous aider.",
+      },
+      eyebrow: "Réserver un appel",
+      title: "Trouvons 30 minutes.",
+      body: "Choisissez un créneau qui vous convient. Pas de slide deck, juste une conversation franche sur ce qui ralentit votre équipe et sur ce que nous pouvons faire.",
+    },
   },
   de: {
     metadata: {
@@ -313,7 +333,7 @@ export const messages = {
         { href: "#about", label: "Wer wir sind" },
         { href: "#process", label: "Unser Prozess" },
         { href: "#trust", label: "Stimmen" },
-        { href: "mailto:alex@ecello.net?subject=Lass%20uns%20sprechen", label: "Gespräch buchen" },
+        { href: "/booking", label: "Gespräch buchen" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
@@ -407,12 +427,30 @@ export const messages = {
         button: "E-Mail an alex@ecello.net",
       },
     },
+    booking: {
+      metadata: {
+        title: "Gespräch buchen - Ecello Labs",
+        description:
+          "Reservieren Sie sich 30 Minuten, um zu besprechen, was Ihr Team ausbremst und ob KI helfen kann.",
+      },
+      eyebrow: "Gespräch buchen",
+      title: "Lassen Sie uns 30 Minuten finden.",
+      body: "Wählen Sie einen passenden Termin. Kein Foliendeck, nur ein ehrliches Gespräch darüber, was Ihr Team ausbremst und ob wir helfen können.",
+    },
   },
 } as const;
 
 export type Messages = (typeof messages)[Locale];
 export type HomeContent = Messages["home"];
+export type BookingContent = Messages["booking"];
 
 export function getMessages(locale: Locale): Messages {
   return messages[locale];
+}
+
+// Prefixes root-relative internal links ("/booking") and in-page anchors ("#about",
+// which becomes "/en#about" so it resolves from any page) with the current locale.
+// External links and mailto/tel links are left untouched.
+export function localizeHref(locale: Locale, href: string): string {
+  return href.startsWith("/") || href.startsWith("#") ? `/${locale}${href}` : href;
 }

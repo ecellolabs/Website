@@ -43,9 +43,9 @@ export default async function RootLayout({ children, params }: LayoutProps) {
 
   return (
     <>
-      <Header content={messages.header} />
+      <Header content={messages.header} locale={locale} />
       {children}
-      <Footer content={messages.footer} />
+      <Footer content={messages.footer} locale={locale} />
     </>
   );
 }

@@ -13,5 +13,5 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  return <HomePage content={getMessages(locale).home} />;
+  return <HomePage content={getMessages(locale).home} locale={locale} />;
 }

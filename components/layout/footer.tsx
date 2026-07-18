@@ -1,8 +1,9 @@
-import type { Messages } from "@/lib/i18n";
+import { localizeHref, type Locale, type Messages } from "@/lib/i18n";
 import NewsletterForm from "./newsletter";
 
 type FooterProps = {
   content: Messages["footer"];
+  locale: Locale;
 };
 
 const linkClass =
@@ -65,7 +66,7 @@ function Boat() {
   );
 }
 
-export default function Footer({ content }: FooterProps) {
+export default function Footer({ content, locale }: FooterProps) {
   return (
     <footer className="pt-[70px] pb-10 bg-white border-t border-[rgba(189,209,232,0.14)]">
       <div className="max-w-[1180px] mx-auto px-6.5">
@@ -96,7 +97,7 @@ export default function Footer({ content }: FooterProps) {
           <div>
             <h4 className={headingClass}>{content.studio}</h4>
             {content.studioLinks.map((link) => (
-              <a key={link.label} href={link.href} className={linkClass}>
+              <a key={link.label} href={localizeHref(locale, link.href)} className={linkClass}>
                 {link.label}
               </a>
             ))}
@@ -105,7 +106,7 @@ export default function Footer({ content }: FooterProps) {
           <div>
             <h4 className={headingClass}>{content.reach}</h4>
             {content.reachLinks.map((link) => (
-              <a key={link.label} href={link.href} className={linkClass}>
+              <a key={link.label} href={localizeHref(locale, link.href)} className={linkClass}>
                 {link.label}
               </a>
             ))}

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Ship from "@/components/ui/ship";
-import type { HomeContent } from "@/lib/i18n";
+import { localizeHref, type HomeContent, type Locale } from "@/lib/i18n";
 
 const ABOUT_PHOTOS = [
   "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
@@ -59,9 +59,10 @@ function initials(name: string) {
 
 type HomePageProps = {
   content: HomeContent;
+  locale: Locale;
 };
 
-export default function HomePage({ content }: HomePageProps) {
+export default function HomePage({ content, locale }: HomePageProps) {
   const [slide, setSlide] = useState(0);
   const [perView, setPerView] = useState(1);
   const [dragX, setDragX] = useState(0);
@@ -161,7 +162,7 @@ export default function HomePage({ content }: HomePageProps) {
             <div className="flex gap-3.5 mt-8.5 flex-wrap">
               <Button
                 variant="primary"
-                href="mailto:alex@ecello.net?subject=Let's%20talk"
+                href={localizeHref(locale, "/booking")}
                 className="!px-6.5 !py-4 !text-base"
               >
                 {content.hero.primaryCta}

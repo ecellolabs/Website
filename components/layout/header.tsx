@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import type { Messages } from "@/lib/i18n";
+import { localizeHref, type Locale, type Messages } from "@/lib/i18n";
 
 type HeaderProps = {
   content: Messages["header"];
+  locale: Locale;
 };
 
-export default function Header({ content }: HeaderProps) {
+export default function Header({ content, locale }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const bookingHref = localizeHref(locale, "/booking");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -29,14 +31,14 @@ export default function Header({ content }: HeaderProps) {
         }`}
       >
         <div className="max-w-[1180px] mx-auto px-6.5 py-4 flex items-center justify-between gap-4.5">
-          <a className="flex items-center gap-2.5" href="#top" aria-label={content.homeLabel}>
+          <a className="flex items-center gap-2.5" href={localizeHref(locale, "#top")} aria-label={content.homeLabel}>
             <span className="wordmark text-[31px]">ecello</span>
           </a>
           <nav className="hidden md:flex items-center gap-8.5">
             {content.nav.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={localizeHref(locale, link.href)}
                 className="group text-[15px] font-medium text-[#33405a] relative transition-colors duration-300 hover:text-[#0b1f3a] after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#0b1f3a] after:rounded-full after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
               >
                 {link.label}
@@ -45,7 +47,7 @@ export default function Header({ content }: HeaderProps) {
           </nav>
           <Button
             variant="primary"
-            href="mailto:alex@ecello.net?subject=Let's%20talk"
+            href={bookingHref}
             className="hidden md:inline-flex"
           >
             {content.cta}
@@ -70,7 +72,7 @@ export default function Header({ content }: HeaderProps) {
         {content.nav.map((link) => (
           <a
             key={link.href}
-            href={link.href}
+            href={localizeHref(locale, link.href)}
             onClick={() => setMenuOpen(false)}
             className="font-[family-name:var(--font-bricolage)] text-3xl font-bold text-[--color-navy] py-3 border-b border-[--color-line]"
           >
@@ -79,7 +81,7 @@ export default function Header({ content }: HeaderProps) {
         ))}
         <Button
           variant="primary"
-          href="mailto:alex@ecello.net?subject=Let's%20talk"
+          href={bookingHref}
           className="mt-6 justify-center"
           onClick={() => setMenuOpen(false)}
         >
