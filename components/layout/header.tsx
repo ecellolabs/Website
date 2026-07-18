@@ -7,11 +7,10 @@ import { SOCIALS } from "./socials";
 
 type HeaderProps = {
   content: Messages["header"];
-  footerContent: Messages["footer"];
   locale: Locale;
 };
 
-export default function Header({ content, footerContent, locale }: HeaderProps) {
+export default function Header({ content, locale }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const bookingHref = localizeHref(locale, "/booking");
@@ -42,9 +41,11 @@ export default function Header({ content, footerContent, locale }: HeaderProps) 
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-60 border-b transition-[background,border-color,backdrop-filter] duration-300 ${
-          scrolled || menuOpen
-            ? "bg-white/84 backdrop-blur-md border-[rgba(189,209,232,0.24)]"
-            : "bg-transparent backdrop-blur-none border-transparent"
+          menuOpen
+            ? "bg-[var(--color-paper)] backdrop-blur-md border-[rgba(189,209,232,0.24)]"
+            : scrolled
+              ? "bg-white/84 backdrop-blur-md border-[rgba(189,209,232,0.24)]"
+              : "bg-transparent backdrop-blur-none border-transparent"
         }`}
       >
         <div className="max-w-[1180px] mx-auto px-6.5 py-4 flex items-center justify-between gap-4.5">
@@ -110,55 +111,19 @@ export default function Header({ content, footerContent, locale }: HeaderProps) 
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 px-6 py-5">
           <nav className="flex flex-col">
             {content.nav.map((link) => (
               <a
                 key={link.href}
                 href={localizeHref(locale, link.href)}
                 onClick={() => setMenuOpen(false)}
-                className="font-[family-name:var(--font-bricolage)] text-2xl font-bold text-[var(--color-navy)] py-3 border-b border-[var(--color-line)]"
+                className="font-[family-name:var(--font-bricolage)] text-lg font-bold text-[var(--color-navy)] py-3 border-b border-[var(--color-line)]"
               >
-                {link.label}
+                {link.href === "#about" ? "About us" : link.label}
               </a>
             ))}
           </nav>
-
-          <div className="mt-6">
-            <h4 className="text-xs tracking-[0.14em] uppercase text-[#8b98af] font-bold mb-3">
-              {footerContent.studio}
-            </h4>
-            <nav className="flex flex-col gap-2.5">
-              {footerContent.studioLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={localizeHref(locale, link.href)}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-[15px] font-medium text-[#3a4761]"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div className="mt-6">
-            <h4 className="text-xs tracking-[0.14em] uppercase text-[#8b98af] font-bold mb-3">
-              {footerContent.reach}
-            </h4>
-            <nav className="flex flex-col gap-2.5">
-              {footerContent.reachLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={localizeHref(locale, link.href)}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-[15px] font-medium text-[#3a4761]"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
 
           <div className="flex items-center gap-3 mt-6">
             {SOCIALS.map(({ label, href, icon }) => (

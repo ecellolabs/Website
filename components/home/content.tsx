@@ -147,7 +147,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
         className="relative min-h-screen min-h-[100svh] pt-26 pb-24 flex items-center overflow-hidden before:content-[''] before:absolute before:inset-0 before:z-0 before:pointer-events-none before:[background:radial-gradient(720px_460px_at_82%_12%,rgba(46,155,238,.16),transparent_62%),radial-gradient(560px_420px_at_6%_88%,rgba(21,96,212,.10),transparent_60%)]"
       >
         <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6.5 grid grid-cols-1 md:grid-cols-[1.04fr_.96fr] gap-10 items-center">
-          <div className="max-w-[560px] min-w-0">
+          <div className="order-2 md:order-1 max-w-[560px] min-w-0 mx-auto md:mx-0 text-center md:text-left">
             <h1 className="text-[clamp(44px,6.4vw,80px)] font-extrabold mt-5.5">
               <span className="block overflow-hidden">
                 <span className="block">{content.hero.titleTop}</span>
@@ -156,10 +156,10 @@ export default function HomePage({ content, locale }: HomePageProps) {
                 <span className="block text-gradient animate-sheen">{content.hero.titleBottom}</span>
               </span>
             </h1>
-            <p className="text-[clamp(17px,1.7vw,20px)] text-[--color-muted] mt-6 max-w-[520px]">
+            <p className="text-[clamp(17px,1.7vw,20px)] text-[--color-muted] mt-6 max-w-[520px] mx-auto md:mx-0">
               {content.hero.body}
             </p>
-            <div className="flex gap-3.5 mt-8.5 flex-wrap">
+            <div className="flex gap-3.5 mt-8.5 flex-wrap justify-center md:justify-start">
               <Button
                 variant="primary"
                 href={localizeHref(locale, "/booking")}
@@ -173,7 +173,9 @@ export default function HomePage({ content, locale }: HomePageProps) {
             </div>
           </div>
 
-          <Ship />
+          <div className="order-1 md:order-2 w-full">
+            <Ship />
+          </div>
         </div>
 
       </section>
@@ -358,7 +360,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
               variant="icon"
               onClick={prev}
               aria-label={content.trust.previous}
-              className="hidden sm:!inline-flex flex-none !w-12 !h-12"
+              className="!hidden sm:!inline-flex flex-none !w-12 !h-12"
               icon={
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                   <path d="M15 18l-6-6 6-6" />
@@ -416,7 +418,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
               variant="icon"
               onClick={next}
               aria-label={content.trust.next}
-              className="hidden sm:!inline-flex flex-none !w-12 !h-12"
+              className="!hidden sm:!inline-flex flex-none !w-12 !h-12"
               icon={
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                   <path d="M9 18l6-6-6-6" />
