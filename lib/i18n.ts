@@ -19,7 +19,7 @@ export const messages = {
     metadata: {
       title: "Ecello Labs - Shipping AI for your business",
       description:
-        "Ecello Labs builds AI automation, assistants, and software that take real work off your team's plate. A remote AI & software studio based in Bremerhaven, Germany.",
+        "Ecello Labs builds AI automation, software, and product development that take real work off your team's plate. A remote AI & software studio based in Bremerhaven, Germany.",
     },
     header: {
       homeLabel: "Ecello Labs home",
@@ -34,7 +34,7 @@ export const messages = {
       ],
     },
     footer: {
-      intro: "AI automation, assistants, and software that take real work off your team's plate.",
+      intro: "AI automation, software, and product development that take real work off your team's plate.",
       studio: "Studio",
       reach: "Reach us",
       rights: "© 2026 Ecello Labs. All rights reserved.",
@@ -77,7 +77,7 @@ export const messages = {
       ],
       about: {
         eyebrow: "Who we are",
-        title: "A small studio that ships real things.",
+        title: "An expert studio that ships real things.",
         body: [
           "Ecello Labs is a remote AI & software studio based in Bremerhaven, Germany, working with teams across Europe and beyond. We're a tight group of engineers and designers who'd rather build something that works than sell you a slide deck.",
           "We take the repetitive, time-draining parts of your business and turn them into tools, assistants, and automations your team can actually rely on. Plain language, fair pricing, and full ownership handed back to you - always.",
@@ -136,7 +136,7 @@ export const messages = {
       },
       cta: {
         title: "Have something worth automating?",
-        body: "Tell us what's eating your team's time. We'll tell you honestly whether AI can help, and if it can't, we'll say so.",
+        body: "Tell us what's eating your team's time. We'll tell you honestly whether AI, software, or product development can help, and if it can't, we'll say so.",
         button: "Email alex@ecello.net",
       },
     },
@@ -144,7 +144,7 @@ export const messages = {
       metadata: {
         title: "Book a call - Ecello Labs",
         description:
-          "Grab 30 minutes on our calendar to talk through what's slowing your team down and whether AI can help.",
+          "Grab 30 minutes on our calendar to talk through what's slowing your team down and whether AI, software, or product development can help.",
       },
       eyebrow: "Book a call",
       title: "Let's find 30 minutes.",
@@ -155,7 +155,7 @@ export const messages = {
     metadata: {
       title: "Ecello Labs - Des solutions IA pour votre entreprise",
       description:
-        "Ecello Labs crée des automatisations IA, des assistants et des logiciels qui retirent du vrai travail des épaules de votre équipe. Un studio IA et logiciel à distance basé à Bremerhaven, en Allemagne.",
+        "Ecello Labs crée des automatisations IA, des logiciels et du développement produit qui retirent du vrai travail des épaules de votre équipe. Un studio IA et logiciel à distance basé à Bremerhaven, en Allemagne.",
     },
     header: {
       homeLabel: "Accueil Ecello Labs",
@@ -170,7 +170,7 @@ export const messages = {
       ],
     },
     footer: {
-      intro: "Automatisation IA, assistants et logiciels qui retirent du vrai travail des épaules de votre équipe.",
+      intro: "Automatisation IA, logiciels et développement produit qui retirent du vrai travail des épaules de votre équipe.",
       studio: "Studio",
       reach: "Nous joindre",
       rights: "© 2026 Ecello Labs. Tous droits réservés.",
@@ -213,7 +213,7 @@ export const messages = {
       ],
       about: {
         eyebrow: "Qui nous sommes",
-        title: "Un petit studio qui livre du concret.",
+        title: "Un studio expert qui livre du concret.",
         body: [
           "Ecello Labs est un studio IA et logiciel à distance basé à Bremerhaven, en Allemagne, qui travaille avec des équipes en Europe et au-delà. Nous sommes une petite équipe d'ingénieurs et de designers qui préfère construire quelque chose d'utile plutôt que vendre un diaporama.",
           "Nous transformons les tâches répétitives et chronophages de votre entreprise en outils, assistants et automatisations sur lesquels votre équipe peut vraiment compter. Langage clair, prix honnêtes et propriété complète remise entre vos mains - toujours.",
@@ -272,7 +272,7 @@ export const messages = {
       },
       cta: {
         title: "Vous avez quelque chose qui mérite d'être automatisé ?",
-        body: "Dites-nous ce qui prend trop de temps à votre équipe. Nous vous dirons honnêtement si l'IA peut aider, et si ce n'est pas le cas, nous le dirons aussi.",
+        body: "Dites-nous ce qui prend trop de temps à votre équipe. Nous vous dirons honnêtement si l'IA, le logiciel ou le développement produit peuvent aider, et si ce n'est pas le cas, nous le dirons aussi.",
         button: "Écrire à alex@ecello.net",
       },
     },
@@ -280,7 +280,7 @@ export const messages = {
       metadata: {
         title: "Réserver un appel - Ecello Labs",
         description:
-          "Réservez 30 minutes pour discuter de ce qui ralentit votre équipe et si l'IA peut vous aider.",
+          "Réservez 30 minutes pour discuter de ce qui ralentit votre équipe et si l'IA, le logiciel ou le développement produit peuvent vous aider.",
       },
       eyebrow: "Réserver un appel",
       title: "Trouvons 30 minutes.",
@@ -291,7 +291,7 @@ export const messages = {
     metadata: {
       title: "Ecello Labs - KI für Ihr Unternehmen",
       description:
-        "Ecello Labs entwickelt KI-Automatisierung, Assistenten und Software, die Ihrem Team echte Arbeit abnehmen. Ein Remote-Studio für KI und Software mit Sitz in Bremerhaven.",
+        "Ecello Labs entwickelt KI-Automatisierung, Software und Produktentwicklung, die Ihrem Team echte Arbeit abnehmen. Ein Remote-Studio für KI und Software mit Sitz in Bremerhaven.",
     },
     header: {
       homeLabel: "Ecello Labs Startseite",
@@ -306,7 +306,7 @@ export const messages = {
       ],
     },
     footer: {
-      intro: "KI-Automatisierung, Assistenten und Software, die Ihrem Team echte Arbeit abnehmen.",
+      intro: "KI-Automatisierung, Software und Produktentwicklung, die Ihrem Team echte Arbeit abnehmen.",
       studio: "Studio",
       reach: "Kontakt",
       rights: "© 2026 Ecello Labs. Alle Rechte vorbehalten.",
@@ -349,7 +349,7 @@ export const messages = {
       ],
       about: {
         eyebrow: "Wer wir sind",
-        title: "Ein kleines Studio, das echte Dinge liefert.",
+        title: "Ein erfahrenes Studio, das echte Dinge liefert.",
         body: [
           "Ecello Labs ist ein Remote-Studio für KI und Software mit Sitz in Bremerhaven. Wir arbeiten mit Teams in ganz Europa und darüber hinaus. Wir sind eine kleine Gruppe aus Ingenieuren und Designern, die lieber etwas Funktionierendes baut, als Ihnen ein Foliendeck zu verkaufen.",
           "Wir verwandeln die wiederkehrenden, zeitraubenden Teile Ihres Geschäfts in Werkzeuge, Assistenten und Automatisierungen, auf die sich Ihr Team wirklich verlassen kann. Klare Sprache, faire Preise und vollständiges Eigentum für Sie - immer.",
@@ -408,7 +408,7 @@ export const messages = {
       },
       cta: {
         title: "Haben Sie etwas, das automatisiert werden sollte?",
-        body: "Sagen Sie uns, was Ihrem Team Zeit raubt. Wir sagen ehrlich, ob KI helfen kann, und wenn nicht, sagen wir das auch.",
+        body: "Sagen Sie uns, was Ihrem Team Zeit raubt. Wir sagen ehrlich, ob KI, Software oder Produktentwicklung helfen kann, und wenn nicht, sagen wir das auch.",
         button: "E-Mail an alex@ecello.net",
       },
     },
@@ -416,7 +416,7 @@ export const messages = {
       metadata: {
         title: "Gespräch buchen - Ecello Labs",
         description:
-          "Reservieren Sie sich 30 Minuten, um zu besprechen, was Ihr Team ausbremst und ob KI helfen kann.",
+          "Reservieren Sie sich 30 Minuten, um zu besprechen, was Ihr Team ausbremst und ob KI, Software oder Produktentwicklung helfen kann.",
       },
       eyebrow: "Gespräch buchen",
       title: "Lassen Sie uns 30 Minuten finden.",

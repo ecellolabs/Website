@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { localizeHref, type Locale, type Messages } from "@/lib/i18n";
+import LanguageSwitcher from "./language-switcher";
 import { SOCIALS } from "./socials";
 
 type HeaderProps = {
@@ -63,33 +64,37 @@ export default function Header({ content, locale }: HeaderProps) {
               </a>
             ))}
           </nav>
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher locale={locale} />
             <Button variant="primary" href={bookingHref}>
               {content.cta}
             </Button>
           </div>
-          <button
-            className="relative z-70 flex md:hidden flex-col justify-center items-center gap-1.5 w-10 h-10 -mr-2 bg-transparent border-none cursor-pointer"
-            aria-label={menuOpen ? content.closeMenu : content.openMenu}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span
-              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
-                menuOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-opacity duration-200 ease-out ${
-                menuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
-                menuOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </button>
+          <div className="flex md:hidden items-center gap-2 mr-2">
+            <LanguageSwitcher locale={locale} />
+            <button
+              className="relative z-70 flex flex-col justify-center items-center gap-1.5 w-10 h-10 -mr-2 bg-transparent border-none cursor-pointer"
+              aria-label={menuOpen ? content.closeMenu : content.openMenu}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span
+                className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
+                  menuOpen ? "translate-y-2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-opacity duration-200 ease-out ${
+                  menuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`block w-6 h-0.5 bg-[var(--color-navy)] rounded-sm transition-transform duration-300 ease-out ${
+                  menuOpen ? "-translate-y-2 -rotate-45" : ""
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </header>
 
