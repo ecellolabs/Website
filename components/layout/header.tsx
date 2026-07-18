@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { localizeHref, type Locale, type Messages } from "@/lib/i18n";
-import LanguageSwitcher from "./language-switcher";
+import LanguageSwitcher from "./switcher";
 import { SOCIALS } from "./socials";
 
 type HeaderProps = {
