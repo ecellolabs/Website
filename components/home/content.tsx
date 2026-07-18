@@ -420,7 +420,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
                 onClick={() => setSlide(i)}
                 className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                   i === current
-                    ? "w-7 bg-[--color-blue]"
+                    ? "w-7 bg-blue"
                     : "w-2.5 bg-[rgba(21,96,212,0.24)] hover:bg-[rgba(21,96,212,0.5)]"
                 }`}
               />
