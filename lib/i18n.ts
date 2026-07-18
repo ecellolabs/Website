@@ -116,22 +116,22 @@ export const messages = {
         testimonials: [
           {
             quote:
+              "We have been in logistics for over 35 years but never had a proper online presence. Ecello designed and developed our entire website from the ground up and set up SEO so we actually show up when people search for transport services.",
+            name: "MRE Logistics",
+            role: "Logistics & Transport",
+          },
+          {
+            quote:
+              "Ecello developed our website and software exactly according to our wishes—on time and without any issues. Alex and Moeez were a pleasure to work with and really listened. I would recommend them to anyone.",
+            name: "Sabrina Neumann",
+            role: "Consultant & Speaker",
+          },
+          {
+            quote:
               "They took a process that ate two days a week and automated it end to end. We got the time back and the reporting is finally something we trust.",
             name: "Sarah Lindqvist",
-            role: "Operations Lead, Nordwind Logistics",
+            role: "Nordwind Logistics",
           },
-          {
-            quote:
-              "Straight talk, no jargon, and a working product faster than any agency we've hired. They told us what not to build, which saved us real money.",
-            name: "Marcus Feld",
-            role: "Founder, Feld & Co.",
-          },
-          {
-            quote:
-              "The assistant they built answers 80% of our customer questions on its own. Our team finally focuses on the conversations that actually need a human.",
-            name: "Priya Nair",
-            role: "Head of Support, Bright Retail",
-          }
         ],
       },
       cta: {
@@ -252,27 +252,21 @@ export const messages = {
         testimonials: [
           {
             quote:
+              "We have been in logistics for over 35 years but never had a proper online presence. Ecello Labs designed and developed our entire website from the ground up and set up SEO so we actually show up when people search for transport services.",
+            name: "MRE Logistics",
+            role: "Logistique & transport",
+          },
+          {
+            quote:
+              "Ecello developed our website and software exactly according to our wishes—on time and without any issues. Alex and Moeez were a pleasure to work with and really listened. I would recommend them to anyone.",
+            name: "Sabrina Neumann",
+            role: "Cliente",
+          },
+          {
+            quote:
               "Ils ont automatisé de bout en bout un processus qui nous prenait deux jours par semaine. Nous avons récupéré ce temps, et les rapports sont enfin fiables.",
             name: "Sarah Lindqvist",
             role: "Responsable opérations, Nordwind Logistics",
-          },
-          {
-            quote:
-              "Des échanges francs, aucun jargon, et un produit fonctionnel plus vite qu'avec n'importe quelle agence déjà engagée. Ils nous ont aussi dit quoi ne pas construire, ce qui nous a fait économiser.",
-            name: "Marcus Feld",
-            role: "Fondateur, Feld & Co.",
-          },
-          {
-            quote:
-              "L'assistant qu'ils ont construit répond seul à 80% de nos questions clients. Notre équipe se concentre enfin sur les conversations qui ont vraiment besoin d'un humain.",
-            name: "Priya Nair",
-            role: "Responsable support, Bright Retail",
-          },
-          {
-            quote:
-              "Nous possédons tout ce qu'ils ont créé. C'est propre, documenté, et cela fonctionne encore parfaitement un an plus tard. C'est rare de trouver des gens qui travaillent comme ça.",
-            name: "Tomas Berg",
-            role: "CTO, Havenmark Group",
           },
         ],
       },
@@ -394,27 +388,21 @@ export const messages = {
         testimonials: [
           {
             quote:
+              "We have been in logistics for over 35 years but never had a proper online presence. Ecello Labs designed and developed our entire website from the ground up and set up SEO so we actually show up when people search for transport services.",
+            name: "MRE Logistics",
+            role: "Logistik & Transport",
+          },
+          {
+            quote:
+              "Ecello developed our website and software exactly according to our wishes—on time and without any issues. Alex and Moeez were a pleasure to work with and really listened. I would recommend them to anyone.",
+            name: "Sabrina Neumann",
+            role: "Kundin",
+          },
+          {
+            quote:
               "Sie haben einen Prozess, der uns zwei Tage pro Woche gekostet hat, vollständig automatisiert. Wir haben die Zeit zurück, und dem Reporting vertrauen wir endlich.",
             name: "Sarah Lindqvist",
             role: "Operations Lead, Nordwind Logistics",
-          },
-          {
-            quote:
-              "Klare Worte, kein Jargon und schneller ein funktionierendes Produkt als bei jeder Agentur, die wir bisher beauftragt haben. Sie sagten uns auch, was wir nicht bauen sollten, und das sparte echtes Geld.",
-            name: "Marcus Feld",
-            role: "Gründer, Feld & Co.",
-          },
-          {
-            quote:
-              "Der Assistent, den sie gebaut haben, beantwortet 80% unserer Kundenfragen selbst. Unser Team kümmert sich endlich um die Gespräche, die wirklich einen Menschen brauchen.",
-            name: "Priya Nair",
-            role: "Head of Support, Bright Retail",
-          },
-          {
-            quote:
-              "Wir besitzen alles, was sie gebaut haben. Es ist sauber, dokumentiert und läuft ein Jahr später immer noch problemlos. Selten findet man Menschen, die so arbeiten.",
-            name: "Tomas Berg",
-            role: "CTO, Havenmark Group",
           },
         ],
       },
