@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import CookieConsent from "@/components/layout/cookie-consent";
 import { getMessages, isLocale, locales } from "@/lib/i18n";
 
 type LayoutProps = {
@@ -46,6 +47,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       <Header content={messages.header} locale={locale} />
       {children}
       <Footer content={messages.footer} locale={locale} />
+      <CookieConsent content={messages.cookie} />
     </>
   );
 }

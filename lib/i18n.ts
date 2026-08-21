@@ -155,6 +155,13 @@ export const messages = {
         { href: "#top", label: "Remote-first · Europe" },
       ],
     },
+    cookie: {
+      title: "Cookies, but only the useful ones",
+      body: "We use cookies to keep the website working and to understand what helps visitors. You can accept or reject non-essential cookies or customize your preferences.",
+      accept: "Accept all",
+      reject: "Reject non-essential",
+      customize: "Customize",
+    },
     home: {
       hero: {
         titleTop: "Shipping AI",
@@ -378,6 +385,13 @@ export const messages = {
         { href: "#top", label: "À distance · Europe" },
       ],
     },
+    cookie: {
+      title: "Des cookies, mais les utiles seulement",
+      body: "Nous utilisons des cookies pour faire fonctionner le site et comprendre ce qui aide nos visiteurs. Vous pouvez accepter ou refuser les cookies non essentiels.",
+      accept: "Tout accepter",
+      reject: "Refuser le non essentiel",
+      customize: "Personnaliser",
+    },
     home: {
       hero: {
         titleTop: "Nous livrons l'IA",
@@ -600,6 +614,13 @@ export const messages = {
         { href: "#top", label: "Bremerhaven, Deutschland" },
         { href: "#top", label: "Remote-first · Europa" },
       ],
+    },
+    cookie: {
+      title: "Cookies, aber nur die sinnvollen",
+      body: "Wir verwenden Cookies, damit die Website funktioniert und um zu verstehen, was Besucherinnen und Besuchern hilft. Nicht notwendige Cookies können Sie akzeptieren oder ablehnen.",
+      accept: "Alle akzeptieren",
+      reject: "Nicht notwendige ablehnen",
+      customize: "Anpassen",
     },
     home: {
       hero: {
