@@ -10,6 +10,14 @@ export const localeLabels: Record<Locale, string> = {
   de: "Deutsch",
 };
 
+const LINKS = {
+  research: "https://research.ecello.net",
+  researchTeam: "https://research.ecello.net/#portfolios",
+  researchBlog: "https://research.ecello.net/blog",
+  notebooks: "https://notebooks.ecello.net",
+  secrets: "https://secrets.ecello.net",
+} as const;
+
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
@@ -26,11 +34,97 @@ export const messages = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
       cta: "Book a call",
-      nav: [
-        { href: "#about", label: "Who we are" },
-        { href: "#process", label: "Process" },
-        { href: "#trust", label: "Reviews" },
-        { href: "#contact", label: "Contact" },
+        nav: [
+        { href: "#about", label: "Who we are", menu: null },
+        {
+          href: LINKS.research,
+          label: "Research",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Research",
+              title: "The work we do in the open.",
+              body: "Experiments, write-ups, and the thinking behind the tools we ship.",
+              cta: "Go to research",
+              href: LINKS.research,
+            },
+            columns: [
+              {
+                title: "Start here",
+                links: [
+                  {
+                    label: "Overview",
+                    desc: "What we're working on and why it matters.",
+                    href: LINKS.research,
+                    soon: false,
+                  },
+                  {
+                    label: "Meet the team",
+                    desc: "The people behind the research.",
+                    href: LINKS.researchTeam,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "Go deeper",
+                links: [
+                  {
+                    label: "Blog",
+                    desc: "Thinking, experiments, findings, and lessons learned.",
+                    href: LINKS.researchBlog,
+                    soon: false,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          href: LINKS.notebooks,
+          label: "Services",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Services",
+              title: "Tools we run, ready to use.",
+              body: "Products we built for ourselves, opened up for teams that need the same thing.",
+              cta: "Book a call",
+              href: "/booking",
+            },
+            columns: [
+              {
+                title: "Live now",
+                links: [
+                  {
+                    label: "Notebooks",
+                    desc: "A collaborative utility which syncs your Colab notebooks with GCS",
+                    href: LINKS.notebooks,
+                    soon: false,
+                  },
+                  {
+                    label: "Secrets",
+                    desc: "Simplified, secure sharing of credentials and keys.",
+                    href: LINKS.secrets,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "In the works",
+                links: [
+                  {
+                    label: "More coming",
+                    desc: "New tools land here as we release them.",
+                    href: "/booking",
+                    soon: true,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        { href: "#process", label: "Process", menu: null },
+        { href: "#trust", label: "Reviews", menu: null },
+        { href: "#contact", label: "Contact", menu: null },
       ],
     },
     footer: {
@@ -52,6 +146,8 @@ export const messages = {
         { href: "#about", label: "Who we are" },
         { href: "#process", label: "Our process" },
         { href: "#trust", label: "Reviews" },
+        { href: LINKS.research, label: "Research" },
+        { href: LINKS.notebooks, label: "Services" },
         { href: "/booking", label: "Book a call" },
       ],
       reachLinks: [
@@ -162,11 +258,97 @@ export const messages = {
       openMenu: "Ouvrir le menu",
       closeMenu: "Fermer le menu",
       cta: "Réserver un appel",
-      nav: [
-        { href: "#about", label: "Qui nous sommes" },
-        { href: "#process", label: "Processus" },
-        { href: "#trust", label: "Avis" },
-        { href: "#contact", label: "Contact" },
+           nav: [
+        { href: "#about", label: "Qui nous sommes", menu: null },
+        {
+          href: LINKS.research,
+          label: "Recherche",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Research",
+              title: "Notre travail, à ciel ouvert.",
+              body: "Expérimentations, comptes rendus et la réflexion derrière les outils que nous livrons.",
+              cta: "Voir la recherche",
+              href: LINKS.research,
+            },
+            columns: [
+              {
+                title: "Commencer ici",
+                links: [
+                  {
+                    label: "Aperçu",
+                    desc: "Ce sur quoi nous travaillons, et pourquoi c'est important.",
+                    href: LINKS.research,
+                    soon: false,
+                  },
+                  {
+                    label: "L'équipe",
+                    desc: "Les personnes derrière la recherche.",
+                    href: LINKS.researchTeam,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "Aller plus loin",
+                links: [
+                  {
+                    label: "Blog",
+                    desc: "Réflexions, expérimentations, résultats et leçons apprises.",
+                    href: LINKS.researchBlog,
+                    soon: false,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          href: LINKS.notebooks,
+          label: "Services",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Services",
+              title: "Des outils que nous exploitons, prêts à l'emploi.",
+              body: "Des produits conçus pour nous-mêmes, ouverts aux équipes qui en ont besoin.",
+              cta: "Réserver un appel",
+              href: "/booking",
+            },
+            columns: [
+              {
+                title: "Disponible",
+                links: [
+                  {
+                    label: "Notebooks",
+                    desc: "Un utilitaire collaboratif qui synchronise vos notebooks Colab avec GCS",
+                    href: LINKS.notebooks,
+                    soon: false,
+                  },
+                  {
+                    label: "Secrets",
+                    desc: "Partage simplifié et sécurisé des identifiants et des clés.",
+                    href: LINKS.secrets,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "En préparation",
+                links: [
+                  {
+                    label: "Bientôt disponible",
+                    desc: "Les nouveaux outils apparaîtront ici à leur sortie.",
+                    href: "/booking",
+                    soon: true,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        { href: "#process", label: "Processus", menu: null },
+        { href: "#trust", label: "Avis", menu: null },
+        { href: "#contact", label: "Contact", menu: null },
       ],
     },
     footer: {
@@ -188,6 +370,8 @@ export const messages = {
         { href: "#about", label: "Qui nous sommes" },
         { href: "#process", label: "Notre processus" },
         { href: "#trust", label: "Avis" },
+        { href: LINKS.research, label: "Recherche" },
+        { href: LINKS.notebooks, label: "Services" },
         { href: "/booking", label: "Réserver un appel" },
       ],
       reachLinks: [
@@ -298,11 +482,97 @@ export const messages = {
       openMenu: "Menü öffnen",
       closeMenu: "Menü schließen",
       cta: "Gespräch buchen",
-      nav: [
-        { href: "#about", label: "Wer wir sind" },
-        { href: "#process", label: "Prozess" },
-        { href: "#trust", label: "Stimmen" },
-        { href: "#contact", label: "Kontakt" },
+            nav: [
+        { href: "#about", label: "Wer wir sind", menu: null },
+        {
+          href: LINKS.research,
+          label: "Forschung",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Research",
+              title: "Unsere Arbeit, offen einsehbar.",
+              body: "Experimente, Berichte und die Überlegungen hinter den Werkzeugen, die wir bauen.",
+              cta: "Zur Forschung",
+              href: LINKS.research,
+            },
+            columns: [
+              {
+                title: "Hier starten",
+                links: [
+                  {
+                    label: "Überblick",
+                    desc: "Woran wir arbeiten — und warum es zählt.",
+                    href: LINKS.research,
+                    soon: false,
+                  },
+                  {
+                    label: "Das Team",
+                    desc: "Die Menschen hinter der Forschung.",
+                    href: LINKS.researchTeam,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "Tiefer einsteigen",
+                links: [
+                  {
+                    label: "Blog",
+                    desc: "Gedanken, Experimente, Ergebnisse und gelernte Lektionen.",
+                    href: LINKS.researchBlog,
+                    soon: false,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          href: LINKS.notebooks,
+          label: "Services",
+          menu: {
+            featured: {
+              eyebrow: "Ecello Services",
+              title: "Werkzeuge von uns, sofort einsatzbereit.",
+              body: "Produkte, die wir für uns selbst gebaut haben — offen für Teams, die dasselbe brauchen.",
+              cta: "Gespräch buchen",
+              href: "/booking",
+            },
+            columns: [
+              {
+                title: "Jetzt verfügbar",
+                links: [
+                  {
+                    label: "Notebooks",
+                    desc: "Ein Werkzeug für die Zusammenarbeit, das Ihre Colab-Notebooks mit GCS synchronisiert",
+                    href: LINKS.notebooks,
+                    soon: false,
+                  },
+                  {
+                    label: "Secrets",
+                    desc: "Vereinfachtes, sicheres Teilen von Zugangsdaten und Schlüsseln.",
+                    href: LINKS.secrets,
+                    soon: false,
+                  },
+                ],
+              },
+              {
+                title: "In Arbeit",
+                links: [
+                  {
+                    label: "Demnächst mehr",
+                    desc: "Neue Werkzeuge erscheinen hier, sobald wir sie veröffentlichen.",
+                    href: "/booking",
+                    soon: true,
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        { href: "#process", label: "Prozess", menu: null },
+        { href: "#trust", label: "Stimmen", menu: null },
+        { href: "#contact", label: "Kontakt", menu: null },
       ],
     },
     footer: {
@@ -324,6 +594,8 @@ export const messages = {
         { href: "#about", label: "Wer wir sind" },
         { href: "#process", label: "Unser Prozess" },
         { href: "#trust", label: "Stimmen" },
+        { href: LINKS.research, label: "Forschung" },
+        { href: LINKS.notebooks, label: "Services" },
         { href: "/booking", label: "Gespräch buchen" },
       ],
       reachLinks: [
