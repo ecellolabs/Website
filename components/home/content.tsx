@@ -194,7 +194,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
             <div className="flex gap-3.5 mt-8.5 flex-wrap justify-center md:justify-start">
               <Button
                 variant="primary"
-                href={localizeHref(locale, "#contact")}
+                href={localizeHref(locale, "/contact")}
                 className="!px-6.5 !py-4 !text-base"
               >
                 {content.hero.primaryCta}
@@ -505,7 +505,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
               </p>
               <Button
                 variant="white"
-                href="mailto:alex@ecello.net?subject=Let's%20talk%20about%20a%20project"
+                href={localizeHref(locale, "/contact")}
                 className="!mt-8.5 !px-7.5 !py-4 !text-[17px]"
               >
                 {content.cta.button}

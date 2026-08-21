@@ -88,7 +88,7 @@ export const messages = {
               title: "Tools we run, ready to use.",
               body: "Products we built for ourselves, opened up for teams that need the same thing.",
               cta: "Get in touch",
-              href: "#contact",
+              href: "/contact",
             },
             columns: [
               {
@@ -114,7 +114,7 @@ export const messages = {
                   {
                     label: "More coming",
                     desc: "New tools land here as we release them.",
-                    href: "#contact",
+                    href: "/contact",
                     soon: true,
                   },
                 ],
@@ -147,10 +147,10 @@ export const messages = {
         { href: "#trust", label: "Reviews" },
         { href: LINKS.research, label: "Research" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "#contact", label: "Get in touch" },
+        { href: "/contact", label: "Get in touch" },
       ],
       reachLinks: [
-        { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
+        { href: "mailto:talal@ecello.net", label: "talal@ecello.net" },
         { href: "#top", label: "Bremerhaven, Germany" },
         { href: "#top", label: "Remote-first · Europe" },
       ],
@@ -239,7 +239,7 @@ export const messages = {
       cta: {
         title: "Have something worth automating?",
         body: "Tell us what's eating your team's time. We'll tell you honestly whether AI, software, or product development can help, and if it can't, we'll say so.",
-        button: "Email alex@ecello.net",
+        button: "Get in touch",
       },
     },
     booking: {
@@ -251,6 +251,44 @@ export const messages = {
       eyebrow: "Get in touch",
       title: "Let's find 30 minutes.",
       body: "Pick a time that works for you. No pitch deck, just a straight conversation about what's slowing your team down and whether we can help.",
+    },
+    contact: {
+      metadata: {
+        title: "Contact - Ecello Labs",
+        description:
+          "Tell us what's eating your team's time. We'll reply within one business day with a straight answer on whether AI, software, or product development can help.",
+      },
+      eyebrow: "Get in touch",
+      title: "Tell us what's slowing you down.",
+      intro:
+        "Fill this in and we'll come back with a straight answer - whether we can help, and what it would take.",
+      optional: "optional",
+      fields: {
+        name: { label: "Your name", placeholder: "Alex Meyer" },
+        email: { label: "Email", placeholder: "you@company.com" },
+        company: { label: "Company", placeholder: "Where you work" },
+        message: {
+          label: "Type your message here",
+          placeholder: "A couple of sentences is plenty.",
+        },
+      },
+      honeypotLabel: "Leave this field empty",
+      errors: {
+        name: "Please tell us your name.",
+        email: "Please enter your email address.",
+        emailInvalid: "That doesn't look like a valid email address.",
+        message: "Tell us a little about what you need.",
+      },
+      submit: "Send message",
+      pending: "Sending…",
+      success: {
+        title: "Message sent.",
+        body: "Thanks for your message. We'll get back to you as soon as possible.",
+      },
+      failure: {
+        body: "That didn't send. Email us directly and we'll pick it up:",
+        email: "talal@ecello.net",
+      },
     },
   },
   fr: {
@@ -318,7 +356,7 @@ export const messages = {
               title: "Des outils que nous exploitons, prêts à l'emploi.",
               body: "Des produits conçus pour nous-mêmes, ouverts aux équipes qui en ont besoin.",
               cta: "Contactez-nous",
-              href: "#contact",
+              href: "/contact",
             },
             columns: [
               {
@@ -344,7 +382,7 @@ export const messages = {
                   {
                     label: "Bientôt disponible",
                     desc: "Les nouveaux outils apparaîtront ici à leur sortie.",
-                    href: "#contact",
+                    href: "/contact",
                     soon: true,
                   },
                 ],
@@ -377,10 +415,10 @@ export const messages = {
         { href: "#trust", label: "Avis" },
         { href: LINKS.research, label: "Recherche" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "#contact", label: "Contactez-nous" },
+        { href: "/contact", label: "Contactez-nous" },
       ],
       reachLinks: [
-        { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
+        { href: "mailto:talal@ecello.net", label: "talal@ecello.net" },
         { href: "#top", label: "Bremerhaven, Allemagne" },
         { href: "#top", label: "À distance · Europe" },
       ],
@@ -469,7 +507,7 @@ export const messages = {
       cta: {
         title: "Vous avez quelque chose qui mérite d'être automatisé ?",
         body: "Dites-nous ce qui prend trop de temps à votre équipe. Nous vous dirons honnêtement si l'IA, le logiciel ou le développement produit peuvent aider, et si ce n'est pas le cas, nous le dirons aussi.",
-        button: "Écrire à alex@ecello.net",
+        button: "Contactez-nous",
       },
     },
     booking: {
@@ -481,6 +519,44 @@ export const messages = {
       eyebrow: "Réserver un appel",
       title: "Trouvons 30 minutes.",
       body: "Choisissez un créneau qui vous convient. Pas de slide deck, juste une conversation franche sur ce qui ralentit votre équipe et sur ce que nous pouvons faire.",
+    },
+    contact: {
+      metadata: {
+        title: "Contact - Ecello Labs",
+        description:
+          "Dites-nous ce qui prend le temps de votre équipe. Nous répondons en un jour ouvré, franchement, sur ce que l'IA, le logiciel ou le développement produit peuvent apporter.",
+      },
+      eyebrow: "Contactez-nous",
+      title: "Dites-nous ce qui vous ralentit.",
+      intro:
+        "Remplissez ce formulaire et nous reviendrons avec une réponse franche : si nous pouvons aider, et ce que cela demanderait.",
+      optional: "facultatif",
+      fields: {
+        name: { label: "Votre nom", placeholder: "Alex Meyer" },
+        email: { label: "E-mail", placeholder: "vous@entreprise.com" },
+        company: { label: "Entreprise", placeholder: "Où vous travaillez" },
+        message: {
+          label: "Qu'est-ce qui prend le plus de temps à votre équipe ?",
+          placeholder: "Quelques phrases suffisent.",
+        },
+      },
+      honeypotLabel: "Laissez ce champ vide",
+      errors: {
+        name: "Merci d'indiquer votre nom.",
+        email: "Merci d'indiquer votre adresse e-mail.",
+        emailInvalid: "Cette adresse e-mail ne semble pas valide.",
+        message: "Dites-nous en quelques mots ce dont vous avez besoin.",
+      },
+      submit: "Envoyer le message",
+      pending: "Envoi…",
+      success: {
+        title: "Message envoyé.",
+        body: "Merci — nous vous répondrons dans un jour ouvré.",
+      },
+      failure: {
+        body: "L'envoi a échoué. Écrivez-nous directement, nous prenons le relais :",
+        email: "Talal@ecello.net",
+      },
     },
   },
   de: {
@@ -548,7 +624,7 @@ export const messages = {
               title: "Werkzeuge von uns, sofort einsatzbereit.",
               body: "Produkte, die wir für uns selbst gebaut haben — offen für Teams, die dasselbe brauchen.",
               cta: "Kontakt aufnehmen",
-              href: "#contact",
+              href: "/contact",
             },
             columns: [
               {
@@ -574,7 +650,7 @@ export const messages = {
                   {
                     label: "Demnächst mehr",
                     desc: "Neue Werkzeuge erscheinen hier, sobald wir sie veröffentlichen.",
-                    href: "#contact",
+                    href: "/contact",
                     soon: true,
                   },
                 ],
@@ -607,10 +683,10 @@ export const messages = {
         { href: "#trust", label: "Stimmen" },
         { href: LINKS.research, label: "Forschung" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "#contact", label: "Kontakt aufnehmen" },
+        { href: "/contact", label: "Kontakt aufnehmen" },
       ],
       reachLinks: [
-        { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
+        { href: "mailto:Talal@ecello.net", label: "Talal@ecello.net" },
         { href: "#top", label: "Bremerhaven, Deutschland" },
         { href: "#top", label: "Remote-first · Europa" },
       ],
@@ -699,7 +775,7 @@ export const messages = {
       cta: {
         title: "Haben Sie etwas, das automatisiert werden sollte?",
         body: "Sagen Sie uns, was Ihrem Team Zeit raubt. Wir sagen ehrlich, ob KI, Software oder Produktentwicklung helfen kann, und wenn nicht, sagen wir das auch.",
-        button: "E-Mail an alex@ecello.net",
+        button: "Kontakt aufnehmen",
       },
     },
     booking: {
@@ -712,12 +788,51 @@ export const messages = {
       title: "Lassen Sie uns 30 Minuten finden.",
       body: "Wählen Sie einen passenden Termin. Kein Foliendeck, nur ein ehrliches Gespräch darüber, was Ihr Team ausbremst und ob wir helfen können.",
     },
+    contact: {
+      metadata: {
+        title: "Kontakt - Ecello Labs",
+        description:
+          "Sagen Sie uns, was Ihrem Team Zeit raubt. Wir antworten innerhalb eines Werktags — ehrlich, ob KI, Software oder Produktentwicklung helfen kann.",
+      },
+      eyebrow: "Kontakt aufnehmen",
+      title: "Sagen Sie uns, was Sie ausbremst.",
+      intro:
+        "Füllen Sie das Formular aus und wir melden uns mit einer klaren Antwort: ob wir helfen können und was dafür nötig wäre.",
+      optional: "optional",
+      fields: {
+        name: { label: "Ihr Name", placeholder: "Alex Meyer" },
+        email: { label: "E-Mail", placeholder: "sie@firma.de" },
+        company: { label: "Unternehmen", placeholder: "Wo Sie arbeiten" },
+        message: {
+          label: "Was raubt Ihrem Team die meiste Zeit?",
+          placeholder: "Ein paar Sätze genügen.",
+        },
+      },
+      honeypotLabel: "Dieses Feld leer lassen",
+      errors: {
+        name: "Bitte nennen Sie uns Ihren Namen.",
+        email: "Bitte geben Sie Ihre E-Mail-Adresse an.",
+        emailInvalid: "Diese E-Mail-Adresse sieht nicht gültig aus.",
+        message: "Sagen Sie uns kurz, was Sie brauchen.",
+      },
+      submit: "Nachricht senden",
+      pending: "Wird gesendet…",
+      success: {
+        title: "Nachricht gesendet.",
+        body: "Danke — wir antworten innerhalb eines Werktags.",
+      },
+      failure: {
+        body: "Das Senden hat nicht funktioniert. Schreiben Sie uns direkt:",
+        email: "talal@ecello.net",
+      },
+    },
   },
 } as const;
 
 export type Messages = (typeof messages)[Locale];
 export type HomeContent = Messages["home"];
 export type BookingContent = Messages["booking"];
+export type ContactContent = Messages["contact"];
 
 export function getMessages(locale: Locale): Messages {
   return messages[locale];

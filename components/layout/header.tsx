@@ -37,7 +37,7 @@ export default function Header({ content, locale }: HeaderProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const bookingHref = localizeHref(locale, "#contact");
+  const bookingHref = localizeHref(locale, "/contact");
 
   const activeItem = content.nav.find((l) => l.menu !== null && l.label === openKey) ?? null;
   const activeMenu = (activeItem?.menu ?? null) as unknown as MegaMenu | null;

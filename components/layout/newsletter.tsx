@@ -49,7 +49,7 @@ export default function NewsletterForm({ content }: NewsletterFormProps) {
     <div className="w-full max-w-[420px]">
       <form
         onSubmit={onSubmit}
-        className="flex items-center gap-1.5 rounded-full border border-[rgba(189,209,232,0.6)] bg-[#f6fafe] p-1.5 transition-colors duration-200 focus-within:border-[--color-blue] focus-within:bg-white"
+        className="flex items-center gap-1.5 rounded-full border border-[rgba(189,209,232,0.6)] p-1.5 transition-colors duration-200 focus-within:border-[--color-blue] focus-within:bg-white"
       >
         <input
           type="email"

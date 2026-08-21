@@ -24,7 +24,7 @@ export default function NotFoundContent({ homeHref = "/en" }: NotFoundContentPro
           </Button>
           <Button
             variant="ghost"
-            href="mailto:alex@ecello.net?subject=Something%20isn't%20working"
+            href="mailto:talal@ecello.net?subject=Something%20isn't%20working"
             className="!px-6.5 !py-4 !text-base"
           >
             Report a problem

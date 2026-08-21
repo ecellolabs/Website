@@ -103,7 +103,6 @@ export default function Footer({ content, locale }: FooterProps) {
               <Boat />
             </span>
           </div>
-          {/* wavy crest line — on top of the boat */}
           <span
             aria-hidden
             style={{ backgroundImage: waveBg }}
