@@ -25,7 +25,7 @@ export function isLocale(value: string): value is Locale {
 export const messages = {
   en: {
     metadata: {
-      title: "Ecello Labs - Shipping AI for your business",
+      title: "Ecello Labs | Shipping AI for your business",
       description:
         "Ecello Labs builds AI automation, software, and product development that take real work off your team's plate. A remote AI & software studio based in Bremerhaven, Germany.",
     },
@@ -33,7 +33,7 @@ export const messages = {
       homeLabel: "Ecello Labs home",
       openMenu: "Open menu",
       closeMenu: "Close menu",
-      cta: "Book a call",
+      cta: "Get in touch",
         nav: [
         { href: "#about", label: "Who we are", menu: null },
         {
@@ -87,8 +87,8 @@ export const messages = {
               eyebrow: "Ecello Services",
               title: "Tools we run, ready to use.",
               body: "Products we built for ourselves, opened up for teams that need the same thing.",
-              cta: "Book a call",
-              href: "/booking",
+              cta: "Get in touch",
+              href: "#contact",
             },
             columns: [
               {
@@ -114,7 +114,7 @@ export const messages = {
                   {
                     label: "More coming",
                     desc: "New tools land here as we release them.",
-                    href: "/booking",
+                    href: "#contact",
                     soon: true,
                   },
                 ],
@@ -124,7 +124,6 @@ export const messages = {
         },
         { href: "#process", label: "Process", menu: null },
         { href: "#trust", label: "Reviews", menu: null },
-        { href: "#contact", label: "Contact", menu: null },
       ],
     },
     footer: {
@@ -148,7 +147,7 @@ export const messages = {
         { href: "#trust", label: "Reviews" },
         { href: LINKS.research, label: "Research" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "/booking", label: "Book a call" },
+        { href: "#contact", label: "Get in touch" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
@@ -161,7 +160,7 @@ export const messages = {
         titleTop: "Shipping AI",
         titleBottom: "for your business.",
         body: "We build digital tools, assistants, and software that take real work off your team's plate. Quality you can trust and results you can see!",
-        primaryCta: "Book a call",
+        primaryCta: "Get in touch",
         secondaryCta: "Who we are",
         scrollLabel: "Scroll down to who we are",
         backToTopLabel: "Back to top",
@@ -238,11 +237,11 @@ export const messages = {
     },
     booking: {
       metadata: {
-        title: "Book a call - Ecello Labs",
+        title: "Get in touch - Ecello Labs",
         description:
           "Grab 30 minutes on our calendar to talk through what's slowing your team down and whether AI, software, or product development can help.",
       },
-      eyebrow: "Book a call",
+      eyebrow: "Get in touch",
       title: "Let's find 30 minutes.",
       body: "Pick a time that works for you. No pitch deck, just a straight conversation about what's slowing your team down and whether we can help.",
     },
@@ -311,8 +310,8 @@ export const messages = {
               eyebrow: "Ecello Services",
               title: "Des outils que nous exploitons, prêts à l'emploi.",
               body: "Des produits conçus pour nous-mêmes, ouverts aux équipes qui en ont besoin.",
-              cta: "Réserver un appel",
-              href: "/booking",
+              cta: "Contactez-nous",
+              href: "#contact",
             },
             columns: [
               {
@@ -338,7 +337,7 @@ export const messages = {
                   {
                     label: "Bientôt disponible",
                     desc: "Les nouveaux outils apparaîtront ici à leur sortie.",
-                    href: "/booking",
+                    href: "#contact",
                     soon: true,
                   },
                 ],
@@ -348,7 +347,6 @@ export const messages = {
         },
         { href: "#process", label: "Processus", menu: null },
         { href: "#trust", label: "Avis", menu: null },
-        { href: "#contact", label: "Contact", menu: null },
       ],
     },
     footer: {
@@ -372,7 +370,7 @@ export const messages = {
         { href: "#trust", label: "Avis" },
         { href: LINKS.research, label: "Recherche" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "/booking", label: "Réserver un appel" },
+        { href: "#contact", label: "Contactez-nous" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },
@@ -385,7 +383,7 @@ export const messages = {
         titleTop: "Nous livrons l'IA",
         titleBottom: "pour votre entreprise.",
         body: "Nous créons des outils numériques, des assistants et des logiciels qui retirent du vrai travail des épaules de votre équipe. Une qualité fiable et des résultats visibles.",
-        primaryCta: "Réserver un appel",
+        primaryCta: "Contactez-nous",
         secondaryCta: "Qui nous sommes",
         scrollLabel: "Descendre vers qui nous sommes",
         backToTopLabel: "Retour en haut",
@@ -535,8 +533,8 @@ export const messages = {
               eyebrow: "Ecello Services",
               title: "Werkzeuge von uns, sofort einsatzbereit.",
               body: "Produkte, die wir für uns selbst gebaut haben — offen für Teams, die dasselbe brauchen.",
-              cta: "Gespräch buchen",
-              href: "/booking",
+              cta: "Kontakt aufnehmen",
+              href: "#contact",
             },
             columns: [
               {
@@ -562,7 +560,7 @@ export const messages = {
                   {
                     label: "Demnächst mehr",
                     desc: "Neue Werkzeuge erscheinen hier, sobald wir sie veröffentlichen.",
-                    href: "/booking",
+                    href: "#contact",
                     soon: true,
                   },
                 ],
@@ -572,7 +570,6 @@ export const messages = {
         },
         { href: "#process", label: "Prozess", menu: null },
         { href: "#trust", label: "Stimmen", menu: null },
-        { href: "#contact", label: "Kontakt", menu: null },
       ],
     },
     footer: {
@@ -596,7 +593,7 @@ export const messages = {
         { href: "#trust", label: "Stimmen" },
         { href: LINKS.research, label: "Forschung" },
         { href: LINKS.notebooks, label: "Services" },
-        { href: "/booking", label: "Gespräch buchen" },
+        { href: "#contact", label: "Kontakt aufnehmen" },
       ],
       reachLinks: [
         { href: "mailto:alex@ecello.net", label: "alex@ecello.net" },

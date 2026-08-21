@@ -194,7 +194,7 @@ export default function HomePage({ content, locale }: HomePageProps) {
             <div className="flex gap-3.5 mt-8.5 flex-wrap justify-center md:justify-start">
               <Button
                 variant="primary"
-                href={localizeHref(locale, "/booking")}
+                href={localizeHref(locale, "#contact")}
                 className="!px-6.5 !py-4 !text-base"
               >
                 {content.hero.primaryCta}
