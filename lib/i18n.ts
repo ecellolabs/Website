@@ -289,6 +289,12 @@ export const messages = {
         body: "That didn't send. Email us directly and we'll pick it up:",
         email: "talal@ecello.net",
       },
+      recaptcha: {
+        notice: "Protected by reCAPTCHA. The Google {privacy} and {terms} apply.",
+        privacy: "Privacy Policy",
+        terms: "Terms of Service",
+        failed: "We couldn't run the spam check. Please try again, or email us directly.",
+      },
     },
   },
   fr: {
@@ -557,6 +563,14 @@ export const messages = {
         body: "L'envoi a échoué. Écrivez-nous directement, nous prenons le relais :",
         email: "Talal@ecello.net",
       },
+      recaptcha: {
+        notice:
+          "Protégé par reCAPTCHA. La {privacy} et les {terms} de Google s'appliquent.",
+        privacy: "politique de confidentialité",
+        terms: "conditions d'utilisation",
+        failed:
+          "Le contrôle anti-spam n'a pas abouti. Réessayez, ou écrivez-nous directement.",
+      },
     },
   },
   de: {
@@ -824,6 +838,14 @@ export const messages = {
       failure: {
         body: "Das Senden hat nicht funktioniert. Schreiben Sie uns direkt:",
         email: "talal@ecello.net",
+      },
+      recaptcha: {
+        notice:
+          "Geschützt durch reCAPTCHA. Es gelten die {privacy} und die {terms} von Google.",
+        privacy: "Datenschutzerklärung",
+        terms: "Nutzungsbedingungen",
+        failed:
+          "Die Spam-Prüfung ist fehlgeschlagen. Bitte erneut versuchen oder schreiben Sie uns direkt.",
       },
     },
   },

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { submitContact } from "@/lib/contact";
+import { RECAPTCHA_ENABLED, getRecaptchaToken, loadRecaptcha } from "@/lib/recaptcha";
 import type { ContactContent } from "@/lib/i18n";
 
 type ContactPageProps = {
@@ -11,7 +12,7 @@ type ContactPageProps = {
 
 type FieldName = "name" | "email" | "company" | "message";
 type Errors = Partial<Record<FieldName, string>>;
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "success" | "error" | "captcha-error";
 
 const REQUIRED_ORDER = ["name", "email", "message"] as const;
 
@@ -20,7 +21,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const labelClass = "block text-xs font-bold tracking-[0.14em] uppercase text-[--color-navy] mb-2.5";
 
 const fieldClass =
-  "w-full rounded-full border bg-white px-4.5 py-3.5 text-[15px] text-[#0b1f3a] placeholder:text-[#8b98af] outline-none transition-colors duration-200";
+  "w-full rounded-lg border bg-white px-4.5 py-3.5 text-[15px] text-[#0b1f3a] placeholder:text-[#8b98af] outline-none transition-colors duration-200";
 
 const fieldTone = {
   base: "border-line focus:border-navy",
@@ -29,6 +30,39 @@ const fieldTone = {
 
 function fieldClasses(hasError: boolean) {
   return `${fieldClass} ${hasError ? fieldTone.invalid : fieldTone.base}`;
+}
+
+const RECAPTCHA_HREF = {
+  privacy: "https://policies.google.com/privacy",
+  terms: "https://policies.google.com/terms",
+} as const;
+
+/**
+ * The branding line reCAPTCHA requires. v3 draws no widget, so this — plus
+ * Google's floating badge - is the only visible sign it is running.
+ */
+function RecaptchaNotice({ content }: { content: ContactContent["recaptcha"] }) {
+  const parts = content.notice.split(/(\{privacy\}|\{terms\})/);
+
+  return (
+    <p className="text-[13px] leading-relaxed text-[--color-muted] text-center mt-8">
+      {parts.map((part, index) => {
+        const key = part === "{privacy}" ? "privacy" : part === "{terms}" ? "terms" : null;
+        if (!key) return part;
+        return (
+          <a
+            key={index}
+            href={RECAPTCHA_HREF[key]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-[--color-azure]"
+          >
+            {content[key]}
+          </a>
+        );
+      })}
+    </p>
+  );
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
@@ -56,6 +90,13 @@ export default function ContactPage({ content }: ContactPageProps) {
   useEffect(() => {
     if (status === "success") successRef.current?.focus();
   }, [status]);
+
+  // Warm the reCAPTCHA script up front so submit isn't waiting on a script
+  // fetch. A failure here is fine — the submit path loads it again and reports.
+  useEffect(() => {
+    if (!RECAPTCHA_ENABLED) return;
+    loadRecaptcha().catch(() => {});
+  }, []);
 
   const setField = (field: FieldName, value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -92,12 +133,24 @@ export default function ContactPage({ content }: ContactPageProps) {
     }
 
     setStatus("submitting");
+
+    let recaptchaToken = "";
+    if (RECAPTCHA_ENABLED) {
+      try {
+        recaptchaToken = await getRecaptchaToken("contact_submit");
+      } catch {
+        setStatus("captcha-error");
+        return;
+      }
+    }
+
     try {
       await submitContact({
         name: values.name.trim(),
         email: values.email.trim(),
         company: values.company.trim(),
         message: values.message.trim(),
+        recaptchaToken,
       });
       setStatus("success");
     } catch {
@@ -248,9 +301,11 @@ export default function ContactPage({ content }: ContactPageProps) {
                 {submitting ? content.pending : content.submit}
               </Button>
 
-              {status === "error" ? (
+              {status === "error" || status === "captcha-error" ? (
                 <p role="alert" className="text-[14.5px] text-[--color-muted] text-center">
-                  {content.failure.body}{" "}
+                  {status === "captcha-error"
+                    ? content.recaptcha.failed
+                    : content.failure.body}{" "}
                   <a
                     href={`mailto:${content.failure.email}`}
                     className="font-semibold text-[--color-navy] underline underline-offset-2 hover:text-[--color-azure]"
@@ -262,6 +317,10 @@ export default function ContactPage({ content }: ContactPageProps) {
             </div>
           </form>
         )}
+
+        {RECAPTCHA_ENABLED && status !== "success" ? (
+          <RecaptchaNotice content={content.recaptcha} />
+        ) : null}
       </div>
     </main>
   );
